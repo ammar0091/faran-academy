@@ -1,0 +1,28 @@
+.footer {
+  background: #0d233c;
+  color: #e0e5ec;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  border-radius: 0 0 10px 10px;
+}
+.info {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.socialIcons {
+  margin-bottom: 1rem;
+}
+.socialIcons a {
+  color: #ffd43b;
+  margin: 0 0.7em;
+  font-size: 1.4em;
+  transition: color 0.2s;
+}
+.socialIcons a:hover {
+  color: #00bcf9;
+}
+.copy {
+  font-size: 0.95rem;
+  color: #bec3cc;
+}
