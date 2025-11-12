@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { getFaculty } from "../utils/api";
+import Testimonial from "../components/Testimonial";
+import Team from "../components/Team";
 import {
   Box,
   Container,
@@ -10,7 +11,6 @@ import {
   CardContent,
   CardMedia,
   Stack,
-  Avatar,
   Paper,
   Divider,
   Button
@@ -35,17 +35,8 @@ const facilities = [
   { title: "Sports Grounds", img: "/assets/facilities/sports.jpg", desc: "Large open fields, gym, indoor games, and coaching." }
 ];
 
-const testimonials = [
-  { name: "Sara M. (Student)", image: "/assets/testimonials/student1.jpg", quote: "Faran Academy gave me the confidence, support, and inspiration to reach top universities." },
-  { name: "Mr. Rahman (Parent)", image: "/assets/testimonials/parent1.jpg", quote: "Dedicated teachers and excellent facilities—can’t recommend highly enough." }
-];
-
 export default function About() {
-  const [team, setTeam] = useState([]);
 
-  useEffect(() => {
-    getFaculty().then((res) => setTeam(res.data)).catch((err) => console.error("Failed to fetch faculty", err));
-  }, []);
 
   return (
     <Box bgcolor="#f7fafd">
@@ -107,27 +98,7 @@ export default function About() {
           <Typography variant="h4" align="center" fontWeight={800} color="primary.main" mb={5}>
             Our Leadership
           </Typography>
-          <Grid container spacing={4} justifyContent="center">
-            {team.map((m, i) => (
-              <Grid item xs={12} sm={6} md={3} key={i} minWidth={350} maxWidth={350}>
-                <Paper
-                  sx={{
-                    p: 3,
-                    borderRadius: 4,
-                    textAlign: "center",
-                    backdropFilter: "blur(8px)",
-                    background: "rgba(255,255,255,0.85)",
-                    transition: "0.3s",
-                  }}
-                >
-                  <Avatar src={m.image} sx={{ width: 90, height: 90, mx: "auto", mb: 2, border: "3px solid #005baa" }} />
-                  <Typography fontWeight={700}>{m.name}</Typography>
-                  <Typography color="primary">{m.role}</Typography>
-                  <Typography fontSize={14} color="text.secondary">{m.subject}</Typography>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
+          <Team/>
         </Container>
       </Box>
 
@@ -190,31 +161,7 @@ export default function About() {
           <Typography variant="h4" align="center" fontWeight={800} color="primary.main" mb={6}>
             Voices of Our Community
           </Typography>
-          <Stack
-            direction={{ xs: "column", md: "row" }}
-            spacing={4}
-            justifyContent="center"
-            alignItems="stretch"
-            sx={{ overflowX: { md: "auto" }, pb: 2 }}
-          >
-            {testimonials.map((t, i) => (
-              <Paper
-                key={i}
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: "center",
-                  flex: "0 0 300px",
-                  transition: "0.3s",
-                  "&:hover": { boxShadow: "0 8px 24px rgba(0,0,0,.2)" }
-                }}
-              >
-                <Avatar src={t.image} sx={{ width: 70, height: 70, mx: "auto", mb: 2 }} />
-                <Typography fontWeight={700}>{t.name}</Typography>
-                <Typography mt={1} sx={{ fontStyle: "italic" }}>“{t.quote}”</Typography>
-              </Paper>
-            ))}
-          </Stack>
+         <Testimonial limit={10} />
         </Container>
       </Box>
 
