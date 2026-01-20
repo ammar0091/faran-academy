@@ -8,7 +8,7 @@ export default function PublicLayout() {
   return (
     <Box>
       <Navbar />
-      <Box component="main" sx={{ minHeight: '80vh', p: 3 }}>
+      <Box component="main" sx={{ minHeight: '80vh', p: 2 }}>
         <Outlet /> 
       </Box>
       <Footer />

@@ -1,34 +1,33 @@
-// ========================= IMPORTS =========================
 import React, { useEffect, useState } from "react";
+// MUI Components
 import {
-  Box, Container, Typography, Button, Grid, Stack,
-  Card, CardContent, Avatar, Chip, Divider
+  Box, Container, Typography, Button, Grid, Stack, Card, CardContent, Avatar, Chip, Divider
 } from "@mui/material";
+// MUI Icons
 import SchoolIcon from "@mui/icons-material/School";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import InfoIcon from "@mui/icons-material/Info";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+// Router
 import { Link } from "react-router-dom";
-// import TestimonialCarousel from "../components/TestimonialCarousel";
+
+// Assets
 import herologo from "../assets/logo.png";
+
+// API
 import { getFaculty, getEvents, getNotifications } from "../utils/api";
+
+// Components
 import Team from "../components/Team";
 import Testimonial from "../components/Testimonial";
 
-// ========================= DUMMY DATA =========================
-// const galleryImages = [
-//   "/assets/gallery/1.jpg",
-//   "/assets/gallery/2.jpg",
-//   "/assets/gallery/3.jpg",
-//   "/assets/gallery/4.jpg",
-//   "/assets/gallery/5.jpg",
-//   "/assets/gallery/6.jpg",
-// ];
+
 
 const alumni = [
-  { name: "Arjun Singh", achievement: "MIT Scholar, Class of 2021", img: "/assets/alumni/arjun.jpg", story: "From science fairs to scholarship, thriving in global research." },
-  { name: "Priya Sen", achievement: "Google Intern, Class of 2020", img: "/assets/alumni/priya.jpg", story: "Founded coding club, now innovating at the world’s top tech firm." },
+  { name: "Obaid Ur Rahman", achievement: "MTech in CS", img: "/assets/alumni/obaid.jpg", story: "Obaid, M.Tech alumnus, a highly skilled and innovative developer making impactful contributions in the tech world." },
+  { name: "Zarrah", achievement: "Google Intern, Class of 2020", img: "/assets/alumni/zarrah.jpg", story: "Founded coding club, now innovating at the world’s top tech firm." },
 ];
 
 const achievements = [
@@ -38,14 +37,14 @@ const achievements = [
   "Green Campus Accreditation",
 ];
 
-// ========================= MAIN COMPONENT =========================
+// MAIN COMPONENT
 export default function Home() {
   const [faculty, setFaculty] = useState([]);
   const [events, setEvents] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data from backend
+  // Fetching data from backend
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -78,19 +77,16 @@ export default function Home() {
 
   return (
     <Box component="main" sx={{ bgcolor: "#f6fafe" }}>
-      <Container maxWidth="lg" sx={{ py: { xs: 2, md: 6 }, px: { xs: 1, md: 0 } }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 0 } }}>
 
-        {/* ===================================================== */}
-        {/* ✅ HERO SECTION */}
-        {/* ===================================================== */}
+        {/*  HERO SECTION */}
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column-reverse", md: "row" },
             alignItems: "center",
-            gap: { xs: 5, md: 9 },
-            pb: { xs: 2, md: 7 },
-            pt: { xs: 3, md: 8 },
+            gap: { xs: 5, md: 8 },
+            py: { xs: 3, md: 6 },
           }}
         >
           {/* Hero Left: Text */}
@@ -125,7 +121,7 @@ export default function Home() {
               </Button>
               <Button
                 component={Link}
-                to="/virtual-tour"
+                to="/gallery"
                 variant="outlined"
                 color="primary"
                 size="large"
@@ -159,68 +155,209 @@ export default function Home() {
           </Box>
         </Box>
 
-        {/* ===================================================== */}
-        {/* 📊 STATISTICS BAR */}
-        {/* ===================================================== */}
+        {/*  STATISTICS BAR */}
         <Grid
           container
-          spacing={4}
-          justifyContent={"center"}
+          spacing={{ xs: 4, md: 6 }}
+          justifyContent="center"
           sx={{
             bgcolor: "#005baa",
             color: "#fff",
-            borderRadius: 4,
-            p: { xs: 2, md: 4 },
-            mb: { xs: 3, md: 7 },
-            boxShadow: "0 8px 32px 0 rgba(0,91,170,0.13)",
+            borderRadius: { xs: 3, md: 4 },
+            p: { xs: 3, md: 4 },
+            mb: { xs: 4, md: 5 },
+            position: "relative",
           }}
         >
-          {[{ num: "320+", label: "Enrolled Students" },
-          { num: "97%", label: "Top Exam Results" },
-          { num: "25+", label: "Expert Faculty" },
-          { num: "18", label: "National Awards" },
+          {/* Horizontal connecting line (desktop only) */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "block" },
+              position: "absolute",
+              top: 60,
+              left: "12%",
+              right: "12%",
+              height: 2,
+              bgcolor: "rgba(255,255,255,0.25)",
+            }}
+          />
+
+          {[
+            { num: "320+", label: "Students Enrolled", icon: "🎓" },
+            { num: "97%", label: "Exam Success Rate", icon: "📈" },
+            { num: "25+", label: "Qualified Faculty", icon: "👩‍🏫" },
+            { num: "18", label: "National Awards", icon: "🏆" },
           ].map((item) => (
-            <Grid item xs={6} sm={3} sx={{ textAlign: "center" }} key={item.label}>
-              <Typography variant="h3" fontWeight={800}>{item.num}</Typography>
-              <Typography variant="body1" sx={{ opacity: 0.94, fontSize: 18 }}>{item.label}</Typography>
+            <Grid item xs={6} sm={3} key={item.label}>
+              <Box sx={{ textAlign: "center", position: "relative" }}>
+                {/* Icon */}
+                <Box
+                  sx={{
+                    width: 54,
+                    height: 54,
+                    mx: "auto",
+                    mb: 1.2,
+                    borderRadius: "50%",
+                    bgcolor: "#ffffff",
+                    color: "#005baa",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 20,
+                    fontWeight: 700,
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                >
+                  {item.icon}
+                </Box>
+
+                {/* Number */}
+                <Typography
+                  sx={{
+                    fontWeight: 900,
+                    fontSize: { xs: 28, sm: 32, md: 38 },
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {item.num}
+                </Typography>
+
+                {/* Label */}
+                <Typography
+                  sx={{
+                    mt: 0.5,
+                    fontSize: { xs: 14, md: 16 },
+                    opacity: 0.9,
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              </Box>
             </Grid>
           ))}
         </Grid>
 
 
-        {/* ===================================================== */}
-        {/* 🏫 ABOUT SECTION */}
-        {/* ===================================================== */}
+
+        {/*  ABOUT SECTION */}
         <Box
           sx={{
-            py: { xs: 4, md: 6 },
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            gap: 6,
-            alignItems: "center",
+            py: { xs: 6, md: 8 },
+            px: { xs: 2, md: 4 },
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: 4,
           }}
         >
-          <Box flex={1}>
-            <Typography variant="h4" fontWeight={700} mb={2} color="primary.main">
-              About Our School
-            </Typography>
-            <Typography variant="body1" color="text.secondary" mb={2}>
-              Faran Academy is dedicated to nurturing students through rigorous academics, creative arts, leadership development, and global engagement.
-            </Typography>
-            <Typography variant="body1" color="text.secondary">
-              We blend modern pedagogy with rich traditions, preparing every child to succeed, innovate, and serve society.
-            </Typography>
-          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column-reverse", md: "row" },
+              alignItems: "center",
+              gap: { xs: 6, md: 10 },
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            {/* TEXT LEFT */}
+            <Box flex={1}>
+              <Typography
+                variant="overline"
+                fontWeight={700}
+                letterSpacing={2}
+                color="primary.main"
+                mb={2}
+              >
+                About Our School
+              </Typography>
 
-          <Box flex={1} sx={{ textAlign: "center", mt: { xs: 3, md: 0 } }}>
-            <img src="/assets/features/values.svg" alt="School Values" style={{ width: "86%", maxHeight: 260, borderRadius: 12, objectFit: "contain" }} />
+              <Typography
+                variant="h3"
+                fontWeight={800}
+                color="text.primary"
+                mb={3}
+                sx={{ lineHeight: 1.2 }}
+              >
+                Nurturing Minds, Inspiring Futures
+              </Typography>
+
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                mb={2}
+                sx={{ fontSize: { xs: 15, md: 16 }, lineHeight: 1.8 }}
+              >
+                At Faran Academy, we combine rigorous academics, creative arts, leadership development, and global exposure to help students thrive in a rapidly evolving world.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: { xs: 15, md: 16 }, lineHeight: 1.8 }}
+              >
+                Our students are equipped to innovate, lead, and contribute meaningfully to society, while enjoying a vibrant, supportive learning environment.
+              </Typography>
+
+              {/* Small Features */}
+              <Box sx={{ mt: 4, display: "flex", flexWrap: "wrap", gap: 2 }}>
+                {["Creativity", "Leadership", "Innovation"].map(
+                  (feature) => (
+                    <Box
+                      key={feature}
+                      sx={{
+                        px: 3,
+                        py: 1,
+                        borderRadius: 2,
+                        background: "rgba(255,255,255,0.3)",
+                        backdropFilter: "blur(8px)",
+                        fontWeight: 600,
+                        display: "inline-block",
+                        fontSize: 14,
+                        color: "text.primary",
+                        transition: "transform 0.3s",
+                        "&:hover": {
+                          transform: "translateY(-3px) scale(1.05)",
+                        },
+                      }}
+                    >
+                      {feature}
+                    </Box>
+                  )
+                )}
+              </Box>
+            </Box>
+
+            {/* IMAGE RIGHT */}
+            <Box
+              flex={1}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src="/assets/features/values.svg"
+                alt="School Values"
+                sx={{
+                  width: { xs: "80%", md: "100%" },
+                  maxHeight: 300,
+                  borderRadius: 4,
+                  boxShadow: (theme) =>
+                    theme.palette.mode === "light"
+                      ? "0px 12px 28px rgba(0,0,0,0.1)"
+                      : "0px 12px 28px rgba(0,0,0,0.5)",
+                }}
+              />
+            </Box>
           </Box>
         </Box>
 
 
-        {/* ===================================================== */}
-        {/* 🧑‍🏫 PRINCIPAL’S MESSAGE */}
-        {/* ===================================================== */}
+
+        {/* PRINCIPAL’S MESSAGE */}
         {faculty.length > 0 && (
           <Box sx={{ my: { xs: 4, md: 5 }, bgcolor: "#e8faff", p: 3, borderRadius: 6 }}>
             <Typography variant="h4" fontWeight={700} mb={2.5} color="primary.main" align="center">
@@ -237,117 +374,7 @@ export default function Home() {
           </Box>
         )}
 
-        {/* ===================================================== */}
-        {/* 📅 NEWS, EVENTS & ANNOUNCEMENTS (3 events + 3 notifications) */}
-        {/* ===================================================== */}
-        <Box sx={{ my: { xs: 4, md: 7 } }}>
-          <Typography variant="h4" fontWeight={700} color="primary.main" mb={3}>
-            News, Events & Announcements
-          </Typography>
-
-          {/* ---- EVENTS ---- */}
-          <Typography variant="h5" fontWeight={700} color="text.primary" mb={2}>
-            Latest Events
-          </Typography>
-          <Grid container spacing={3} mb={4}>
-            {events
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
-              .slice(0, 3) // 👈 only 3 events
-              .map((event, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={event._id || idx}>
-                  <Card
-                    sx={{
-                      bgcolor: "#f5fafd",
-                      borderRadius: 3,
-                      minHeight: 180,
-                      boxShadow: 0,
-                      transition: "0.3s",
-                      "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.08)" },
-                    }}
-                  >
-                    <CardContent>
-                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
-                        <EventAvailableIcon color="primary" />
-                        <Typography fontWeight={700} variant="subtitle1">
-                          {event.title || "Event"}
-                        </Typography>
-                      </Stack>
-
-                      <Typography color="text.secondary" variant="body2">
-                        {new Date(event.date).toLocaleDateString()}
-                      </Typography>
-
-                      <Typography mt={1} mb={2}>
-                        {event.description}
-                      </Typography>
-
-                      <Button
-                        component={Link}
-                        to={`/events/${event._id}`}
-                        size="small"
-                        variant="outlined"
-                        color="primary"
-                        sx={{
-                          borderRadius: 2,
-                          textTransform: "none",
-                          fontWeight: 600,
-                          "&:hover": { transform: "scale(1.05)" },
-                        }}
-                      >
-                        More Details
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
-
-          {/* ---- ANNOUNCEMENTS ---- */}
-          <Typography variant="h5" fontWeight={700} color="text.primary" mb={2}>
-            Latest Announcements
-          </Typography>
-          <Grid container spacing={3}>
-            {notifications
-              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-              .slice(0, 3) // 👈 only 3 notifications
-              .map((note, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={note._id || idx}>
-                  <Card
-                    sx={{
-                      bgcolor: "#f5fafd",
-                      borderRadius: 3,
-                      minHeight: 180,
-                      boxShadow: 0,
-                      transition: "0.3s",
-                      "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.08)" },
-                    }}
-                  >
-                    <CardContent>
-                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
-                        <InfoIcon color="primary" />
-                        <Typography fontWeight={700} variant="subtitle1">
-                          {note.title || "Announcement"}
-                        </Typography>
-                      </Stack>
-
-                      <Typography color="text.secondary" variant="body2">
-                        {new Date(note.createdAt).toLocaleDateString()}
-                      </Typography>
-
-                      <Typography mt={1}>
-                        {note.message}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
-        </Box>
-
-
-        {/* ===================================================== */}
-        {/* 👩‍🏫 FACULTY SECTION */}
-        {/* ===================================================== */}
+        {/*  FACULTY SECTION */}
         <Box
           sx={{
             position: "relative",
@@ -410,7 +437,7 @@ export default function Home() {
                   sx={{
                     lineHeight: 1.8,
                     fontSize: { xs: 14, sm: 15, md: 16 },
-                    maxWidth: { xs: "100%", sm: 380, md: 420 }, // line length controlled
+                    maxWidth: { xs: 260, sm: 320, md: 420 }, // line length controlled
                     mx: "auto", // center horizontally
                     wordBreak: "break-word",
                   }}
@@ -478,13 +505,11 @@ export default function Home() {
         </Box>
 
 
-        {/* ===================================================== */}
-        {/* 🎖️ ALUMNI SECTION — OPPOSITE LAYOUT */}
-        {/* ===================================================== */}
+        {/* ALUMNI SECTION —  */}
         <Box
           sx={{
-            py: { xs: 12, md: 16 },
-            px: { xs: 2, md: 0 },
+            py: { xs: 8, md: 12 },
+            px: { xs: 1, md: 0 },
 
           }}
         >
@@ -498,11 +523,12 @@ export default function Home() {
             >
               {/* LEFT SIDE — Alumni Cards */}
               <Grid item xs={12} md={7}>
-                <Grid container spacing={4} justifyContent="flex-start">
+                <Grid container spacing={2} justifyContent="flex-start">
                   {alumni.map((alum, index) => (
                     <Grid item xs={12} sm={6} key={alum.name}>
                       <Card
                         sx={{
+                          maxWidth: 420,
                           p: 3,
                           borderRadius: 4,
                           textAlign: "center",
@@ -523,7 +549,7 @@ export default function Home() {
                                 ? "0px 12px 32px rgba(0,80,200,0.18)"
                                 : "0px 16px 36px rgba(120,120,180,0.3)",
                           },
-                          mb: index % 2 === 0 ? 6 : 0, // staggered vertical effect
+                          mb: index % 2 === 0 ? 6 : 0,
                         }}
                       >
                         <Box
@@ -622,6 +648,9 @@ export default function Home() {
                   sx={{
                     lineHeight: 1.8,
                     fontSize: { xs: 14, sm: 15, md: 16 },
+                    maxWidth: { xs: 260, sm: 320, md: 420 },
+                    mx: "auto", // center horizontally
+                    wordBreak: "break-word",
                   }}
                 >
                   Our alumni have made remarkable contributions across industries worldwide. Their journeys showcase the impact of dedication, mentorship, and hard work.
@@ -663,12 +692,10 @@ export default function Home() {
         </Box>
 
 
-        {/* ===================================================== */}
-        {/* 🏞️ CAMPUS LIFE GALLERY — CENTERED UNIFORM IMAGES */}
-        {/* ===================================================== */}
+        {/* CAMPUS LIFE GALLERY  */}
         <Box
           sx={{
-            py: { xs: 8, md: 12 },
+            py: { xs: 4, md: 6 },
           }}
         >
           <Container maxWidth="xl">
@@ -741,12 +768,10 @@ export default function Home() {
         </Box>
 
 
-        {/* ===================================================== */}
-        {/* 💬 TESTIMONIALS — TAGDA LOOK */}
-        {/* ===================================================== */}
+        {/* TESTIMONIALS — */}
         <Box
           sx={{
-            py: { xs: 10, md: 14 },
+            py: { xs: 4, md: 8 },
           }}
         >
           <Container maxWidth="lg">
@@ -771,14 +796,116 @@ export default function Home() {
               />
             </Typography>
 
-          <Testimonial limit={6} />
+            <Testimonial limit={6} />
           </Container>
         </Box>
 
+        {/*  NEWS, EVENTS & ANNOUNCEMENTS (3 events + 3 notifications) */}
+        <Box sx={{ my: { xs: 4, md: 7 } }}>
+          <Typography variant="h4" fontWeight={700} color="primary.main" mb={5} align="center">
+            News, Events & Announcements
+          </Typography>
 
-        {/* ===================================================== */}
-        {/* 📞 CONTACT CTA */}
-        {/* ===================================================== */}
+          {/* ---- EVENTS ---- */}
+          <Typography variant="h5" fontWeight={700} color="text.primary" mb={2}>
+            Latest Events
+          </Typography>
+          <Grid container spacing={3} mb={4}>
+            {events
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .slice(0, 3) // 👈 only 3 events
+              .map((event, idx) => (
+                <Grid item xs={12} sm={6} md={4} key={event._id || idx}>
+                  <Card
+                    sx={{
+                      bgcolor: "#f5fafd",
+                      borderRadius: 3,
+                      minHeight: 180,
+                      boxShadow: 0,
+                      transition: "0.3s",
+                      "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.08)" },
+                    }}
+                  >
+                    <CardContent>
+                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
+                        <EventAvailableIcon color="primary" />
+                        <Typography fontWeight={700} variant="subtitle1">
+                          {event.title || "Event"}
+                        </Typography>
+                      </Stack>
+
+                      <Typography color="text.secondary" variant="body2">
+                        {new Date(event.date).toLocaleDateString()}
+                      </Typography>
+
+                      <Typography mt={1} mb={2}>
+                        {event.description}
+                      </Typography>
+
+                      <Button
+                        component={Link}
+                        to={`/#events/${event._id}`}
+                        size="small"
+                        variant="outlined"
+                        color="primary"
+                        sx={{
+                          borderRadius: 2,
+                          textTransform: "none",
+                          fontWeight: 600,
+                          "&:hover": { transform: "scale(1.05)" },
+                        }}
+                      >
+                        More Details
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
+
+          {/* ---- ANNOUNCEMENTS ---- */}
+          <Typography variant="h5" fontWeight={700} color="text.primary" mb={2}>
+            Latest Announcements
+          </Typography>
+          <Grid container spacing={3}>
+            {notifications
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .slice(0, 3)
+              .map((note, idx) => (
+                <Grid item xs={12} sm={6} md={4} key={note._id || idx}>
+                  <Card
+                    sx={{
+                      bgcolor: "#f5fafd",
+                      borderRadius: 3,
+                      minHeight: 180,
+                      boxShadow: 0,
+                      transition: "0.3s",
+                      "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.08)" },
+                    }}
+                  >
+                    <CardContent>
+                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
+                        <InfoIcon color="primary" />
+                        <Typography fontWeight={700} variant="subtitle1">
+                          {note.title || "Announcement"}
+                        </Typography>
+                      </Stack>
+
+                      <Typography color="text.secondary" variant="body2">
+                        {new Date(note.createdAt).toLocaleDateString()}
+                      </Typography>
+
+                      <Typography mt={1}>
+                        {note.message}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
+        </Box>
+
+        {/* CONTACT CTA */}
         <Box
           sx={{
             bgcolor: "#005baa",

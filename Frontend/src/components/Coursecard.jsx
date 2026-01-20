@@ -1,69 +1,72 @@
 import React from "react";
-import { Card, CardMedia, Box, CardContent, Typography, Button, Avatar } from "@mui/material";
+import {  Card, CardMedia, Typography,  } from "@mui/material";
 
-export default function Coursecard({ img, title, icon, desc, instructor, accent }) {
+export default function CourseCard({ img, title,  description, instructor, accent }) {
   return (
     <Card
       sx={{
-        position: "relative",
-        borderRadius: 5,
-        minHeight: 390,
-        boxShadow: "0 8px 48px 0 rgba(30,52,95,0.16)",
-        overflow: "hidden",
-        background: "rgba(255,255,255,0.73)",
-        filter: "blur(0)",
-        backdropFilter: "blur(14px)",
+        width: 340,
+        minHeight: 320,
+        borderRadius: 4,
+        textAlign: "center",
         display: "flex",
         flexDirection: "column",
-        transition: "0.23s cubic-bezier(.18,1.17,.61,.91)",
+        justifyContent: "flex-start",
+        boxShadow: "0px 6px 20px rgba(40,120,250,0.07)",
+        background: "linear-gradient(135deg,#f7fbfc 0%,#fff 100%)",
+        border: "1px solid #eaf1fa",
+        p: 3,
+        transition: "transform 0.2s, box-shadow 0.2s",
         "&:hover": {
-          boxShadow: `0 16px 64px 0 ${accent || "#2278e9a6"}`,
-          transform: "translateY(-7px) scale(1.021)"
-        }
+          transform: "translateY(-3px) scale(1.03)",
+          boxShadow: "0px 12px 32px rgba(66,140,240,0.18)",
+        },
       }}
     >
-      <Box sx={{ pt: 3, px: 3, display: "flex", alignItems: "center", gap: 2 }}>
-        {icon && (
-          <Avatar sx={{ bgcolor: accent || "#005baa", width: 46, height: 46 }}>
-            {icon}
-          </Avatar>
-        )}
-        <Typography variant="h6" fontWeight={700} color={accent || "primary"} sx={{ fontSize: 22 }}>
-          {title}
-        </Typography>
-      </Box>
+      {/* Course Image */}
       <CardMedia
         component="img"
+        src={img}
         alt={title}
-        height="120"
-        image={img}
-        sx={{ objectFit: "cover", borderRadius: 4, width: "92%", mx: "auto", my: 2, boxShadow: "0 3px 24px #0081ff0d" }}
-      />
-      <CardContent sx={{ flexGrow: 1 }}>
-        <Typography variant="body2" color="text.secondary" sx={{ minHeight: 76 }}>{desc}</Typography>
-        <Box sx={{ mt: 2, color: "#4860A1", fontWeight: 500, fontSize: 15 }}>
-          Instructor: {instructor}
-        </Box>
-      </CardContent>
-      <Button
-        variant="outlined"
-        size="large"
         sx={{
-          m: 3, mt: 0,
-          fontWeight: 700,
-          borderRadius: 2.7,
-          borderWidth: 1.7,
-          color: accent || "#005baa",
-          borderColor: accent || "#005baa",
-          textTransform: "uppercase",
-          background: "rgba(255,255,255,0.92)",
-          "&:hover": {
-            bgcolor: accent ? accent + "20" : "#005baa12"
-          }
+          width: 100,
+          height: 100,
+          borderRadius: "20%",
+          mx: "auto",
+          mb: 2,
+          objectFit: "cover",
+          border: `3px solid ${accent || "#005baa"}`,
+          boxShadow: "0 2px 24px rgba(34,124,197,0.17)"
+        }}
+      />
+
+      {/* Title */}
+      <Typography fontWeight={600} fontSize={17} sx={{ mb: 1 }}>
+        {title}
+      </Typography>
+
+      {/* Instructor */}
+      <Typography color="text.secondary" fontSize={16} sx={{ mb: 1 }}>
+        Instructor: {instructor}
+      </Typography>
+
+      {/* Description */}
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          fontSize: 14,
+          mb: 2,
         }}
       >
-        Learn More
-      </Button>
+        {description}
+      </Typography>
+
     </Card>
   );
 }

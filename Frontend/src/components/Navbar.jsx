@@ -1,3 +1,4 @@
+// Navbar.js
 import React, { useState, useEffect } from "react";
 import {
   AppBar,
@@ -12,16 +13,17 @@ import {
   ListItemButton,
   ListItemText,
   Divider,
-  useScrollTrigger,
 } from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "About Us", path: "/about" },
-  { label: "Academics", path: "/courses" },
+  { label: "Academics", path: "/academics" },
   { label: "Admissions", path: "/admissions" },
   { label: "Campus Life", path: "/gallery" },
   { label: "Contact Us", path: "/contact" },
@@ -32,50 +34,75 @@ export default function Navbar() {
   const [elevate, setElevate] = useState(false);
   const { pathname } = useLocation();
 
-  // Add scroll effect (shadow when scrolled)
+  // add shadow on scroll
   useEffect(() => {
-    const handleScroll = () => setElevate(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setElevate(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+
+  const styles = {
+    appBar: {
+      backgroundColor: "rgba(255,255,255,0.96)",
+      backdropFilter: "blur(8px)",
+      color: "#333",
+      boxShadow: elevate ? "0 4px 18px rgba(0,0,0,0.08)" : "none",
+    },
+
+    desktopLink: (active) => ({
+      fontSize: 15,
+      fontWeight: 600,
+      textTransform: "none",
+      color: active ? "#0078d4" : "#444",
+      position: "relative",
+      padding: "8px 6px",
+      "&::after": {
+        content: '""',
+        position: "absolute",
+        bottom: -2,
+        left: 0,
+        width: active ? "100%" : 0,
+        height: 2,
+        backgroundColor: "#0078d4",
+        transition: "0.25s",
+      },
+      "&:hover": { color: "#0063afff" },
+      "&:hover::after": { width: "100%" },
+    }),
+
+    drawerPaper: {
+      width: 300,
+      padding: "16px",
+    },
+
+    mobileItem: (active) => ({
+      mb: 1,
+      borderRadius: 3,
+      border: active ? "1px solid #0165b1ff" : "1px solid #ddd",
+      padding: "10px 14px",
+      bgcolor: active ? "#eaf4ff" : "transparent",
+      "&:hover": {
+        borderColor: "#0078d4",
+        backgroundColor: "#f3f9ff",
+      },
+      "& .MuiListItemText-primary": {
+        fontSize: 16,
+        fontWeight: active ? 700 : 500,
+      },
+    }),
+  };
 
   return (
     <>
-      <AppBar
-        position="sticky"
-        sx={{
-          backgroundColor: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(10px)",
-          color: "#1a1a1a",
-          boxShadow: elevate ? "0 2px 10px rgba(0,0,0,0.08)" : "none",
-          transition: "box-shadow 0.3s ease, background-color 0.3s ease",
-        }}
-      >
+      {/* NAVBAR TOP */}
+      <AppBar position="sticky" sx={styles.appBar}>
         <Container maxWidth="xl">
-          <Toolbar
-            sx={{
-              minHeight: { xs: 70, md: 90 },
-              justifyContent: "space-between",
-              px: 0,
-            }}
-            disableGutters
-          >
+          <Toolbar sx={{ minHeight: { xs: 70, md: 90 } }}>
+
             {/* Logo */}
-            <Box
-              component={Link}
-              to="/"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                textDecoration: "none",
-              }}
-            >
-              <Box
-                component="img"
-                src={logo}
-                alt="School Logo"
-                sx={{ height: 55, width: "auto" }}
-              />
+            <Box component={Link} to="/" sx={{ display: "flex", alignItems: "center" }}>
+              <img src={logo} alt="Logo" style={{ height: 56 }} />
             </Box>
 
             {/* Desktop Menu */}
@@ -85,65 +112,50 @@ export default function Navbar() {
               sx={{
                 flex: 1,
                 justifyContent: "center",
-                alignItems: "center",
                 display: { xs: "none", md: "flex" },
               }}
             >
-              {navLinks.map(({ label, path }) => (
-                <Button
-                  key={path}
-                  component={Link}
-                  to={path}
-                  disableRipple
-                  sx={{
-                    position: "relative",
-                    fontSize: 16,
-                    fontWeight: 500,
-                    color: pathname === path ? "#0078d4" : "#333",
-                    textTransform: "none",
-                    "&::after": {
-                      content: '""',
-                      position: "absolute",
-                      left: 0,
-                      bottom: 0,
-                      width: pathname === path ? "100%" : 0,
-                      height: "2px",
-                      bgcolor: "#0078d4",
-                      transition: "width 0.3s ease",
-                    },
-                    "&:hover::after": { width: "100%" },
-                    "&:hover": { color: "#0078d4" },
-                  }}
-                >
-                  {label}
-                </Button>
-              ))}
+              {navLinks.map(({ label, path }) => {
+                const active = pathname === path;
+                return (
+                  <Button
+                    key={path}
+                    component={Link}
+                    to={path}
+                    disableRipple
+                    sx={styles.desktopLink(active)}
+                  >
+                    {label}
+                  </Button>
+                );
+              })}
             </Stack>
 
-            {/* Apply Button */}
+            {/* Desktop CTA */}
             <Button
-              variant="contained"
               component={Link}
               to="/enroll"
+              variant="contained"
               sx={{
-                bgcolor: "#0078d4",
-                color: "#fff",
-                fontWeight: 600,
-                fontSize: 15,
+                display: { xs: "none", md: "inline-flex" },
+                backgroundColor: "#016abbff",
+                textTransform: "none",
+                fontWeight: 700,
                 px: 3,
                 py: 1,
-                borderRadius: "8px",
-                textTransform: "none",
-                boxShadow: "none",
-                "&:hover": { bgcolor: "#005fa3" },
-                display: { xs: "none", md: "inline-flex" },
+                borderRadius: 2,
               }}
             >
               Apply Now
             </Button>
 
-            {/* Mobile Menu Button */}
-            <Box sx={{ display: { xs: "block", md: "none" } }}>
+            {/* Mobile Hamburger (fixed right) */}
+            <Box
+              sx={{
+                display: { xs: "block", md: "none" },
+                marginLeft: "auto",
+              }}
+            >
               <IconButton onClick={() => setDrawerOpen(true)}>
                 <MenuIcon />
               </IconButton>
@@ -152,49 +164,60 @@ export default function Navbar() {
         </Container>
       </AppBar>
 
-      {/* Mobile Drawer */}
+      {/* MOBILE DRAWER */}
       <Drawer
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{
-          sx: {
-            width: 240,
-            bgcolor: "#fff",
-          },
-        }}
+        PaperProps={{ sx: styles.drawerPaper }}
       >
-        <List sx={{ mt: 2 }}>
-          {navLinks.map(({ label, path }) => (
-            <ListItemButton
-              key={path}
-              component={Link}
-              to={path}
-              onClick={() => setDrawerOpen(false)}
-              selected={pathname === path}
-              sx={{
-                "&.Mui-selected": { bgcolor: "#e3f2fd" },
-              }}
-            >
-              <ListItemText primary={label} />
-            </ListItemButton>
-          ))}
-          <Divider sx={{ my: 1 }} />
-          <ListItemButton
+        {/* Drawer Header */}
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <img src={logo} alt="Logo" style={{ height: 40 }} />
+          </Box>
+
+          <IconButton onClick={() => setDrawerOpen(false)}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Divider sx={{ mb: 2 }} />
+
+        {/* Mobile Links */}
+        <List>
+          {navLinks.map(({ label, path }) => {
+            const active = pathname === path;
+            return (
+              <ListItemButton
+                key={path}
+                component={Link}
+                to={path}
+                sx={styles.mobileItem(active)}
+              >
+                <ListItemText primary={label} />
+              </ListItemButton>
+            );
+          })}
+
+          <Divider sx={{ my: 2 }} />
+
+          {/* CTA in Drawer */}
+          <Button
             component={Link}
             to="/enroll"
-            onClick={() => setDrawerOpen(false)}
+            variant="contained"
+            fullWidth
             sx={{
-              bgcolor: "#0078d4",
-              color: "#fff",
-              mx: 2,
-              mt: 1,
-              borderRadius: 1,
-              "&:hover": { bgcolor: "#005fa3" },
+              backgroundColor: "#026fc2ff",
+              textTransform: "none",
+              fontWeight: 800,
+              py: 1.2,
+              borderRadius: 2,
             }}
           >
-            <ListItemText primary="Apply Now" />
-          </ListItemButton>
+            Apply Now
+          </Button>
         </List>
       </Drawer>
     </>

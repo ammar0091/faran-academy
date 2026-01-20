@@ -1,136 +1,154 @@
 import React from "react";
-import { Box, Container, Typography, Grid, Paper, Button, List, ListItem, ListItemIcon, ListItemText, Divider } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Alert,
+  Stack,
+  Divider,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from "@mui/material";
+
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import SchoolIcon from "@mui/icons-material/School";
-import DownloadIcon from "@mui/icons-material/Download";
-import InfoIcon from "@mui/icons-material/Info";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import StarIcon from "@mui/icons-material/Star";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 export default function Admissions() {
   return (
-    <Box bgcolor="#f6f9fe" minHeight="100vh">
-      <Container maxWidth="md" sx={{ py: { xs: 4, md: 7 } }}>
-        {/* Header */}
-        <Typography variant="h3" fontWeight={900} color="primary.main" mb={2} textAlign="center">
-          Admissions
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        py: { xs: 8, md: 12 },
+        px: { xs: 3, md: 10 },
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        gap: { xs: 6, md: 10 },
+        alignItems: "flex-start",
+      }}
+    >
+      {/* LEFT SIDE — TEXT INTRO LIKE ENROLL PAGE */}
+      <Box flex={1} sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <Typography variant="overline" color="primary" fontWeight={700} letterSpacing={2} mb={2}>
+          Admissions 2025–26
         </Typography>
-        <Typography color="text.secondary" align="center" mb={5}>
-          Join the Faran Academy family! We welcome new students each academic year, from Nursery to Class X. Our admission process is transparent, student-focused, and designed for your convenience.
+
+        <Typography variant="h4" fontWeight={700} color="text.primary" mb={3}>
+          Your Child’s Journey Begins Here
         </Typography>
 
-        {/* Step-by-step Admission Procedure */}
-        <Paper elevation={3} sx={{ p: { xs: 3, sm: 4 }, borderRadius: 4, mb: 5 }}>
-          <Typography variant="h5" fontWeight={700} color="primary.main" mb={2}>
-            How to Apply
-          </Typography>
-          <List>
-            <ListItem>
-              <ListItemIcon><ChecklistIcon color="info" /></ListItemIcon>
-              <ListItemText primary="Fill out the Admission Application Form (available for download below or at the school office)." />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon><SchoolIcon color="secondary" /></ListItemIcon>
-              <ListItemText primary="Submit required documents: birth certificate, last report card, passport-size photos, aadhar (if any)." />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon><EventNoteIcon color="primary" /></ListItemIcon>
-              <ListItemText primary="Attend an interaction/test (as per class applied)." />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon><DownloadIcon color="success" /></ListItemIcon>
-              <ListItemText primary="Pay the admission fee to confirm the seat." />
-            </ListItem>
-          </List>
-          <Button
-            startIcon={<DownloadIcon />}
-            variant="contained"
-            color="primary"
-            href="/assets/Faran_Academy_Admission_Form.pdf"
-             target="_blank"
-            sx={{ mt: 2, fontWeight: 700, borderRadius: 2 }}
-            download
-          >
-            Download Application Form
-          </Button>
-        </Paper>
+        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }} mb={2}>
+          At Faran Academy, we believe every child deserves an environment that encourages curiosity,
+          builds confidence, and strengthens character. Our admission process is structured to be 
+          simple, transparent, and parent-friendly.
+        </Typography>
 
-        {/* Important Dates and Fee Structure */}
-        <Grid container spacing={4} mb={5}>
-          <Grid item xs={12} md={6}>
-            <Paper elevation={0} sx={{ p: 3, bgcolor: "#eefaee", borderRadius: 3, height: "100%" }}>
-              <Typography variant="h6" fontWeight={700} color="success.main" mb={1}>
-                Important Dates <EventNoteIcon fontSize="small" sx={{ verticalAlign: "middle" }} />
-              </Typography>
-              <ul>
-                <li>
-                  <Typography>Admission Open: <b>1st March 2025</b></Typography>
-                </li>
-                <li>
-                  <Typography>Entrance Assessment: <b>Every Saturday</b> (March–April)</Typography>
-                </li>
-                <li>
-                  <Typography>Session Starts: <b>10th April 2025</b></Typography>
-                </li>
-              </ul>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Paper elevation={0} sx={{ p: 3, bgcolor: "#fdeeea", borderRadius: 3, height: "100%" }}>
-              <Typography variant="h6" fontWeight={700} color="error.dark" mb={1}>
-                Fee Structure <InfoIcon fontSize="small" sx={{ verticalAlign: "middle" }} />
-              </Typography>
-              <ul>
-                <li>
-                  <Typography>Admission Fee: <b>₹0000</b></Typography>
-                </li>
-                <li>
-                  <Typography>Annual Fee: <b>₹000 – ₹000</b> (as per class)</Typography>
-                </li>
-                <li>
-                  <Typography>Monthly Tuition: <b>₹00 – ₹00</b></Typography>
-                </li>
-              </ul>
-            </Paper>
-          </Grid>
-        </Grid>
+        <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }} mb={4}>
+          Take a moment to review the complete admission details below before applying.  
+          We look forward to welcoming you into the Faran Academy family.
+        </Typography>
 
-        {/* FAQs */}
-        <Paper elevation={1} sx={{ p: { xs: 2, sm: 3 }, borderRadius: 3, mb: 4 }}>
-          <Typography variant="h6" fontWeight={700} mb={2} color="primary">
-            Frequently Asked Questions <QuestionAnswerIcon fontSize="small" sx={{ verticalAlign: "middle" }} />
+        <Stack spacing={2}>
+          <Alert icon={<InfoOutlinedIcon />} severity="info" sx={{ bgcolor: "#e8f4ff", color: "#165099", fontWeight: 500 }}>
+            Admissions for the new academic year are now open.
+          </Alert>
+
+          <Alert icon={<StarIcon />} severity="success" sx={{ bgcolor: "#eafbea", color: "#1a7f3c", fontWeight: 500 }}>
+            Early applications receive priority during seat allotment.
+          </Alert>
+        </Stack>
+      </Box>
+
+      {/* RIGHT SIDE — MAIN ADMISSION CONTENT */}
+      <Box flex={1} sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+
+        {/* HOW TO APPLY */}
+        <Paper sx={{ p: 3, borderRadius: 3 }} elevation={2}>
+          <Typography variant="h6" fontWeight={700} color="primary" mb={1}>
+            Admission Procedure
           </Typography>
           <Divider sx={{ mb: 2 }} />
-          <Typography fontWeight={500}>Q: Is there an entrance test for all grades?</Typography>
-          <Typography color="text.secondary" mb={1}>A: There is a short assessment (and parent interaction) for Grades I and up.</Typography>
-          <Typography fontWeight={500}>Q: What documents do I need?</Typography>
-          <Typography color="text.secondary" mb={1}>A: A birth certificate, previous report card, 2 passport photographs, and adhar card (if any).</Typography>
-          <Typography fontWeight={500}>Q: How does Faran Academy ensure a smooth transition for new students?</Typography>
-          <Typography color="text.secondary">
-            A: There is a buddy system and personal staff support for all new joiners.
-          </Typography>
+
+          <List>
+            <ListItem>
+              <ListItemIcon><ChecklistIcon color="primary" /></ListItemIcon>
+              <ListItemText primary="Fill out the Admission Application (Online / Offline)." />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon><SchoolIcon color="secondary" /></ListItemIcon>
+              <ListItemText primary="Submit essential documents: Birth Certificate, Aadhar, Photos, Previous Report Card." />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon><EventNoteIcon color="primary" /></ListItemIcon>
+              <ListItemText primary="Attend the interaction/assessment based on the class applied." />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon><CheckCircleOutlineIcon color="success" /></ListItemIcon>
+              <ListItemText primary="Complete fee payment to confirm the seat." />
+            </ListItem>
+          </List>
         </Paper>
 
-        {/* Admissions Contact */}
-        <Paper elevation={0} sx={{ p: { xs: 2, sm: 3 }, bgcolor: "#e8f4ff", borderRadius: 3 }}>
-          <Typography variant="h6" fontWeight={700} color="primary.main" mb={1}>
-            Need Help or Have Questions?
+        {/* IMPORTANT DATES */}
+        <Paper sx={{ p: 3, borderRadius: 3, bgcolor: "#f6f9ff" }} elevation={1}>
+          <Typography variant="h6" fontWeight={700} color="primary" mb={1}>
+            Important Dates
           </Typography>
-          <Typography mb={0.5}>
-            <ContactMailIcon sx={{ color: "#005baa", verticalAlign: "middle", mr: 1 }} />
-            <b>Email:</b> admissions@faranacademy.edu
-          </Typography>
-          <Typography mb={0.5}>
-            <SchoolIcon sx={{ color: "#005baa", verticalAlign: "middle", mr: 1 }} />
-            <b>Phone:</b> +91-8860917726, +91-7352391764
-          </Typography>
-          <Typography>
-            <InfoIcon sx={{ color: "#005baa", verticalAlign: "middle", mr: 1 }} />
-            <b>Visit Us:</b> Khankhanapur Panchu, Hisua - 805103, Bihar, India
-          </Typography>
+          <Divider sx={{ mb: 2 }} />
+
+          <Typography mb={1}>• Admission Starts: <b>1 March 2025</b></Typography>
+          <Typography mb={1}>• Entrance / Interaction: <b>Every Saturday (March–April)</b></Typography>
+          <Typography mb={1}>• Orientation Day: <b>8 April 2025</b></Typography>
+          <Typography>• Classes Begin: <b>10 April 2025</b></Typography>
         </Paper>
-      </Container>
+
+        {/* FAQ */}
+        <Paper sx={{ p: 3, borderRadius: 3 }} elevation={1}>
+          <Typography variant="h6" fontWeight={700} color="primary" mb={1}>
+            Frequently Asked Questions
+          </Typography>
+          <Divider sx={{ mb: 2 }} />
+
+          <List>
+
+            <ListItem>
+              <ListItemIcon><QuestionAnswerIcon color="primary" /></ListItemIcon>
+              <ListItemText
+                primary="Is there an entrance test?"
+                secondary="Nursery & KG require a parent-child interaction. Classes I and above have a short assessment."
+              />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon><QuestionAnswerIcon color="primary" /></ListItemIcon>
+              <ListItemText
+                primary="Do I need to bring original documents?"
+                secondary="Yes. Verification is done during document submission."
+              />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon><QuestionAnswerIcon color="primary" /></ListItemIcon>
+              <ListItemText
+                primary="Is transportation available?"
+                secondary="Transportation is available across nearby areas. Seats are limited."
+              />
+            </ListItem>
+
+          </List>
+        </Paper>
+
+      </Box>
     </Box>
   );
 }

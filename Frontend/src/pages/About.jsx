@@ -1,196 +1,494 @@
+// src/pages/About.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import Testimonial from "../components/Testimonial";
-import Team from "../components/Team";
 import {
   Box,
   Container,
-  Typography,
   Grid,
   Card,
   CardContent,
   CardMedia,
-  Stack,
   Paper,
+  Typography,
+  Button,
   Divider,
-  Button
+  Stack,
 } from "@mui/material";
-import SchoolIcon from "@mui/icons-material/School";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
-import PeopleIcon from "@mui/icons-material/People";
+import { philosophyCards, timeline, facilities } from "../utils/data";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const timeline = [
-  { year: "1990", title: "Academy Founded", descr: "Faran Academy opens its doors with a vision for holistic education.", icon: <CalendarMonthIcon sx={{ fontSize: 36, color: "#005baa" }} /> },
-  { year: "2008", title: "Innovation Award", descr: "Honored for leading STEM education in the region.", icon: <EmojiObjectsIcon sx={{ fontSize: 36, color: "#ff9800" }} /> },
-  { year: "2017", title: "Campus Expansion", descr: "Launch of new labs, library, and digital resources.", icon: <SchoolIcon sx={{ fontSize: 36, color: "#43a047" }} /> },
-  { year: "2022", title: "Best School Award", descr: "Recognized for academic results and student well-being.", icon: <EmojiEventsIcon sx={{ fontSize: 36, color: "#f50057" }} /> }
-];
+import Team from "../components/Team";
+import Testimonial from "../components/Testimonial";
 
-const facilities = [
-  { title: " Classrooms", img: "/assets/facilities/classroom.jpg", desc: "Digital boards, comfortable seating, climate controlled." },
-  { title: "Science & Computer Labs", img: "/assets/facilities/lab.jpg", desc: "Hands-on experimentation in world-class labs." },
-  { title: "Library & Media Center", img: "/assets/facilities/library.jpg", desc: "Thousands of books, online journals, and quiet study zones." },
-  { title: "Sports Grounds", img: "/assets/facilities/sports.jpg", desc: "Large open fields, gym, indoor games, and coaching." }
-];
-
-export default function About() {
-
-
+/* ---------- Reusable UI pieces ---------- */
+function FrostCard({ children, sx = {}, ...props }) {
   return (
-    <Box bgcolor="#f7fafd">
+    <Card
+      sx={{
+        p: { xs: 2.5, md: 3.5 },
+        borderRadius: 3,
+        textAlign: "left",
+        background: (theme) =>
+          theme.palette.mode === "light"
+            ? "rgba(255,255,255,0.88)"
+            : "rgba(20,20,25,0.65)",
+        backdropFilter: "blur(10px)",
+        boxShadow: (theme) =>
+          theme.palette.mode === "light"
+            ? "0 8px 30px rgba(2,48,92,0.06)"
+            : "0 8px 30px rgba(0,0,0,0.6)",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Card>
+  );
+}
 
+function IconCircle({ children }) {
+  return (
+    <Box
+      sx={{
+        width: 68,
+        height: 68,
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)",
+        mr: 2,
+      }}
+    >
+      {children}
+    </Box>
+  );
+}
+
+/* ---------- Main Page Component ---------- */
+export default function About() {
+  return (
+    <Box sx={{ bgcolor: "#f7fbff", color: "text.primary" }}>
       {/* HERO */}
-      <Box
-        sx={{
-          background: "linear-gradient(rgba(0,91,170,.85), rgba(0,91,170,.85)), url('/assets/bg/hero.jpg') center/cover",
-          color: "#fff",
-          textAlign: "center",
-          py: { xs: 8, md: 12 }
-        }}
-      >
-        <Container maxWidth="md">
-          <Typography variant="h2" fontWeight={900}>About Faran Academy</Typography>
-          <Typography mt={2} fontSize={20} sx={{ opacity: 0.95 }}>
-            Where passion meets purpose — Building tomorrow’s leaders today.
-          </Typography>
-        </Container>
-      </Box>
-
-      {/* VISION / MISSION / VALUES */}
-      <Container sx={{ my: 8 }}>
-        <Grid container spacing={4} justifyContent="center">
-          {[
-            { icon: <SchoolIcon sx={{ fontSize: 40, color: "#005baa" }} />, title: "Our Vision", text: "To inspire and empower the next generation of innovators and leaders." },
-            { icon: <PeopleIcon sx={{ fontSize: 40, color: "#43a047" }} />, title: "Our Mission", text: "Providing world-class education and growing critical thinkers & ethical leaders." },
-            { icon: <EmojiEventsIcon sx={{ fontSize: 40, color: "#f50057" }} />, title: "Core Values", text: "Integrity • Curiosity • Excellence • Community • Leadership" }
-          ].map((item, i) => (
-            <Grid item xs={12} md={4} key={i} maxWidth={500}>
-              <Paper
-                elevation={4}
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: "center",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "0.3s",
-                  "&:hover": { transform: "translateY(-6px)", boxShadow: "0 8px 30px rgba(0,0,0,.15)" }
-                }}
-              >
-                {item.icon}
-                <Typography variant="h6" fontWeight={700} mt={1}>{item.title}</Typography>
-                <Divider sx={{ width: 40, my: 2, bgcolor: "#005baa" }} />
-                <Typography color="text.secondary">{item.text}</Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-      {/* TEAM */}
-      <Box bgcolor="#f4f8fc" py={8}>
+      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 } }}>
         <Container>
-          <Typography variant="h4" align="center" fontWeight={800} color="primary.main" mb={5}>
-            Our Leadership
-          </Typography>
-          <Team/>
-        </Container>
-      </Box>
-
-      {/* TIMELINE */}
-      <Container sx={{ my: 10 }}>
-        <Typography variant="h4" align="center" fontWeight={800} color="primary.main" mb={6}>
-          Our Journey
-        </Typography>
-        <Stack spacing={4}>
-          {timeline.map((t, i) => (
-            <Stack key={i} direction="row" alignItems="flex-start" spacing={3}>
-              {t.icon}
-              <Box>
-                <Typography variant="h6" fontWeight={700}>{t.year} — {t.title}</Typography>
-                <Typography color="text.secondary">{t.descr}</Typography>
-              </Box>
-            </Stack>
-          ))}
-        </Stack>
-      </Container>
-
-      {/* FACILITIES */}
-      <Box bgcolor="#fafcff" py={8}>
-        <Container>
-          <Typography variant="h4" align="center" fontWeight={800} color="primary.main" mb={6}>
-            Our Facilities
-          </Typography>
-          <Grid container spacing={4}>
-            {facilities.map((f, i) => (
-              <Grid item xs={12} sm={6} md={3} key={i}>
-                <Card
-                  sx={{
-                    borderRadius: 3,
-                    overflow: "hidden",
-                    transition: "0.4s",
-                    "&:hover img": { transform: "scale(1.1)" }
-                  }}
+          <Grid
+            container
+            spacing={6}
+            alignItems="center"
+            sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}
+          >
+            {/* LEFT: Text */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ maxWidth: { xs: "100%", md: 520 } }}>
+                <Typography
+                  variant="overline"
+                  color="primary"
+                  fontWeight={800}
+                  letterSpacing={2}
+                  mb={1}
+                  display="block"
                 >
-                  <CardMedia
-                    component="img"
-                    height="160"
-                    image={f.img}
-                    alt={f.title}
-                    sx={{ transition: "0.4s" }}
-                  />
-                  <CardContent>
-                    <Typography fontWeight={700}>{f.title}</Typography>
-                    <Typography variant="body2" color="text.secondary">{f.desc}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
+                  About Faran Academy
+                </Typography>
+
+                <Typography
+                  variant="h3"
+                  sx={{ fontWeight: 800, lineHeight: 1.02, mb: 2 }}
+                >
+                  Building curious minds and compassionate leaders since 1990
+                </Typography>
+
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ fontSize: { xs: 15, md: 16 }, lineHeight: 1.8, mb: 3 }}
+                >
+                  Faran Academy is a learning ecosystem where inquiry, creativity
+                  and character intersect. We blend strong academic foundations
+                  with project-driven learning so students learn to ask better
+                  questions, collaborate deeply and apply knowledge to real
+                  community problems.
+                </Typography>
+
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                  <strong>Why we do it:</strong> We believe the future belongs to
+                  people who can think critically and act compassionately. Our
+                  programs are designed to cultivate those capacities from early
+                  years through graduation.
+                </Typography>
+
+                <Stack direction="row" spacing={2}>
+                  <Link to="/admissions" style={{ textDecoration: "none" }}>
+                    <Button variant="contained" size="large" sx={{ px: 4, fontWeight: 800 }}>
+                      Admissions
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    onClick={() =>
+                      document
+                        .getElementById("our-journey")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                  >
+                    Our Journey
+                  </Button>
+                </Stack>
+              </Box>
+            </Grid>
+
+            {/* RIGHT: Hero Image */}
+            <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: "center" }}>
+              <Box sx={{ width: "100%", maxWidth: 640, borderRadius: 3, overflow: "hidden", boxShadow: 8 }}>
+                <CardMedia
+                  component="img"
+                  image="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1600&q=80"
+                  alt="Faran Academy"
+                  sx={{
+                    width: "100%",
+                    height: { xs: 300, md: 420 },
+                    objectFit: "cover",
+                    display: "block",
+                    borderRadius: 2,
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+                  }}
+                />
+              </Box>
+            </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* TESTIMONIALS */}
-      <Box bgcolor="#f7fafd" py={10}>
+      <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
+
+      {/* WHO WE ARE */}
+      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 } }}>
         <Container>
-          <Typography variant="h4" align="center" fontWeight={800} color="primary.main" mb={6}>
-            Voices of Our Community
-          </Typography>
-         <Testimonial limit={10} />
+          <Grid container spacing={6} alignItems="center" sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}>
+            {/* LEFT: Image */}
+            <Grid item xs={12} md={6}>
+              <Card sx={{ borderRadius: 3, overflow: "hidden", height: "100%" }}>
+                <CardMedia
+                  component="img"
+                  image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80"
+                  alt="Campus Library"
+                  sx={{
+                    width: "100%",
+                    height: { xs: 260, md: 380 },
+                    objectFit: "cover",
+                    display: "block",
+                    boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+                    transition: "transform 0.4s ease, box-shadow 0.4s ease",
+                    "&:hover": {
+                      transform: "scale(1.03)",
+                      boxShadow: "0 10px 28px rgba(0,0,0,0.2)",
+                    },
+                  }}
+                />
+              </Card>
+            </Grid>
+
+            {/* RIGHT: Text details */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ maxWidth: { xs: "100%", md: 560 } }}>
+                <Typography
+                  variant="overline"
+                  color="primary"
+                  fontWeight={800}
+                  letterSpacing={2}
+                  mb={1}
+                  display="block"
+                >
+                  Who We Are
+                </Typography>
+
+                <Typography variant="h4" fontWeight={800} mb={2}>
+                  A people-first academy with a track record of impact
+                </Typography>
+
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2 }}>
+                  For over three decades we have cultivated a culture where curiosity is celebrated and learning is intentionally scaffolded. We combine research-backed pedagogy with a high-touch mentoring system so every child gets seen, challenged and supported.
+                </Typography>
+
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                  <strong>How we do it:</strong> Through project cycles, mentorship, and cross-disciplinary studios that simulate real-life challenges. Students graduate not only with knowledge, but with the habits to learn independently and lead ethically.
+                </Typography>
+
+                <Divider sx={{ width: 80, mb: 3, borderColor: "primary.main" }} />
+
+                <Stack spacing={2}>
+                  {[
+                    "Project-Based Curriculum",
+                    "Personalized Learning Pathways",
+                    "Mental Health & Wellbeing Programs",
+                    "Global Exchange Opportunities",
+                  ].map((p) => (
+                    <Box key={p} sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
+                      <Box sx={{ width: 10, height: 10, mt: 0.8, background: "primary.main", borderRadius: 1 }} />
+                      <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600 }}>
+                        {p}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
 
-      {/* CTA */}
-      <Box
-        sx={{
-          background: "linear-gradient(135deg,#005baa 0%,#0088cc 100%)",
-          py: 8,
-          textAlign: "center"
-        }}
-      >
+      <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
+
+      {/* PHILOSOPHY GRID */}
+      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 }, bgcolor: "#f4f8fc" }}>
         <Container>
-          <Typography variant="h5" fontWeight={800} color="#fff" mb={2}>
-            Ready to Experience Faran Academy?
-          </Typography>
-          <Typography color="#f6edff" mb={3}>Connect today and be part of our journey.</Typography>
-          <Link to="/contact">
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              sx={{ fontWeight: 700, px: 5, borderRadius: 3, "&:hover": { transform: "scale(1.05)" } }}
-            >
-              Contact Us
-            </Button>
-          </Link>
+          <Grid container spacing={6} alignItems="stretch" sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}>
+            {/* LEFT: Cards grid */}
+            <Grid item xs={12} md={7}>
+              <Grid container spacing={3}>
+                {philosophyCards.map((c) => (
+                  <Grid item xs={12} sm={6} key={c.title}>
+                    <FrostCard sx={{ minHeight: 180 }}>
+                      <Stack direction="row" spacing={2} alignItems="flex-start">
+                        <IconCircle>{c.icon}</IconCircle>
+                        <Box>
+                          <Typography fontWeight={800}>{c.title}</Typography>
+                          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                            {c.text}
+                          </Typography>
+                        </Box>
+                      </Stack>
+                    </FrostCard>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+
+            {/* RIGHT: Long descriptive text */}
+            <Grid item xs={12} md={6}>
+              <Box  sx={{ maxWidth: { xs: "100%", md: 560 } }}>
+                <Typography
+                  variant="overline"
+                  color="primary"
+                  fontWeight={800}
+                  letterSpacing={2}
+                  mb={1}
+                  display="block"
+                >
+                  Our Philosophy
+                </Typography>
+                <Typography variant="h4" fontWeight={800} mb={2}>
+                  Education that adapts to every learner
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
+                  We design learning experiences that are intentionally sequenced — each stage building towards independence. Through mixed-age collaboration, reflection cycles and public exhibitions, students continually practice critical thinking and self-regulation.
+                </Typography>
+                <Divider sx={{ width: 60, mb: 3, borderColor: "primary.main" }} />
+                <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600, mb: 2 }}>
+                  Outcomes we track:
+                </Typography>
+                <Stack spacing={1}>
+                  <Typography variant="body2">• Academic growth (standardized & project outcomes)</Typography>
+                  <Typography variant="body2">• Social-emotional competencies (self-management, empathy)</Typography>
+                  <Typography variant="body2">• Real-world application (community projects, internships)</Typography>
+                </Stack>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
 
+      <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
+
+      {/* TIMELINE */}
+      <Box id="our-journey" sx={{ py: { xs: 6, md: 10}, px: { xs: 2, md: 0 } }}>
+        <Container>
+          <Typography variant="h4" fontWeight={800} color="primary.main" align="center" mb={6}>
+            Our Journey
+          </Typography>
+
+          <Grid container spacing={6}>
+            <Grid item xs={12} md={7} maxWidth={600}>
+              <Stack spacing={4}>
+                {timeline.map((t) => (
+                  <Box key={t.year}>
+                    <Grid container spacing={3} alignItems="center">
+                      <Grid item xs={12} md={4}>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                          <Box sx={{ width: 64, height: 64, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)" }}>
+                            <CalendarMonthIcon color="primary" />
+                          </Box>
+                          <Typography fontWeight={800}>{t.year}</Typography>
+                        </Box>
+                      </Grid>
+
+                      <Grid item xs={12} md={8}>
+                        <FrostCard sx={{ minHeight: 120 }}>
+                          <Typography variant="h6" fontWeight={800}>{t.title}</Typography>
+                          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                            {t.descr}
+                          </Typography>
+                        </FrostCard>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                ))}
+              </Stack>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Box>
+                <Typography variant="overline" color="primary" fontWeight={800} letterSpacing={2} mb={1} display="block">
+                  Timeline
+                </Typography>
+                <Typography variant="h5" fontWeight={800} mb={2}>
+                  How we grew — milestones & meaning
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
+                  Each milestone reflects an investment in our students' experiences — from the first classrooms to modern learning studios and external partnerships that expand horizons. We measure success by student outcomes and community impact more than awards alone.
+                </Typography>
+                <Divider sx={{ width: 60, mb: 3, borderColor: "primary.main" }} />
+                <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600 }}>
+                  Highlights:
+                </Typography>
+                <Stack spacing={1} mt={1}>
+                  <Typography variant="body2">• 1990 — School founded to democratize quality education</Typography>
+                  <Typography variant="body2">• 2017 — Campus expansion with new laboratories</Typography>
+                  <Typography variant="body2">• 2022 — Recognized for student mental health programs</Typography>
+                </Stack>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
+
+      {/* FACILITIES */}
+      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 }, bgcolor: "#fafcff" }}>
+        <Container>
+          <Grid container spacing={6} alignItems="stretch" sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}>
+            <Grid item xs={12} md={7}>
+              <Grid container spacing={3}>
+                {facilities.map((f) => (
+                  <Grid item xs={12} sm={6} key={f.title}>
+                    <Card sx={{ borderRadius: 3, overflow: "hidden", minHeight: 260 }}>
+                      <CardMedia
+                        component="img"
+                        image={f.img}
+                        alt={f.title}
+                        sx={{ height: 140, objectFit: "cover", transition: "transform 0.6s" }}
+                      />
+                      <CardContent>
+                        <Typography fontWeight={800}>{f.title}</Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                          {f.desc}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+
+            <Grid item xs={12} md={6} >
+              <Box>
+                <Typography variant="overline" color="primary" fontWeight={800} letterSpacing={2} mb={1} display="block">
+                  Campus & Facilities
+                </Typography>
+                <Typography variant="h4" fontWeight={800} mb={2}>
+                  Purpose-built spaces that invite discovery
+                </Typography>
+                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
+                  Our campus was planned to encourage movement between theory and practice — with labs, studios and flexible classrooms adjacent to collaborative lounges. Each space is intentionally designed to support inquiry, making, and reflection.
+                </Typography>
+                <Divider sx={{ width: 60, mb: 3, borderColor: "primary.main" }} />
+                <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600 }}>
+                  Design priorities:
+                </Typography>
+                <Stack spacing={1} mt={1}>
+                  <Typography variant="body2">• Flexible furniture for project work</Typography>
+                  <Typography variant="body2">• Technology that supports creativity (not replaces it)</Typography>
+                  <Typography variant="body2">• Spaces that promote student wellbeing</Typography>
+                </Stack>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
+
+      {/* PEOPLE */}
+      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 } }}>
+        <Container>
+          <Grid container spacing={6} alignItems="flex-start">
+            {/* TEAM */}
+            <Grid item xs={12} md={6} sx={{ minWidth: 0 }}>
+              <Box>
+                <Typography variant="overline" color="primary" fontWeight={800} letterSpacing={2} mb={1} display="block">
+                  Our Leadership
+                </Typography>
+                <Typography variant="h5" fontWeight={800} mb={3}>
+                  People who lead by example
+                </Typography>
+                <Paper sx={{ p: 2, borderRadius: 3 }}>
+                  <Team />
+                </Paper>
+              </Box>
+            </Grid>
+
+            {/* TESTIMONIALS */}
+            <Grid item xs={12} md={6} sx={{ minWidth: 0 }}>
+              <Box>
+                <Typography variant="overline" color="primary" fontWeight={800} letterSpacing={2} mb={1} display="block">
+                  Voices of Our Community
+                </Typography>
+                <Typography variant="h5" fontWeight={800} mb={3}>
+                  Stories from students & parents
+                </Typography>
+                <Paper sx={{ p: 2, borderRadius: 3 }}>
+                  <Testimonial limit={6} />
+                </Paper>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
+
+      {/* FINAL CTA */}
+      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 }, background: "linear-gradient(120deg,#005baa 0%,#0088cc 100%)", color: "#fff" }}>
+        <Container>
+          <Box sx={{ textAlign: "center" }}>
+            <Typography variant="h4" fontWeight={900} mb={2}>
+              Be Part of the Faran Story
+            </Typography>
+            <Typography variant="body1" sx={{ maxWidth: 760, mx: "auto", mb: 4, opacity: 0.95 }}>
+              If you value learning that balances curiosity, resilience and real-world application, come visit us. Schedule a campus tour or speak with our admissions team to learn how we partner with families for long-term success.
+            </Typography>
+            <Stack direction="row" spacing={2} justifyContent="center">
+              <Link to="/contact" style={{ textDecoration: "none" }}>
+                <Button variant="contained" size="large" sx={{ px: 5, fontWeight: 800, bgcolor: "secondary.main" }}>
+                  Contact Admissions
+                </Button>
+              </Link>
+              <Link to="/visit" style={{ textDecoration: "none" }}>
+                <Button variant="outlined" size="large" sx={{ px: 4, color: "#fff", borderColor: "rgba(255,255,255,0.2)" }}>
+                  Schedule a Visit
+                </Button>
+              </Link>
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
     </Box>
   );
 }

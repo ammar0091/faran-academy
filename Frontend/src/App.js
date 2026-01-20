@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 // Public pages
 import Home from './pages/Home';
 import About from './pages/About';
-import Courses from './pages/Courses';
+import Academics from './pages/Academics';
 import Admissions from './pages/Admissions';
 import Gallery from './pages/Gallery';
 import NewsEvents from './pages/NewsEvent';
@@ -39,7 +39,7 @@ function App() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/academics" element={<Academics />} />
         <Route path="/admissions" element={<Admissions />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/newsevents" element={<NewsEvents />} />

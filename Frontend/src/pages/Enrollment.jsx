@@ -1,30 +1,37 @@
 import React, { useState } from "react";
 import {
   Box,
-  Paper,
   TextField,
   Button,
-  Grid,
   Typography,
-  Divider,
   MenuItem,
   Alert,
+  Divider,
   Stack,
 } from "@mui/material";
-import SchoolIcon from "@mui/icons-material/School";
-import PersonIcon from "@mui/icons-material/Person";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
-import HomeIcon from "@mui/icons-material/Home";
-import EmailIcon from "@mui/icons-material/Email";
-import BadgeIcon from "@mui/icons-material/Badge";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
+import {
+  Person as PersonIcon,
+  CalendarMonth as CalendarMonthIcon,
+  ContactPhone as ContactPhoneIcon,
+  Home as HomeIcon,
+  Email as EmailIcon,
+  Badge as BadgeIcon,
+  InfoOutlined as InfoOutlinedIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  WarningAmberOutlined as WarningAmberOutlinedIcon,
+} from "@mui/icons-material";
 import axios from "axios";
 
 const classOptions = [
-  "Nursery", "KG", "I", "II", "III", "IV", "V", "VI", "VII",
+  "Nursery",
+  "KG",
+  "I",
+  "II",
+  "III",
+  "IV",
+  "V",
+  "VI",
+  "VII",
 ];
 
 export default function Enroll() {
@@ -36,19 +43,18 @@ export default function Enroll() {
     parent: "",
     phone: "",
     email: "",
-    address: ""
+    address: "",
   });
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await axios.post("http://localhost:5000/api/enroll", form); // backend API
+      await axios.post("http://localhost:5000/api/enroll", form);
       setSuccess(true);
       setForm({
         name: "",
@@ -58,7 +64,7 @@ export default function Enroll() {
         parent: "",
         phone: "",
         email: "",
-        address: ""
+        address: "",
       });
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
@@ -71,137 +77,220 @@ export default function Enroll() {
     <Box
       sx={{
         minHeight: "100vh",
-        minWidth: "100vw",
-        bgcolor: "linear-gradient(120deg, #eef4fa 80%, #eef4fd 100%)",
+        width: "100%",
+        py: { xs: 8, md: 12 },
+        px: { xs: 3, md: 10 },
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        p: { xs: 1, md: 0 }
+        flexDirection: { xs: "column", md: "row" },
+        gap: { xs: 6, md: 10 },
+        alignItems: "flex-start",
+
       }}
     >
-      <Paper
-        elevation={8}
-        sx={{
-          width: { xs: "98vw", sm: "90vw", md: "65vw", lg: "52vw" },
-          maxWidth: 880,
-          borderRadius: 4,
-          p: { xs: 2, sm: 3.5, md: 5 },
-          bgcolor: "#fff",
-        }}
-      >
-        {/* Top Info */}
-        <Stack spacing={2} mb={3}>
-          <Typography
-            variant="h4"
-            fontWeight={800}
-            color="primary"
-            sx={{ display: "flex", alignItems: "center", gap: 1, letterSpacing: 1 }}
-          >
-            <SchoolIcon sx={{ fontSize: 38, color: "#ffd43b" }} /> Enroll at Faran Academy
-          </Typography>
-          <Alert icon={<InfoOutlinedIcon fontSize="large" />} severity="info" sx={{ bgcolor: "#e8f4ff", color: "#165099", fontWeight: 500, borderRadius: 2, fontSize: 17, py: 1.4, mb: 0 }}>
-            Our admissions are now open! Complete the form below, and our team will contact you soon.
+      {/* LEFT SIDE — Text */}
+      <Box flex={1} sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <Typography variant="overline" color="primary" fontWeight={700} letterSpacing={2} mb={2}>
+          Admissions Open
+        </Typography>
+        <Typography variant="h4" fontWeight={700} color="text.primary" mb={3}>
+          Join Faran Academy
+        </Typography>
+        <Typography variant="body1" color="text.secondary" mb={2} sx={{ lineHeight: 1.8 }}>
+          Faran Academy is dedicated to nurturing students through rigorous academics, creative arts, leadership development, and global engagement.
+        </Typography>
+        <Typography variant="body1" color="text.secondary" mb={4} sx={{ lineHeight: 1.8 }}>
+          Fill in the enrollment form and take the first step towards a bright future for your child.
+        </Typography>
+
+        <Stack spacing={2}>
+          <Alert icon={<InfoOutlinedIcon />} severity="info" sx={{ bgcolor: "#e8f4ff", color: "#165099", fontWeight: 500 }}>
+            Our admissions are open! Complete the form and our team will contact you.
           </Alert>
-          <Alert icon={<WarningAmberOutlinedIcon />} severity="warning" sx={{ bgcolor: "#fffbe6", color: "#ea9800", fontWeight: 500, borderRadius: 2, fontSize: 15, mb: 0 }}>
+          <Alert icon={<WarningAmberOutlinedIcon />} severity="warning" sx={{ bgcolor: "#fffbe6", color: "#ea9800", fontWeight: 500 }}>
             Please double-check all details. Submit only one application per student. Call <b>+91-8860917726</b> for queries.
           </Alert>
         </Stack>
+      </Box>
 
-        {/* Success */}
-        {success && (
-          <Alert icon={<CheckCircleOutlineIcon fontSize="large" />} severity="success" sx={{ mb: 2, bgcolor: "#e6fbe8", color: "#34883b", fontWeight: 600, fontSize: 18, borderRadius: 2 }}>
-            Thank you! Your application has been received.
-          </Alert>
-        )}
+      {/* RIGHT SIDE — Form */}
+      <Box
+        flex={1}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            width: {  xs: "320px", md: "480px" },
+            px: { xs: 1, md: 0 },
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+          }}
+        >
+          {success && (
+            <Alert
+              icon={<CheckCircleOutlineIcon />}
+              severity="success"
+              sx={{ mb: 1 }}
+            >
+              Your application has been submitted successfully!
+            </Alert>
+          )}
+          {error && <Alert severity="error">{error}</Alert>}
 
-         {error && (
-          <Alert icon={<CheckCircleOutlineIcon fontSize="large" />} severity="success" sx={{ mb: 2, bgcolor: "#e6fbe8", color: "#9e1111ff", fontWeight: 600, fontSize: 18, borderRadius: 2 }}>
-             failed to send!
-          </Alert>
-        )}
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            autoComplete="off"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 1.5,
+            }}
+          >
+            {/* ---------------- STUDENT DETAILS ---------------- */}
+            <Divider sx={{ fontWeight: 700 }}>Student Details</Divider>
 
-        {/* Form */}
-        <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off">
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
+            {/* Name */}
+            <TextField
+              fullWidth
+              label="Student Full Name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              InputProps={{
+                startAdornment: <PersonIcon sx={{ mr: 1, color: "#005baa" }} />,
+              }}
+            />
+
+            {/* DOB + CLASS */}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                gap: 2,
+              }}
+            >
               <TextField
-                fullWidth label="Student Full Name" name="name"
-                value={form.name} onChange={handleChange} required
-                InputProps={{ startAdornment: <PersonIcon sx={{ mr: 1, color: "#005baa" }} /> }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth label="Date of Birth" name="dob" type="date"
-                value={form.dob} onChange={handleChange} required
+                fullWidth
+                type="date"
+                label="Date of Birth"
+                name="dob"
+                value={form.dob}
+                onChange={handleChange}
                 InputLabelProps={{ shrink: true }}
-                InputProps={{ startAdornment: <CalendarMonthIcon sx={{ mr: 1, color: "#005baa" }} /> }}
+                required
+                InputProps={{
+                  startAdornment: (
+                    <CalendarMonthIcon sx={{ mr: 1, color: "#005baa" }} />
+                  ),
+                }}
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                select fullWidth label="Admission to Class" name="class"
-                value={form.class} onChange={handleChange} required
-                InputProps={{ startAdornment: <BadgeIcon sx={{ mr: 1, color: "#005baa" }} /> }}
-              >
-                {classOptions.map((cls) => <MenuItem key={cls} value={cls}>{cls}</MenuItem>)}
-              </TextField>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth label="Session/Year" name="session"
-                value={form.session} onChange={handleChange} required
-                placeholder="2025-2026"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Divider sx={{ my: 2, fontSize: 17, color: "#0c3877" }}>Parent / Guardian Information</Divider>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth label="Parent/Guardian Name" name="parent"
-                value={form.parent} onChange={handleChange} required
-                InputProps={{ startAdornment: <HomeIcon sx={{ mr: 1, color: "#005baa" }} /> }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth label="Phone Number" name="phone"
-                value={form.phone} onChange={handleChange} required
-                type="tel"
-                InputProps={{ startAdornment: <ContactPhoneIcon sx={{ mr: 1, color: "#005baa" }} /> }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth label="Email Address" name="email"
-                value={form.email} onChange={handleChange} type="email"
-                InputProps={{ startAdornment: <EmailIcon sx={{ mr: 1, color: "#005baa" }} /> }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth label="Home Address" name="address"
-                value={form.address} onChange={handleChange} multiline rows={2}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" fullWidth variant="contained" size="large" sx={{
-                fontWeight: 700, borderRadius: 2.3, mt: 2, py: 1.24,
-                bgcolor: "#005baa", color: "#fff", fontSize: 18,
-                boxShadow: "0 4px 18px #005baa1d",
-                "&:hover": { bgcolor: "#15325c" }
-              }}>
-                Submit Application
-              </Button>
-            </Grid>
-          </Grid>
-        </Box>
 
-        <Typography sx={{ color: "#456688", textAlign: "center", fontSize: 15.2, mt: 4 }}>
-          For walk-in admissions, visit our Admin Block (8 AM–2 PM, working days).
-        </Typography>
-      </Paper>
+              <TextField
+                select
+                fullWidth
+                label="Admission to Class"
+                name="class"
+                value={form.class}
+                onChange={handleChange}
+                required
+                InputProps={{
+                  startAdornment: <BadgeIcon sx={{ mr: 1, color: "#005baa" }} />,
+                }}
+              >
+                {classOptions.map((cls) => (
+                  <MenuItem key={cls} value={cls}>
+                    {cls}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Box>
+
+            {/* Session */}
+            <TextField
+              fullWidth
+              label="Session / Year"
+              name="session"
+              value={form.session}
+              onChange={handleChange}
+              required
+              placeholder="2025-2026"
+            />
+
+            {/* ---------------- GUARDIAN ---------------- */}
+            <Divider sx={{ fontWeight: 700 }}>Parent / Guardian Details</Divider>
+
+            <TextField
+              fullWidth
+              label="Parent / Guardian Name"
+              name="parent"
+              value={form.parent}
+              onChange={handleChange}
+              required
+              InputProps={{
+                startAdornment: <HomeIcon sx={{ mr: 1, color: "#005baa" }} />,
+              }}
+            />
+
+            <TextField
+              fullWidth
+              label="Phone Number"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              required
+              InputProps={{
+                startAdornment: (
+                  <ContactPhoneIcon sx={{ mr: 1, color: "#005baa" }} />
+                ),
+              }}
+            />
+
+            <TextField
+              fullWidth
+              label="Email Address"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              InputProps={{
+                startAdornment: <EmailIcon sx={{ mr: 1, color: "#005baa" }} />,
+              }}
+            />
+
+            <TextField
+              fullWidth
+              label="Home Address"
+              name="address"
+              value={form.address}
+              onChange={handleChange}
+              multiline
+              rows={2}
+            />
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                bgcolor: "#005baa",
+                color: "#fff",
+                fontWeight: 700,
+                py: 1.4,
+                borderRadius: 2,
+                fontSize: 16,
+              }}
+            >
+              Submit Application
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+
     </Box>
   );
 }

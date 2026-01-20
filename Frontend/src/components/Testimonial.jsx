@@ -15,7 +15,7 @@ export default function Testimonial({ limit }) {
               position: "relative",
               p: 4,
               borderRadius: 4,
-              width: 320,
+              width: 256,
               minHeight: 280,
               textAlign: "center",
               backdropFilter: "blur(12px)",
