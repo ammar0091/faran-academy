@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Box,
   Typography,
@@ -24,16 +23,10 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { apiClient } from "../../utils/api";
+import { dashboardApis } from "../../constants/admin/dashboardData";
 
 /* ---------- CONFIG ---------- */
-
-const APIs = {
-  students: "student",
-  faculty: "faculty",
-  events: "events",
-  notifications: "notifications",
-  contacts: "contact",
-};
 
 const ICONS = {
   students: <Group />,
@@ -59,9 +52,9 @@ export default function AdminCommandCenter() {
         setError("");
 
         const responses = await Promise.all(
-          Object.entries(APIs).map(([key, url]) =>
-            axios
-              .get(`http://localhost:5000/api/${url}`, {
+          Object.entries(dashboardApis).map(([key, url]) =>
+            apiClient
+              .get(`/${url}`, {
                 signal: controller.signal,
               })
               .then((res) => [
@@ -106,7 +99,7 @@ export default function AdminCommandCenter() {
         <Box sx={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 4 }}>
           {/* METRICS */}
           <Box sx={{ borderRight: "1px solid", borderColor: "divider", pr: 3 }}>
-            {Object.keys(APIs).map((key) => (
+            {Object.keys(dashboardApis).map((key) => (
               <Metric
                 key={key}
                 icon={ICONS[key]}

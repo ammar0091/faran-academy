@@ -15,6 +15,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import logo from "../assets/hero-logo.png";
+import { footerNavLinks } from "../constants/common/navigation";
 
 // --- UI Tokens (clean & minimal) ---
 const ui = {
@@ -25,15 +26,6 @@ const ui = {
   iconBg: "#1b3b60",
   border: "#ffffff22",
 };
-
-// Navigation links
-const navLinks = [
-  { label: "History", to: "/history" },
-  { label: "News and Events", to: "/newsevents" },
-  { label: "Notifications", to: "/notifications" },
-  { label: "About", to: "/about" },
-  { label: "Gallery", to: "/gallery" },
-];
 
 // Social Icons Component
 const SocialIcons = () => {
@@ -129,7 +121,7 @@ export default function Footer() {
             <Typography sx={{ fontSize: 18, color: ui.highlight, mb: 2, fontWeight: 600 }}>
               QUICK LINKS
             </Typography>
-            <LinkList links={navLinks} />
+            <LinkList links={footerNavLinks} />
           </Box>
 
           {/* --- Right: Map (same position) --- */}

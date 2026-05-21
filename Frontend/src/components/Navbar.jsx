@@ -19,15 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
-
-const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "About Us", path: "/about" },
-  { label: "Academics", path: "/academics" },
-  { label: "Admissions", path: "/admissions" },
-  { label: "Campus Life", path: "/gallery" },
-  { label: "Contact Us", path: "/contact" },
-];
+import { mainNavLinks } from "../constants/common/navigation";
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -115,7 +107,7 @@ export default function Navbar() {
                 display: { xs: "none", md: "flex" },
               }}
             >
-              {navLinks.map(({ label, path }) => {
+              {mainNavLinks.map(({ label, path }) => {
                 const active = pathname === path;
                 return (
                   <Button
@@ -186,7 +178,7 @@ export default function Navbar() {
 
         {/* Mobile Links */}
         <List>
-          {navLinks.map(({ label, path }) => {
+          {mainNavLinks.map(({ label, path }) => {
             const active = pathname === path;
             return (
               <ListItemButton

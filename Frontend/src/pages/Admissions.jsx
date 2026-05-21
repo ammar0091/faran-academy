@@ -19,6 +19,16 @@ import ChecklistIcon from "@mui/icons-material/Checklist";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import StarIcon from "@mui/icons-material/Star";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import {
+  admissionSteps,
+} from "../constants/admissions/admissionsData";
+
+const admissionStepIcons = {
+  checklist: ChecklistIcon,
+  school: SchoolIcon,
+  event: EventNoteIcon,
+  check: CheckCircleOutlineIcon,
+};
 
 export default function Admissions() {
   return (
@@ -77,25 +87,15 @@ export default function Admissions() {
           <Divider sx={{ mb: 2 }} />
 
           <List>
-            <ListItem>
-              <ListItemIcon><ChecklistIcon color="primary" /></ListItemIcon>
-              <ListItemText primary="Fill out the Admission Application (Online / Offline)." />
-            </ListItem>
-
-            <ListItem>
-              <ListItemIcon><SchoolIcon color="secondary" /></ListItemIcon>
-              <ListItemText primary="Submit essential documents: Birth Certificate, Aadhar, Photos, Previous Report Card." />
-            </ListItem>
-
-            <ListItem>
-              <ListItemIcon><EventNoteIcon color="primary" /></ListItemIcon>
-              <ListItemText primary="Attend the interaction/assessment based on the class applied." />
-            </ListItem>
-
-            <ListItem>
-              <ListItemIcon><CheckCircleOutlineIcon color="success" /></ListItemIcon>
-              <ListItemText primary="Complete fee payment to confirm the seat." />
-            </ListItem>
+            {admissionSteps.map(({ icon, color, text }) => {
+              const Icon = admissionStepIcons[icon];
+              return (
+                <ListItem key={text}>
+                  <ListItemIcon><Icon color={color} /></ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              );
+            })}
           </List>
         </Paper>
 

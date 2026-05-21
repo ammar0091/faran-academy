@@ -18,24 +18,21 @@ import herologo from "../assets/logo.png";
 
 // API
 import { getFaculty, getEvents, getNotifications } from "../utils/api";
+import {
+  aboutFeatures,
+  achievements,
+  alumni as homeAlumni,
+  alumniHighlights,
+  campusGalleryImages,
+  facultyHighlights,
+  schoolStats,
+} from "../constants/home/homeData";
 
 // Components
 import Team from "../components/Team";
 import Testimonial from "../components/Testimonial";
 
 
-
-const alumni = [
-  { name: "Obaid Ur Rahman", achievement: "MTech in CS", img: "/assets/alumni/obaid.jpg", story: "Obaid, M.Tech alumnus, a highly skilled and innovative developer making impactful contributions in the tech world." },
-  { name: "Zarrah", achievement: "Google Intern, Class of 2020", img: "/assets/alumni/zarrah.jpg", story: "Founded coding club, now innovating at the world’s top tech firm." },
-];
-
-const achievements = [
-  "ISO Certified Institution",
-  "Top 5 in District Science Results",
-  "National Award for Educational Excellence",
-  "Green Campus Accreditation",
-];
 
 // MAIN COMPONENT
 export default function Home() {
@@ -182,12 +179,7 @@ export default function Home() {
             }}
           />
 
-          {[
-            { num: "320+", label: "Students Enrolled", icon: "🎓" },
-            { num: "97%", label: "Exam Success Rate", icon: "📈" },
-            { num: "25+", label: "Qualified Faculty", icon: "👩‍🏫" },
-            { num: "18", label: "National Awards", icon: "🏆" },
-          ].map((item) => (
+          {schoolStats.map((item) => (
             <Grid item xs={6} sm={3} key={item.label}>
               <Box sx={{ textAlign: "center", position: "relative" }}>
                 {/* Icon */}
@@ -301,7 +293,7 @@ export default function Home() {
 
               {/* Small Features */}
               <Box sx={{ mt: 4, display: "flex", flexWrap: "wrap", gap: 2 }}>
-                {["Creativity", "Leadership", "Innovation"].map(
+                {aboutFeatures.map(
                   (feature) => (
                     <Box
                       key={feature}
@@ -448,12 +440,7 @@ export default function Home() {
                 <Divider sx={{ width: 60, mb: 4, borderColor: "primary.main", borderRadius: 8 }} />
 
                 <Box sx={{ mb: 2 }}>
-                  {[
-                    "Highly Qualified Professionals",
-                    "Decades of Teaching Experience",
-                    "Dedicated to Student Success",
-                    "Innovative Learning Methods",
-                  ].map((point, i) => (
+                  {facultyHighlights.map((point) => (
                     <Box
                       key={point}
                       sx={{
@@ -524,7 +511,7 @@ export default function Home() {
               {/* LEFT SIDE — Alumni Cards */}
               <Grid item xs={12} md={7}>
                 <Grid container spacing={2} justifyContent="flex-start">
-                  {alumni.map((alum, index) => (
+                  {homeAlumni.map((alum, index) => (
                     <Grid item xs={12} sm={6} key={alum.name}>
                       <Card
                         sx={{
@@ -659,12 +646,7 @@ export default function Home() {
                 <Divider sx={{ width: 60, mb: 4, borderColor: "primary.main", borderRadius: 8 }} />
 
                 <Box sx={{ mb: 2 }}>
-                  {[
-                    "Global Achievements",
-                    "Entrepreneurs & Innovators",
-                    "Leaders in Industry",
-                    "Impactful Contributions",
-                  ].map((point) => (
+                  {alumniHighlights.map((point) => (
                     <Box key={point} sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                       <Box
                         sx={{
@@ -720,14 +702,7 @@ export default function Home() {
             </Typography>
 
             <Grid container spacing={3} justifyContent="center">
-              {[
-                "https://picsum.photos/seed/campus1/400/300",
-                "https://picsum.photos/seed/campus2/400/300",
-                "https://picsum.photos/seed/campus3/400/300",
-                "https://picsum.photos/seed/campus4/400/300",
-                "https://picsum.photos/seed/campus5/400/300",
-                "https://picsum.photos/seed/campus6/400/300",
-              ].map((img, i) => (
+              {campusGalleryImages.map((img, i) => (
                 <Grid
                   item
                   xs={12}
@@ -801,109 +776,342 @@ export default function Home() {
         </Box>
 
         {/*  NEWS, EVENTS & ANNOUNCEMENTS (3 events + 3 notifications) */}
-        <Box sx={{ my: { xs: 4, md: 7 } }}>
-          <Typography variant="h4" fontWeight={700} color="primary.main" mb={5} align="center">
-            News, Events & Announcements
-          </Typography>
+      <Box
+  sx={{
+    my: { xs: 5, md: 8 },
+  }}
+>
+  {/* SECTION HEADER */}
+  <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+      gap: 2,
+      mb: 4,
+    }}
+  >
+    <Box>
+      <Typography
+        variant="overline"
+        color="primary"
+        fontWeight={800}
+        letterSpacing={2}
+      >
+        Stay Updated
+      </Typography>
 
-          {/* ---- EVENTS ---- */}
-          <Typography variant="h5" fontWeight={700} color="text.primary" mb={2}>
-            Latest Events
-          </Typography>
-          <Grid container spacing={3} mb={4}>
-            {events
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
-              .slice(0, 3) // 👈 only 3 events
-              .map((event, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={event._id || idx}>
-                  <Card
-                    sx={{
-                      bgcolor: "#f5fafd",
-                      borderRadius: 3,
-                      minHeight: 180,
-                      boxShadow: 0,
-                      transition: "0.3s",
-                      "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.08)" },
-                    }}
-                  >
-                    <CardContent>
-                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
-                        <EventAvailableIcon color="primary" />
-                        <Typography fontWeight={700} variant="subtitle1">
-                          {event.title || "Event"}
-                        </Typography>
-                      </Stack>
+      <Typography variant="h4" fontWeight={900}>
+        News & Announcements
+      </Typography>
+    </Box>
 
-                      <Typography color="text.secondary" variant="body2">
-                        {new Date(event.date).toLocaleDateString()}
-                      </Typography>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      sx={{
+        maxWidth: 420,
+        lineHeight: 1.8,
+      }}
+    >
+      Latest events, updates and important notices from our academy.
+    </Typography>
+  </Box>
 
-                      <Typography mt={1} mb={2}>
-                        {event.description}
-                      </Typography>
+  <Grid container spacing={3}>
+    {/* ===================================================== */}
+    {/* EVENTS */}
+    {/* ===================================================== */}
 
-                      <Button
-                        component={Link}
-                        to={`/#events/${event._id}`}
-                        size="small"
-                        variant="outlined"
-                        color="primary"
-                        sx={{
-                          borderRadius: 2,
-                          textTransform: "none",
-                          fontWeight: 600,
-                          "&:hover": { transform: "scale(1.05)" },
-                        }}
-                      >
-                        More Details
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
+    <Grid item xs={12} md={6}>
+      <Card
+        sx={{
+          borderRadius: 4,
+          overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.05)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
+          height: "100%",
+        }}
+      >
+        {/* TOP BAR */}
+        <Box
+          sx={{
+            px: 3,
+            py: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1px solid rgba(0,0,0,0.05)",
+            bgcolor: "#f8fbff",
+          }}
+        >
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <Box
+              sx={{
+                width: 42,
+                height: 42,
+                borderRadius: 2.5,
+                background:
+                  "linear-gradient(135deg,#005baa 0%,#0088cc 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+              }}
+            >
+              <EventAvailableIcon fontSize="small" />
+            </Box>
 
-          {/* ---- ANNOUNCEMENTS ---- */}
-          <Typography variant="h5" fontWeight={700} color="text.primary" mb={2}>
-            Latest Announcements
-          </Typography>
-          <Grid container spacing={3}>
-            {notifications
-              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-              .slice(0, 3)
-              .map((note, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={note._id || idx}>
-                  <Card
-                    sx={{
-                      bgcolor: "#f5fafd",
-                      borderRadius: 3,
-                      minHeight: 180,
-                      boxShadow: 0,
-                      transition: "0.3s",
-                      "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.08)" },
-                    }}
-                  >
-                    <CardContent>
-                      <Stack direction="row" alignItems="center" spacing={1} mb={1}>
-                        <InfoIcon color="primary" />
-                        <Typography fontWeight={700} variant="subtitle1">
-                          {note.title || "Announcement"}
-                        </Typography>
-                      </Stack>
+            <Box>
+              <Typography fontWeight={800}>Latest Events</Typography>
 
-                      <Typography color="text.secondary" variant="body2">
-                        {new Date(note.createdAt).toLocaleDateString()}
-                      </Typography>
-
-                      <Typography mt={1}>
-                        {note.message}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
+              <Typography variant="caption" color="text.secondary">
+                Upcoming activities
+              </Typography>
+            </Box>
+          </Stack>
         </Box>
+
+        {/* EVENT LIST */}
+        <Stack divider={<Divider flexItem />}>
+          {[...events]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 3)
+            .map((event, idx) => (
+              <Box
+                key={event._id || idx}
+                sx={{
+                  p: 2.5,
+                  transition: "all 0.25s ease",
+
+                  "&:hover": {
+                    bgcolor: "#f8fbff",
+                  },
+                }}
+              >
+                <Stack direction="row" spacing={2}>
+                  {/* DATE */}
+                  <Box
+                    sx={{
+                      minWidth: 60,
+                      height: 60,
+                      borderRadius: 3,
+                      background:
+                        "linear-gradient(135deg,#e8f4ff 0%,#f5fbff 100%)",
+                      border: "1px solid rgba(0,91,170,0.08)",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      fontWeight={900}
+                      lineHeight={1}
+                      color="primary.main"
+                    >
+                      {new Date(event.date).getDate()}
+                    </Typography>
+
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        textTransform: "uppercase",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {new Date(event.date).toLocaleString("default", {
+                        month: "short",
+                      })}
+                    </Typography>
+                  </Box>
+
+                  {/* CONTENT */}
+                  <Box flex={1}>
+                    <Typography
+                      fontWeight={800}
+                      sx={{
+                        mb: 0.5,
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {event.title || "Event"}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{
+                        lineHeight: 1.7,
+                        display: "-webkit-box",
+                        overflow: "hidden",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {event.description}
+                    </Typography>
+
+                    <Button
+                      component={Link}
+                      to={`/#events/${event._id}`}
+                      size="small"
+                      sx={{
+                        mt: 1,
+                        px: 0,
+                        minWidth: "auto",
+                        textTransform: "none",
+                        fontWeight: 700,
+                      }}
+                    >
+                      Read More
+                    </Button>
+                  </Box>
+                </Stack>
+              </Box>
+            ))}
+        </Stack>
+      </Card>
+    </Grid>
+
+    {/* ===================================================== */}
+    {/* ANNOUNCEMENTS */}
+    {/* ===================================================== */}
+
+    <Grid item xs={12} md={6}>
+      <Card
+        sx={{
+          borderRadius: 4,
+          overflow: "hidden",
+          border: "1px solid rgba(0,0,0,0.05)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
+          height: "100%",
+        }}
+      >
+        {/* TOP BAR */}
+        <Box
+          sx={{
+            px: 3,
+            py: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1px solid rgba(0,0,0,0.05)",
+            bgcolor: "#f8fbff",
+          }}
+        >
+          <Stack direction="row" spacing={1.5} alignItems="center">
+            <Box
+              sx={{
+                width: 42,
+                height: 42,
+                borderRadius: 2.5,
+                background:
+                  "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <InfoIcon color="primary" fontSize="small" />
+            </Box>
+
+            <Box>
+              <Typography fontWeight={800}>
+                Announcements
+              </Typography>
+
+              <Typography variant="caption" color="text.secondary">
+                Important updates
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+
+        {/* ANNOUNCEMENT LIST */}
+        <Stack divider={<Divider flexItem />}>
+          {[...notifications]
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .slice(0, 3)
+            .map((note, idx) => (
+              <Box
+                key={note._id || idx}
+                sx={{
+                  p: 2.5,
+                  transition: "all 0.25s ease",
+
+                  "&:hover": {
+                    bgcolor: "#f8fbff",
+                  },
+                }}
+              >
+                <Stack direction="row" spacing={2}>
+                  {/* ICON */}
+                  <Box
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg,#f3f9ff 0%,#edf7ff 100%)",
+                      border: "1px solid rgba(0,91,170,0.08)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <InfoIcon
+                      color="primary"
+                      sx={{ fontSize: 20 }}
+                    />
+                  </Box>
+
+                  {/* CONTENT */}
+                  <Box flex={1}>
+                    <Typography
+                      fontWeight={800}
+                      sx={{
+                        mb: 0.5,
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {note.title || "Announcement"}
+                    </Typography>
+
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      display="block"
+                      mb={0.7}
+                    >
+                      {new Date(note.createdAt).toLocaleDateString()}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{
+                        lineHeight: 1.7,
+                        display: "-webkit-box",
+                        overflow: "hidden",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {note.message}
+                    </Typography>
+                  </Box>
+                </Stack>
+              </Box>
+            ))}
+        </Stack>
+      </Card>
+    </Grid>
+  </Grid>
+</Box>
 
         {/* CONTACT CTA */}
         <Box

@@ -1,11 +1,11 @@
 // src/pages/AdminFaculty.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {
   Table, TableHead, TableBody, TableRow, TableCell, Button,
   Dialog, DialogTitle, DialogContent, DialogActions,
   TextField, Box
 } from '@mui/material';
+import { addFaculty, deleteFaculty, getFaculty, updateFaculty } from '../../utils/api';
 
 export default function AdminFaculty() {
   const [faculty, setFaculty] = useState([]);
@@ -25,7 +25,7 @@ export default function AdminFaculty() {
   }, []);
 
   const fetchFaculty = () => {
-    axios.get('http://localhost:5000/api/faculty')
+    getFaculty()
       .then(res => setFaculty(res.data))
       .catch(console.error);
   };
@@ -54,9 +54,9 @@ export default function AdminFaculty() {
   const handleSubmit = async () => {
     try {
       if (editData) {
-        await axios.put(`http://localhost:5000/api/faculty/${editData}`, form);
+        await updateFaculty(editData, form);
       } else {
-        await axios.post('http://localhost:5000/api/faculty', form);
+        await addFaculty(form);
       }
       fetchFaculty();
       handleClose();
@@ -68,7 +68,7 @@ export default function AdminFaculty() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this faculty member?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/faculty/${id}`);
+      await deleteFaculty(id);
       fetchFaculty();
     } catch (err) {
       alert('Failed to delete faculty member.');

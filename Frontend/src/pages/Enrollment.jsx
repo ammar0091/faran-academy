@@ -20,19 +20,8 @@ import {
   CheckCircleOutline as CheckCircleOutlineIcon,
   WarningAmberOutlined as WarningAmberOutlinedIcon,
 } from "@mui/icons-material";
-import axios from "axios";
-
-const classOptions = [
-  "Nursery",
-  "KG",
-  "I",
-  "II",
-  "III",
-  "IV",
-  "V",
-  "VI",
-  "VII",
-];
+import { submitEnrollment } from "../utils/api";
+import { classOptions } from "../constants/enrollment/classOptions";
 
 export default function Enroll() {
   const [form, setForm] = useState({
@@ -54,7 +43,7 @@ export default function Enroll() {
     e.preventDefault();
     setError("");
     try {
-      await axios.post("http://localhost:5000/api/enroll", form);
+      await submitEnrollment(form);
       setSuccess(true);
       setForm({
         name: "",

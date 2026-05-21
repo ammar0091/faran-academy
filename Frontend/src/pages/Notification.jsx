@@ -4,7 +4,6 @@ import {
   Container, Box, Typography, CircularProgress
 } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
-import moment from 'moment';
 import { getNotifications } from '../utils/api';
 
 const Notification = () => {
@@ -29,6 +28,18 @@ const Notification = () => {
   }, []);
 
   const safe = (t) => (t && typeof t === 'string' ? t : '');
+  const formatDate = (date) => {
+    const parsed = new Date(date);
+    if (Number.isNaN(parsed.getTime())) return '-';
+
+    return parsed.toLocaleString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    });
+  };
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 6 }}>
@@ -49,9 +60,8 @@ const Notification = () => {
                 <CircleIcon sx={{ fontSize: 12, color: 'primary.main' }} />
               </Box>
               <Box sx={{ pl: 4 }}>
-                
                 <Typography variant="caption" color="text.secondary">
-                  {note?.pushDate ? moment(note.pushDate).format('MMMM D, YYYY h:mm A') : '—'}
+                  {note?.pushDate ? formatDate(note.pushDate) : '-'}
                 </Typography>
                 <Typography variant="body2" sx={{ mt: 1 }}>{safe(note?.message) || 'No message available.'}</Typography>
               </Box>

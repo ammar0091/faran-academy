@@ -10,7 +10,7 @@ import {
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import PlaceIcon from "@mui/icons-material/Place";
-import axios from "axios";
+import { sendContactMessage } from "../utils/api";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -30,7 +30,7 @@ export default function Contact() {
     setError("");
 
     try {
-      await axios.post("http://localhost:5000/api/contact", form);
+      await sendContactMessage(form);
       setSuccess(true);
 
       setForm({

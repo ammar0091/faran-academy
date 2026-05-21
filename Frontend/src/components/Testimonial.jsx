@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Card, Typography, Avatar, Box } from "@mui/material";
-import { testimonials as allTestimonials } from "../utils/data";
+import { testimonials as allTestimonials } from "../constants/about/aboutData";
 
 export default function Testimonial({ limit }) {
   const testimonials = allTestimonials || []; // ✅ ensure array

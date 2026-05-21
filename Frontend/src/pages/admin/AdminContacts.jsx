@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography, Alert } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import axios from "axios";
+import { deleteContactMessage, getContactMessages } from "../../utils/api";
 
 export default function AdminContacts() {
   const [contacts, setContacts] = useState([]);
@@ -10,7 +10,7 @@ export default function AdminContacts() {
   // Fetch all contacts from backend
   const fetchContacts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contact");
+      const res = await getContactMessages();
       setContacts(res.data);
     } catch (err) {
       setError("Failed to fetch contacts.");
@@ -24,7 +24,7 @@ export default function AdminContacts() {
   // Delete contact by id
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/contact/${id}`);
+      await deleteContactMessage(id);
       setContacts(prev => prev.filter(c => c._id !== id));
     } catch (err) {
       setError("Failed to delete contact.");

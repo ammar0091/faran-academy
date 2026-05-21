@@ -1,11 +1,11 @@
 // src/pages/AdminEvents.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {
   Table, TableHead, TableBody, TableRow, TableCell, Button,
   Dialog, DialogTitle, DialogContent, DialogActions,
   TextField, Box
 } from '@mui/material';
+import { addEvent, deleteEvent, getEvents, updateEvent } from '../../utils/api';
 
 export default function AdminEvents() {
   const [events, setEvents] = useState([]);
@@ -23,7 +23,7 @@ export default function AdminEvents() {
   }, []);
 
   const fetchEvents = () => {
-    axios.get('http://localhost:5000/api/events')
+    getEvents()
       .then(res => setEvents(res.data))
       .catch(console.error);
   };
@@ -60,9 +60,9 @@ export default function AdminEvents() {
     };
     try {
       if (editData) {
-        await axios.put(`http://localhost:5000/api/events/${editData}`, payload);
+        await updateEvent(editData, payload);
       } else {
-        await axios.post('http://localhost:5000/api/events', payload);
+        await addEvent(payload);
       }
       fetchEvents();
       handleClose();
@@ -74,7 +74,7 @@ export default function AdminEvents() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this event?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/events/${id}`);
+      await deleteEvent(id);
       fetchEvents();
     } catch (err) {
       alert('Failed to delete event.');

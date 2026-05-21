@@ -14,7 +14,7 @@ import {
   Divider,
   Stack,
 } from "@mui/material";
-import { philosophyCards, timeline, facilities } from "../utils/data";
+import { philosophyCards, timeline, facilities } from "../constants/about/aboutData";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 import Team from "../components/Team";
@@ -250,7 +250,7 @@ export default function About() {
         <Container>
           <Grid container spacing={6} alignItems="stretch" sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}>
             {/* LEFT: Cards grid */}
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={7} maxWidth={610}>
               <Grid container spacing={3}>
                 {philosophyCards.map((c) => (
                   <Grid item xs={12} sm={6} key={c.title}>
@@ -272,7 +272,7 @@ export default function About() {
 
             {/* RIGHT: Long descriptive text */}
             <Grid item xs={12} md={6}>
-              <Box  sx={{ maxWidth: { xs: "100%", md: 560 } }}>
+              <Box sx={{ maxWidth: { xs: "100%", md: 560 } }}>
                 <Typography
                   variant="overline"
                   color="primary"
@@ -307,64 +307,191 @@ export default function About() {
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
       {/* TIMELINE */}
-      <Box id="our-journey" sx={{ py: { xs: 6, md: 10}, px: { xs: 2, md: 0 } }}>
+      {/* TIMELINE */}
+      <Box
+        id="our-journey"
+        sx={{
+          py: { xs: 6, md: 10 },
+          px: { xs: 2, md: 0 },
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         <Container>
-          <Typography variant="h4" fontWeight={800} color="primary.main" align="center" mb={6}>
-            Our Journey
-          </Typography>
+          {/* Section Heading */}
+          <Box textAlign="center" mb={8}>
+            <Typography
+              variant="overline"
+              color="primary"
+              fontWeight={800}
+              letterSpacing={2}
+              display="block"
+              mb={1}
+            >
+              Our Journey
+            </Typography>
 
-          <Grid container spacing={6}>
-            <Grid item xs={12} md={7} maxWidth={600}>
-              <Stack spacing={4}>
-                {timeline.map((t) => (
-                  <Box key={t.year}>
-                    <Grid container spacing={3} alignItems="center">
-                      <Grid item xs={12} md={4}>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                          <Box sx={{ width: 64, height: 64, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)" }}>
-                            <CalendarMonthIcon color="primary" />
-                          </Box>
-                          <Typography fontWeight={800}>{t.year}</Typography>
-                        </Box>
-                      </Grid>
+            <Typography variant="h4" fontWeight={900} mb={2}>
+              Milestones that shaped our story
+            </Typography>
 
-                      <Grid item xs={12} md={8}>
-                        <FrostCard sx={{ minHeight: 120 }}>
-                          <Typography variant="h6" fontWeight={800}>{t.title}</Typography>
-                          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                            {t.descr}
-                          </Typography>
-                        </FrostCard>
-                      </Grid>
-                    </Grid>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{
+                maxWidth: 760,
+                mx: "auto",
+                lineHeight: 1.8,
+              }}
+            >
+              Every chapter in our journey reflects our commitment to better
+              learning experiences, stronger student support, and meaningful
+              community impact.
+            </Typography>
+          </Box>
+
+          {/* Timeline Wrapper */}
+          <Box
+            sx={{
+              position: "relative",
+              maxWidth: 1200,
+              mx: "auto",
+
+              // center line
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                left: { xs: 28, md: "50%" },
+                top: 0,
+                transform: { md: "translateX(-50%)" },
+                width: "4px",
+                height: "100%",
+                borderRadius: 10,
+                background:
+                  "linear-gradient(180deg,#0088cc 0%, rgba(0,136,204,0.08) 100%)",
+              },
+            }}
+          >
+            <Stack spacing={{ xs: 5, md: 8 }}>
+              {timeline.map((item, index) => {
+                const isLeft = index % 2 === 0;
+
+                return (
+                  <Box
+                    key={item.year}
+                    sx={{
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: {
+                        xs: "flex-start",
+                        md: isLeft ? "flex-start" : "flex-end",
+                      },
+                    }}
+                  >
+                    {/* Timeline Dot */}
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        left: { xs: 0, md: "50%" },
+                        top: 28,
+                        transform: { md: "translateX(-50%)" },
+                        zIndex: 3,
+                        width: 58,
+                        height: 58,
+                        borderRadius: "50%",
+                        background:
+                          "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
+                        border: "4px solid #fff",
+                      }}
+                    >
+                      <CalendarMonthIcon color="primary" />
+                    </Box>
+
+                    {/* Timeline Card */}
+                    <Box
+                      sx={{
+                        width: { xs: "100%", md: "calc(50% - 60px)" },
+                        ml: { xs: 10, md: 0 },
+                      }}
+                    >
+                      <FrostCard
+                        sx={{
+                          position: "relative",
+                          overflow: "visible",
+                          minHeight: 180,
+                          transition:
+                            "transform 0.35s ease, box-shadow 0.35s ease",
+
+                          "&:hover": {
+                            transform: "translateY(-4px)",
+                            boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+                          },
+
+                          // connector arrow
+                          "&::before": {
+                            content: '""',
+                            position: "absolute",
+                            top: 36,
+                            width: 18,
+                            height: 18,
+                            background: "#fff",
+                            transform: "rotate(45deg)",
+
+                            ...(isLeft
+                              ? {
+                                right: -9,
+                              }
+                              : {
+                                left: -9,
+                              }),
+
+                            display: { xs: "none", md: "block" },
+                          },
+                        }}
+                      >
+                        {/* Year */}
+                        <Typography
+                          variant="overline"
+                          color="primary"
+                          fontWeight={800}
+                          letterSpacing={1.5}
+                        >
+                          {item.year}
+                        </Typography>
+
+                        {/* Title */}
+                        <Typography
+                          variant="h6"
+                          fontWeight={800}
+                          sx={{ mt: 1 }}
+                        >
+                          {item.title}
+                        </Typography>
+
+                        {/* Description */}
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            mt: 1.5,
+                            lineHeight: 1.8,
+                          }}
+                        >
+                          {item.descr}
+                        </Typography>
+                      </FrostCard>
+                    </Box>
                   </Box>
-                ))}
-              </Stack>
-            </Grid>
+                );
+              })}
+            </Stack>
+          </Box>
 
-            <Grid item xs={12} md={6}>
-              <Box>
-                <Typography variant="overline" color="primary" fontWeight={800} letterSpacing={2} mb={1} display="block">
-                  Timeline
-                </Typography>
-                <Typography variant="h5" fontWeight={800} mb={2}>
-                  How we grew — milestones & meaning
-                </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
-                  Each milestone reflects an investment in our students' experiences — from the first classrooms to modern learning studios and external partnerships that expand horizons. We measure success by student outcomes and community impact more than awards alone.
-                </Typography>
-                <Divider sx={{ width: 60, mb: 3, borderColor: "primary.main" }} />
-                <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600 }}>
-                  Highlights:
-                </Typography>
-                <Stack spacing={1} mt={1}>
-                  <Typography variant="body2">• 1990 — School founded to democratize quality education</Typography>
-                  <Typography variant="body2">• 2017 — Campus expansion with new laboratories</Typography>
-                  <Typography variant="body2">• 2022 — Recognized for student mental health programs</Typography>
-                </Stack>
-              </Box>
-            </Grid>
-          </Grid>
+
         </Container>
       </Box>
 

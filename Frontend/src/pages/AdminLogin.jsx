@@ -13,8 +13,8 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { loginAdmin } from "../utils/api";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -25,7 +25,7 @@ export default function AdminLogin() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/admin/login", {
+      const res = await loginAdmin({
         email,
         password,
       });

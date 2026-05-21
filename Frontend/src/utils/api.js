@@ -1,44 +1,57 @@
 import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+export const apiClient = axios.create({ baseURL: BASE_URL });
 
 // Contact & Enrollment
-export const sendContactMessage = (data) => axios.post(`${BASE_URL}/contact`, data);
-export const submitEnrollment = (data) => axios.post(`${BASE_URL}/enroll`, data);
+export const sendContactMessage = (data) => apiClient.post('/contact', data);
+export const getContactMessages = () => apiClient.get('/contact');
+export const deleteContactMessage = (id) => apiClient.delete(`/contact/${id}`);
+export const submitEnrollment = (data) => apiClient.post('/enroll', data);
+export const getEnrollments = () => apiClient.get('/enroll');
+export const deleteEnrollment = (id) => apiClient.delete(`/enroll/${id}`);
 
 //  Student Routes
-export const getStudents = () => axios.get(`${BASE_URL}/student`);
-export const addStudent = (data) => axios.post(`${BASE_URL}/student`, data);
-export const updateStudent = (id, data) => axios.put(`${BASE_URL}/student/${id}`, data);
-export const deleteStudent = (id) => axios.delete(`${BASE_URL}/student/${id}`);
+export const getStudents = () => apiClient.get('/student');
+export const addStudent = (data) => apiClient.post('/student', data);
+export const updateStudent = (id, data) => apiClient.put(`/student/${id}`, data);
+export const deleteStudent = (id) => apiClient.delete(`/student/${id}`);
 
 //  Faculty Routes
-export const getFaculty = () => axios.get(`${BASE_URL}/faculty`);
-export const addFaculty = (data) => axios.post(`${BASE_URL}/faculty`, data);
-export const updateFaculty = (id, data) => axios.put(`${BASE_URL}/faculty/${id}`, data);
-export const deleteFaculty = (id) => axios.delete(`${BASE_URL}/faculty/${id}`);
+export const getFaculty = () => apiClient.get('/faculty');
+export const addFaculty = (data) => apiClient.post('/faculty', data);
+export const updateFaculty = (id, data) => apiClient.put(`/faculty/${id}`, data);
+export const deleteFaculty = (id) => apiClient.delete(`/faculty/${id}`);
 
 //  Events Routes
-export const getEvents = () => axios.get(`${BASE_URL}/events`);
-export const addEvent = (data) => axios.post(`${BASE_URL}/events`, data);
-export const updateEvent = (id, data) => axios.put(`${BASE_URL}/events/${id}`, data);
-export const deleteEvent = (id) => axios.delete(`${BASE_URL}/events/${id}`);
+export const getEvents = () => apiClient.get('/events');
+export const addEvent = (data) => apiClient.post('/events', data);
+export const updateEvent = (id, data) => apiClient.put(`/events/${id}`, data);
+export const deleteEvent = (id) => apiClient.delete(`/events/${id}`);
 
 //  Notifications Routes
-export const getNotifications = () => axios.get(`${BASE_URL}/notifications`);
-export const addNotification = (data) => axios.post(`${BASE_URL}/notifications`, data);
-export const updateNotification = (id, data) => axios.put(`${BASE_URL}/notifications/${id}`, data);
-export const deleteNotification = (id) => axios.delete(`${BASE_URL}/notifications/${id}`);
+export const getNotifications = () => apiClient.get('/notifications');
+export const addNotification = (data) => apiClient.post('/notifications', data);
+export const updateNotification = (id, data) => apiClient.put(`/notifications/${id}`, data);
+export const deleteNotification = (id) => apiClient.delete(`/notifications/${id}`);
 
 //  Courses Routes
-export const getCourses = () => axios.get(`${BASE_URL}/courses`);
-export const addCourse = (data) => axios.post(`${BASE_URL}/courses`, data);
-export const updateCourse = (id, data) => axios.put(`${BASE_URL}/courses/${id}`, data);
-export const deleteCourse = (id) => axios.delete(`${BASE_URL}/courses/${id}`);
+export const getCourses = () => apiClient.get('/courses');
+export const addCourse = (data) => apiClient.post('/courses', data);
+export const updateCourse = (id, data) => apiClient.put(`/courses/${id}`, data);
+export const deleteCourse = (id) => apiClient.delete(`/courses/${id}`);
 
-export default {
+// Admin Routes
+export const loginAdmin = (data) => apiClient.post('/admin/login', data);
+
+const api = {
+  apiClient,
   sendContactMessage,
+  getContactMessages,
+  deleteContactMessage,
   submitEnrollment,
+  getEnrollments,
+  deleteEnrollment,
   getStudents,
   addStudent,
   updateStudent,
@@ -59,5 +72,8 @@ export default {
   addCourse,
   updateCourse,
   deleteCourse,
+  loginAdmin,
 };
+
+export default api;
 

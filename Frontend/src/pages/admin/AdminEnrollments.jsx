@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography, Alert } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import axios from "axios";
+import { deleteEnrollment, getEnrollments } from "../../utils/api";
 
 export default function AdminEnrollments() {
   const [enrollments, setEnrollments] = useState([]);
@@ -10,7 +10,7 @@ export default function AdminEnrollments() {
   // Fetch all enrollments from backend
   const fetchEnrollments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/enroll");
+      const res = await getEnrollments();
       setEnrollments(res.data);
     } catch (err) {
       setError("Failed to fetch enrollments.");
@@ -24,7 +24,7 @@ export default function AdminEnrollments() {
   // Delete enrollment by id
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/enroll/${id}`);
+      await deleteEnrollment(id);
       setEnrollments(prev => prev.filter(e => e._id !== id));
     } catch (err) {
       setError("Failed to delete enrollment form.");

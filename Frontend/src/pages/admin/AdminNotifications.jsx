@@ -1,11 +1,16 @@
     // src/pages/AdminNotifications.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {
   Table, TableHead, TableBody, TableRow, TableCell, Button,
   Dialog, DialogTitle, DialogContent, DialogActions,
   TextField, Box
 } from '@mui/material';
+import {
+  addNotification,
+  deleteNotification,
+  getNotifications,
+  updateNotification
+} from '../../utils/api';
 
 export default function AdminNotifications() {
   const [notifications, setNotifications] = useState([]);
@@ -21,7 +26,7 @@ export default function AdminNotifications() {
   }, []);
 
   const fetchNotifications = () => {
-    axios.get('http://localhost:5000/api/notifications')
+    getNotifications()
       .then(res => setNotifications(res.data))
       .catch(console.error);
   };
@@ -50,9 +55,9 @@ export default function AdminNotifications() {
   const handleSubmit = async () => {
     try {
       if (editData) {
-        await axios.put(`http://localhost:5000/api/notifications/${editData}`, form);
+        await updateNotification(editData, form);
       } else {
-        await axios.post('http://localhost:5000/api/notifications', form);
+        await addNotification(form);
       }
       fetchNotifications();
       handleClose();
@@ -64,7 +69,7 @@ export default function AdminNotifications() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this notification?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/notifications/${id}`);
+      await deleteNotification(id);
       fetchNotifications();
     } catch (err) {
       alert('Failed to delete notification.');

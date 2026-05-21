@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/admin");
 
-mongoose.connect("mongodb://localhost:27017/faran", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://localhost:27017/faran");
 
 const createAdmin = async () => {
   const hashedPassword = await bcrypt.hash("admin123", 10);
