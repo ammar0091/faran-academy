@@ -776,7 +776,7 @@ export default function Home() {
         </Box>
 
         {/*  NEWS, EVENTS & ANNOUNCEMENTS (3 events + 3 notifications) */}
-      <Box
+     <Box
   sx={{
     my: { xs: 5, md: 8 },
   }}
@@ -819,19 +819,31 @@ export default function Home() {
     </Typography>
   </Box>
 
-  <Grid container spacing={3}>
+  {/* MAIN GRID */}
+  <Grid container spacing={3} alignItems="stretch">
+    
     {/* ===================================================== */}
     {/* EVENTS */}
     {/* ===================================================== */}
 
-    <Grid item xs={12} md={6}>
+    <Grid
+      item
+      xs={12}
+      md={6}
+      sx={{
+        display: "flex",
+      }}
+    >
       <Card
         sx={{
+          width: "100%",
+          maxWidth: 600,
+          display: "flex",
+          flexDirection: "column",
           borderRadius: 4,
           overflow: "hidden",
           border: "1px solid rgba(0,0,0,0.05)",
           boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-          height: "100%",
         }}
       >
         {/* TOP BAR */}
@@ -980,14 +992,23 @@ export default function Home() {
     {/* ANNOUNCEMENTS */}
     {/* ===================================================== */}
 
-    <Grid item xs={12} md={6}>
+    <Grid
+      item
+      xs={12}
+      md={6}
+      sx={{
+        display: "flex",
+      }}
+    >
       <Card
         sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
           borderRadius: 4,
           overflow: "hidden",
           border: "1px solid rgba(0,0,0,0.05)",
           boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-          height: "100%",
         }}
       >
         {/* TOP BAR */}

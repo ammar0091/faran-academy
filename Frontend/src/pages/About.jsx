@@ -246,67 +246,303 @@ export default function About() {
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
       {/* PHILOSOPHY GRID */}
-      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 }, bgcolor: "#f4f8fc" }}>
-        <Container>
-          <Grid container spacing={6} alignItems="stretch" sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}>
-            {/* LEFT: Cards grid */}
-            <Grid item xs={12} md={7} maxWidth={610}>
-              <Grid container spacing={3}>
-                {philosophyCards.map((c) => (
-                  <Grid item xs={12} sm={6} key={c.title}>
-                    <FrostCard sx={{ minHeight: 180 }}>
-                      <Stack direction="row" spacing={2} alignItems="flex-start">
-                        <IconCircle>{c.icon}</IconCircle>
-                        <Box>
-                          <Typography fontWeight={800}>{c.title}</Typography>
-                          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                            {c.text}
-                          </Typography>
-                        </Box>
-                      </Stack>
-                    </FrostCard>
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          py: { xs: 6, md: 10 },
+          px: { xs: 2, md: 0 },
+          background: `
+      radial-gradient(circle at top left, rgba(59,130,246,0.10), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(99, 156, 241, 0.08), transparent 30%),
+      linear-gradient(180deg, #f8fbff 0%, #f3f7fc 100%)`,
+        }}
+      >
 
-            {/* RIGHT: Long descriptive text */}
+
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: -160,
+            right: -100,
+            width: 420,
+            height: 320,
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(99,102,241,0.14) 0%, rgba(99,102,241,0) 72%)",
+            filter: "blur(60px)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+          <Grid
+            container
+            spacing={6}
+            alignItems="center"
+            sx={{
+              flexWrap: { xs: "wrap", md: "nowrap" },
+            }}
+          >
+            {/* LEFT CONTENT */}
             <Grid item xs={12} md={6}>
-              <Box sx={{ maxWidth: { xs: "100%", md: 560 } }}>
+              <Box
+                sx={{
+                  maxWidth: { xs: "100%", md: 620 },
+                }}
+              >
+                {/* Badge */}
                 <Typography
-                  variant="overline"
-                  color="primary"
-                  fontWeight={800}
-                  letterSpacing={2}
-                  mb={1}
-                  display="block"
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    px: 1.5,
+                    py: 0.8,
+                    mb: 3,
+                    borderRadius: "999px",
+                    bgcolor: "rgba(255,255,255,0.65)",
+                    border: "1px solid rgba(255,255,255,0.7)",
+                    backdropFilter: "blur(10px)",
+                    color: "primary.main",
+                    fontWeight: 700,
+                    fontSize: 12,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    boxShadow: "0 8px 24px rgba(15,23,42,0.06)",
+                  }}
                 >
                   Our Philosophy
                 </Typography>
-                <Typography variant="h4" fontWeight={800} mb={2}>
-                  Education that adapts to every learner
+
+                {/* Heading */}
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontSize: {
+                      xs: "2rem",
+                      sm: "2.5rem",
+                      md: "3rem",
+                    },
+                    lineHeight: 1.02,
+                    fontWeight: 900,
+                    letterSpacing: "-0.04em",
+                    color: "#0f172a",
+                    mb: 3,
+                  }}
+                >
+                  Education that evolves with every learner
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
-                  We design learning experiences that are intentionally sequenced — each stage building towards independence. Through mixed-age collaboration, reflection cycles and public exhibitions, students continually practice critical thinking and self-regulation.
+
+                {/* Description */}
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "rgba(15,23,42,0.72)",
+                    fontSize: {
+                      xs: "1rem",
+                      md: "1.08rem",
+                    },
+                    lineHeight: 1.9,
+                    mb: 4,
+                  }}
+                >
+                  We design learning experiences that are intentionally sequenced —
+                  each stage building toward independence. Through mixed-age
+                  collaboration, reflection cycles, and public exhibitions, students
+                  continuously strengthen critical thinking, adaptability, and
+                  self-direction.
                 </Typography>
-                <Divider sx={{ width: 60, mb: 3, borderColor: "primary.main" }} />
-                <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600, mb: 2 }}>
-                  Outcomes we track:
+
+                {/* Divider */}
+                <Divider
+                  sx={{
+                    width: 72,
+                    borderColor: "rgba(59,130,246,0.45)",
+                    borderBottomWidth: 2,
+                    mb: 4,
+                  }}
+                />
+
+                {/* Outcomes */}
+                <Typography
+                  sx={{
+                    fontWeight: 700,
+                    color: "#0f172a",
+                    mb: 2.5,
+                    fontSize: "0.95rem",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  Outcomes we actively measure
                 </Typography>
-                <Stack spacing={1}>
-                  <Typography variant="body2">• Academic growth (standardized & project outcomes)</Typography>
-                  <Typography variant="body2">• Social-emotional competencies (self-management, empathy)</Typography>
-                  <Typography variant="body2">• Real-world application (community projects, internships)</Typography>
+
+                <Stack spacing={2}>
+                  {[
+                    "Academic growth through project and standardized outcomes",
+                    "Social-emotional competencies including empathy and self-management",
+                    "Real-world readiness through internships and community initiatives",
+                  ].map((item) => (
+                    <Stack
+                      key={item}
+                      direction="row"
+                      spacing={1.8}
+                      alignItems="flex-start"
+                    >
+                      <Box
+                        sx={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: "50%",
+                          bgcolor: "primary.main",
+                          mt: "10px",
+                          flexShrink: 0,
+                          boxShadow: "0 0 0 6px rgba(59,130,246,0.12)",
+                        }}
+                      />
+
+                      <Typography
+                        sx={{
+                          color: "rgba(15,23,42,0.82)",
+                          lineHeight: 1.8,
+                          fontSize: "0.98rem",
+                        }}
+                      >
+                        {item}
+                      </Typography>
+                    </Stack>
+                  ))}
                 </Stack>
+              </Box>
+            </Grid>
+
+            {/* RIGHT CARDS */}
+            <Grid item xs={12} md={6}>
+              <Box
+                sx={{
+                  width: "100%",
+                  maxWidth: 640,
+                  ml: "auto",
+                }}
+              >
+                <Grid container spacing={3}>
+                  {philosophyCards.map((c, index) => (
+                    <Grid
+                      item
+                      xs={10}
+                      sm={6}
+                      key={c.title}
+                      sx={{
+                        mt: {
+                          md: index % 2 !== 0 ? 4 : 0,
+                        },
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          position: "relative",
+                          height: "100%",
+                          borderRadius: "28px",
+                          p: "1px",
+
+                          overflow: "hidden",
+                          transition: "all 0.4s ease",
+
+                          "&:hover": {
+                            boxShadow:
+                              "0 30px 80px rgba(15,23,42,0.14), 0 10px 30px rgba(59,130,246,0.10)",
+                          },
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            position: "relative",
+                            height: "100%",
+                            borderRadius: "27px",
+                            p: 3.5,
+                            backdropFilter: "blur(18px)",
+                            background:
+                              "linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.55) 100%)",
+                            border: "1px solid rgba(255,255,255,0.6)",
+                            boxShadow: `
+                        inset 0 1px 0 rgba(255,255,255,0.8),
+                        0 10px 30px rgba(15,23,42,0.06)
+                      `,
+                          }}
+                        >
+
+
+                          <Stack spacing={1.5}>
+                            {/* Icon */}
+                            <Box
+                              sx={{
+                                width: 60,
+                                height: 60,
+                                borderRadius: "20px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                background:
+                                  "linear-gradient(135deg, rgba(59,130,246,0.16), rgba(99,102,241,0.10))",
+                                border: "1px solid rgba(255,255,255,0.7)",
+                                backdropFilter: "blur(12px)",
+                                boxShadow: `
+                            inset 0 1px 0 rgba(255,255,255,0.8),
+                            0 10px 25px rgba(59,130,246,0.10)
+                          `,
+                                transition: "all 0.35s ease",
+
+                                "& svg": {
+                                  fontSize: 28,
+                                  color: "#2563eb",
+                                  transition: "transform 0.35s ease",
+                                },
+
+                                ".MuiBox-root:hover & svg": {
+                                  transform: "scale(1.08)",
+                                },
+                              }}
+                            >
+                              {c.icon}
+                            </Box>
+
+                            {/* Content */}
+                            <Box>
+                              <Typography
+                                sx={{
+                                  fontWeight: 800,
+                                  color: "#0f172a",
+                                  fontSize: "1.08rem",
+                                  letterSpacing: "-0.02em",
+
+                                }}
+                              >
+                                {c.title}
+                              </Typography>
+
+                              <Typography
+                                variant="body2"
+                                sx={{
+                                  color: "rgba(15,23,42,0.68)",
+                                  lineHeight: 1.8,
+                                  fontSize: "0.95rem",
+                                }}
+                              >
+                                {c.text}
+                              </Typography>
+                            </Box>
+                          </Stack>
+                        </Box>
+                      </Box>
+                    </Grid>
+                  ))}
+                </Grid>
               </Box>
             </Grid>
           </Grid>
         </Container>
       </Box>
-
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
-      {/* TIMELINE */}
       {/* TIMELINE */}
       <Box
         id="our-journey"
@@ -498,57 +734,275 @@ export default function About() {
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
       {/* FACILITIES */}
-      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 }, bgcolor: "#fafcff" }}>
-        <Container>
-          <Grid container spacing={6} alignItems="stretch" sx={{ flexWrap: { xs: "wrap", md: "nowrap" } }}>
-            <Grid item xs={12} md={7}>
-              <Grid container spacing={3}>
-                {facilities.map((f) => (
-                  <Grid item xs={12} sm={6} key={f.title}>
-                    <Card sx={{ borderRadius: 3, overflow: "hidden", minHeight: 260 }}>
-                      <CardMedia
-                        component="img"
-                        image={f.img}
-                        alt={f.title}
-                        sx={{ height: 140, objectFit: "cover", transition: "transform 0.6s" }}
-                      />
-                      <CardContent>
-                        <Typography fontWeight={800}>{f.title}</Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                          {f.desc}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
+   <Box
+  sx={{
+    position: "relative",
+    py: { xs: 6, md: 10 },
+    px: { xs: 2, md: 0 },
+    overflow: "hidden",
+    background:
+      "linear-gradient(180deg, #f8fbff 0%, #ffffff 50%, #f5f7ff 100%)",
+  }}
+>
+  {/* Background Glow */}
+  <Box
+    sx={{
+      position: "absolute",
+      top: -100,
+      right: -100,
+      width: 300,
+      height: 300,
+      borderRadius: "50%",
+      background: "rgba(99,102,241,0.12)",
+      filter: "blur(100px)",
+      zIndex: 0,
+    }}
+  />
 
-            <Grid item xs={12} md={6} >
-              <Box>
-                <Typography variant="overline" color="primary" fontWeight={800} letterSpacing={2} mb={1} display="block">
-                  Campus & Facilities
+  <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+    <Grid
+      container
+      spacing={6}
+      alignItems="center"
+      sx={{
+        flexWrap: { xs: "wrap", md: "nowrap" },
+      }}
+    >
+      {/* LEFT SIDE CONTENT */}
+      <Grid item xs={12} md={6}>
+        <Box
+          sx={{
+            maxWidth: { xs: "100%", md: 620 },
+          }}
+        >
+          {/* Badge */}
+          <Box
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              px: 2,
+              py: 1,
+              mb: 3,
+              borderRadius: "999px",
+              background: "rgba(99,102,241,0.08)",
+              border: "1px solid rgba(99,102,241,0.15)",
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: 13,
+                fontWeight: 700,
+                letterSpacing: 1,
+                color: "#005baa",
+                textTransform: "uppercase",
+              }}
+            >
+              Campus & Facilities
+            </Typography>
+          </Box>
+
+          {/* Heading */}
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 900,
+              lineHeight: 1.08,
+              letterSpacing: "-1.5px",
+              color: "#0f172a",
+              mb: 3,
+              fontSize: {
+                xs: "2.3rem",
+                md: "3.5rem",
+              },
+            }}
+          >
+            Spaces built for
+   
+              modern learning
+       
+          </Typography>
+
+          {/* Description */}
+          <Typography
+            sx={{
+              color: "#475569",
+              lineHeight: 1.9,
+              fontSize: "1.02rem",
+              mb: 4,
+              maxWidth: 560,
+            }}
+          >
+            Thoughtfully designed classrooms, innovation labs, and
+            collaborative environments that encourage creativity,
+            exploration, and hands-on learning experiences.
+          </Typography>
+
+          {/* Feature Points */}
+          <Stack spacing={2}>
+            {[
+              "Industry-grade smart classrooms",
+              "Creative collaboration spaces",
+              "Student-first wellness environment",
+            ].map((item) => (
+              <Box
+                key={item}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  p: 2,
+                  borderRadius: "18px",
+                  background: "rgba(255,255,255,0.7)",
+                  border: "1px solid rgba(15,23,42,0.06)",
+                  backdropFilter: "blur(10px)",
+                  transition: "all .3s ease",
+
+           
+              
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: "#005baa",
+                    flexShrink: 0,
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    color: "#0f172a",
+                  }}
+                >
+                  {item}
                 </Typography>
-                <Typography variant="h4" fontWeight={800} mb={2}>
-                  Purpose-built spaces that invite discovery
-                </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
-                  Our campus was planned to encourage movement between theory and practice — with labs, studios and flexible classrooms adjacent to collaborative lounges. Each space is intentionally designed to support inquiry, making, and reflection.
-                </Typography>
-                <Divider sx={{ width: 60, mb: 3, borderColor: "primary.main" }} />
-                <Typography variant="body2" color="text.primary" sx={{ fontWeight: 600 }}>
-                  Design priorities:
-                </Typography>
-                <Stack spacing={1} mt={1}>
-                  <Typography variant="body2">• Flexible furniture for project work</Typography>
-                  <Typography variant="body2">• Technology that supports creativity (not replaces it)</Typography>
-                  <Typography variant="body2">• Spaces that promote student wellbeing</Typography>
-                </Stack>
               </Box>
-            </Grid>
+            ))}
+          </Stack>
+
+          {/* CTA */}
+          <Button
+            variant="contained"
+            sx={{
+              mt: 5,
+              px: 4,
+              py: 1.6,
+              borderRadius: "16px",
+              textTransform: "none",
+              fontWeight: 700,
+              fontSize: "1rem",
+  
+            }}
+          >
+            Explore Campus
+          </Button>
+        </Box>
+      </Grid>
+
+      {/* RIGHT SIDE GRID */}
+      <Grid item xs={12} md={6}>
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: 560,
+            ml: "auto",
+          }}
+        >
+          <Grid container spacing={3}>
+            {facilities.map((f, index) => (
+              <Grid item xs={12} sm={6} key={f.title}>
+                <Card
+                  sx={{
+                    position: "relative",
+                    overflow: "hidden",
+                    borderRadius: "28px",
+                    background: "rgba(255,255,255,0.7)",
+                    backdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255,255,255,0.5)",
+                    boxShadow: "0 10px 40px rgba(15,23,42,0.06)",
+                    transition: "all .5s ease",
+                    cursor: "pointer",
+
+                    "&:hover": {
+                      transform: "translateY(-10px)",
+                      boxShadow:
+                        "0 30px 60px rgba(15,23,42,0.12)",
+                    },
+
+                    "&:hover img": {
+                      transform: "scale(1.08)",
+                    },
+                  }}
+                >
+                  {/* Overlay */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(to top, rgba(15,23,42,0.75), transparent 65%)",
+                      zIndex: 1,
+                    }}
+                  />
+
+                  {/* Image */}
+                  <Box
+                    component="img"
+                    src={f.img}
+                    alt={f.title}
+                    sx={{
+                      width: "100%",
+                      height: index === 0 ? 340 : 280,
+                      objectFit: "cover",
+                      transition: "transform .7s ease",
+                    }}
+                  />
+
+                  {/* Content */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      p: 3,
+                      zIndex: 2,
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "#fff",
+                        fontWeight: 800,
+                        fontSize: "1.15rem",
+                        mb: 1,
+                      }}
+                    >
+                      {f.title}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        color: "rgba(255,255,255,0.82)",
+                        fontSize: "0.92rem",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {f.desc}
+                    </Typography>
+                  </Box>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
-        </Container>
-      </Box>
+        </Box>
+      </Grid>
+    </Grid>
+  </Container>
+</Box>
 
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
@@ -592,23 +1046,176 @@ export default function About() {
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
       {/* FINAL CTA */}
-      <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 }, background: "linear-gradient(120deg,#005baa 0%,#0088cc 100%)", color: "#fff" }}>
-        <Container>
-          <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h4" fontWeight={900} mb={2}>
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          py: { xs: 7, md: 11 },
+          px: { xs: 2, md: 0 },
+
+          background:
+            "linear-gradient(135deg,#003f7d 0%,#005baa 40%,#0094d9 100%)",
+
+          color: "#fff",
+        }}
+      >
+        {/* BACKGROUND GLOW */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: -120,
+            right: -120,
+            width: 320,
+            height: 320,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.08)",
+            filter: "blur(20px)",
+          }}
+        />
+
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: -100,
+            left: -80,
+            width: 240,
+            height: 240,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.06)",
+            filter: "blur(10px)",
+          }}
+        />
+
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              position: "relative",
+              zIndex: 2,
+              textAlign: "center",
+              maxWidth: 900,
+              mx: "auto",
+            }}
+          >
+            {/* SMALL LABEL */}
+            <Typography
+              variant="overline"
+              sx={{
+                letterSpacing: 3,
+                fontWeight: 800,
+                opacity: 0.9,
+              }}
+            >
+              JOIN OUR COMMUNITY
+            </Typography>
+
+            {/* HEADING */}
+            <Typography
+              variant="h3"
+              fontWeight={900}
+              sx={{
+                mt: 1.5,
+                mb: 2,
+                lineHeight: 1.2,
+
+                fontSize: {
+                  xs: "2rem",
+                  md: "3.2rem",
+                },
+              }}
+            >
               Be Part of the Faran Story
             </Typography>
-            <Typography variant="body1" sx={{ maxWidth: 760, mx: "auto", mb: 4, opacity: 0.95 }}>
-              If you value learning that balances curiosity, resilience and real-world application, come visit us. Schedule a campus tour or speak with our admissions team to learn how we partner with families for long-term success.
+
+            {/* DESCRIPTION */}
+            <Typography
+              variant="body1"
+              sx={{
+                maxWidth: 760,
+                mx: "auto",
+                mb: 5,
+                opacity: 0.92,
+                lineHeight: 1.9,
+                fontSize: {
+                  xs: "0.98rem",
+                  md: "1.08rem",
+                },
+              }}
+            >
+              If you value learning that balances curiosity, resilience and
+              real-world application, come visit us. Schedule a campus tour or
+              speak with our admissions team to learn how we partner with families
+              for long-term success.
             </Typography>
-            <Stack direction="row" spacing={2} justifyContent="center">
-              <Link to="/contact" style={{ textDecoration: "none" }}>
-                <Button variant="contained" size="large" sx={{ px: 5, fontWeight: 800, bgcolor: "secondary.main" }}>
+
+            {/* BUTTONS */}
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Link
+                to="/contact"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    px: 5,
+                    py: 1.6,
+                    borderRadius: 3,
+                    fontWeight: 800,
+                    fontSize: "0.95rem",
+
+                    bgcolor: "#fff",
+                    color: "#005baa",
+
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+
+                    transition: "all .3s ease",
+
+                    "&:hover": {
+                      bgcolor: "#f4f8ff",
+                      transform: "translateY(-3px)",
+                      boxShadow: "0 14px 35px rgba(0,0,0,0.2)",
+                    },
+                  }}
+                >
                   Contact Admissions
                 </Button>
               </Link>
-              <Link to="/visit" style={{ textDecoration: "none" }}>
-                <Button variant="outlined" size="large" sx={{ px: 4, color: "#fff", borderColor: "rgba(255,255,255,0.2)" }}>
+
+              <Link
+                to="/visit"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  variant="outlined"
+                  size="large"
+                  sx={{
+                    px: 4.5,
+                    py: 1.5,
+                    borderRadius: 3,
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+
+                    color: "#fff",
+
+                    borderColor: "rgba(255,255,255,0.3)",
+                    background: "rgba(255,255,255,0.06)",
+
+                    backdropFilter: "blur(10px)",
+
+                    transition: "all .3s ease",
+
+                    "&:hover": {
+                      borderColor: "#fff",
+                      background: "rgba(255,255,255,0.12)",
+                      transform: "translateY(-3px)",
+                    },
+                  }}
+                >
                   Schedule a Visit
                 </Button>
               </Link>
