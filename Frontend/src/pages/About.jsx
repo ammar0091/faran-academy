@@ -293,25 +293,14 @@ export default function About() {
               >
                 {/* Badge */}
                 <Typography
-                  sx={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    px: 1.5,
-                    py: 0.8,
-                    mb: 3,
-                    borderRadius: "999px",
-                    bgcolor: "rgba(255,255,255,0.65)",
-                    border: "1px solid rgba(255,255,255,0.7)",
-                    backdropFilter: "blur(10px)",
-                    color: "primary.main",
-                    fontWeight: 700,
-                    fontSize: 12,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    boxShadow: "0 8px 24px rgba(15,23,42,0.06)",
-                  }}
+                  variant="overline"
+                  color="primary"
+                  fontWeight={800}
+                  letterSpacing={2}
+                  mb={1}
+                  display="block"
                 >
-                  Our Philosophy
+                  our philosophy
                 </Typography>
 
                 {/* Heading */}
@@ -320,8 +309,8 @@ export default function About() {
                   sx={{
                     fontSize: {
                       xs: "2rem",
-                      sm: "2.5rem",
-                      md: "3rem",
+                      sm: "2.3rem",
+                      md: "2.8rem",
                     },
                     lineHeight: 1.02,
                     fontWeight: 900,
@@ -663,7 +652,7 @@ export default function About() {
                             "transform 0.35s ease, box-shadow 0.35s ease",
 
                           "&:hover": {
-                            transform: "translateY(-4px)",
+
                             boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
                           },
 
@@ -733,276 +722,252 @@ export default function About() {
 
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
-      {/* FACILITIES */}
-   <Box
-  sx={{
-    position: "relative",
-    py: { xs: 6, md: 10 },
-    px: { xs: 2, md: 0 },
-    overflow: "hidden",
-    background:
-      "linear-gradient(180deg, #f8fbff 0%, #ffffff 50%, #f5f7ff 100%)",
-  }}
->
-  {/* Background Glow */}
-  <Box
-    sx={{
-      position: "absolute",
-      top: -100,
-      right: -100,
-      width: 300,
-      height: 300,
-      borderRadius: "50%",
-      background: "rgba(99,102,241,0.12)",
-      filter: "blur(100px)",
-      zIndex: 0,
-    }}
-  />
-
-  <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-    <Grid
-      container
-      spacing={6}
-      alignItems="center"
-      sx={{
-        flexWrap: { xs: "wrap", md: "nowrap" },
-      }}
-    >
-      {/* LEFT SIDE CONTENT */}
-      <Grid item xs={12} md={6}>
+      {/*CAMPUS & FACILITIES */}
+      <Box
+        sx={{
+          position: "relative",
+          py: { xs: 6, md: 10 },
+          px: { xs: 2, md: 0 },
+          overflow: "hidden",
+          background:
+            "linear-gradient(180deg, #f8fbff 0%, #ffffff 50%, #f5f7ff 100%)",
+        }}
+      >
+        {/* Background Glow */}
         <Box
           sx={{
-            maxWidth: { xs: "100%", md: 620 },
+            position: "absolute",
+            top: -100,
+            right: -100,
+            width: 300,
+            height: 300,
+            borderRadius: "50%",
+            background: "rgba(99,102,241,0.12)",
+            filter: "blur(100px)",
+            zIndex: 0,
           }}
-        >
-          {/* Badge */}
-          <Box
+        />
+
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+          <Grid
+            container
+            spacing={6}
+            alignItems="center"
             sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              px: 2,
-              py: 1,
-              mb: 3,
-              borderRadius: "999px",
-              background: "rgba(99,102,241,0.08)",
-              border: "1px solid rgba(99,102,241,0.15)",
-              backdropFilter: "blur(10px)",
+              flexWrap: { xs: "wrap", md: "nowrap" },
             }}
           >
-            <Typography
-              sx={{
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: 1,
-                color: "#005baa",
-                textTransform: "uppercase",
-              }}
-            >
-              Campus & Facilities
-            </Typography>
-          </Box>
-
-          {/* Heading */}
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 900,
-              lineHeight: 1.08,
-              letterSpacing: "-1.5px",
-              color: "#0f172a",
-              mb: 3,
-              fontSize: {
-                xs: "2.3rem",
-                md: "3.5rem",
-              },
-            }}
-          >
-            Spaces built for
-   
-              modern learning
-       
-          </Typography>
-
-          {/* Description */}
-          <Typography
-            sx={{
-              color: "#475569",
-              lineHeight: 1.9,
-              fontSize: "1.02rem",
-              mb: 4,
-              maxWidth: 560,
-            }}
-          >
-            Thoughtfully designed classrooms, innovation labs, and
-            collaborative environments that encourage creativity,
-            exploration, and hands-on learning experiences.
-          </Typography>
-
-          {/* Feature Points */}
-          <Stack spacing={2}>
-            {[
-              "Industry-grade smart classrooms",
-              "Creative collaboration spaces",
-              "Student-first wellness environment",
-            ].map((item) => (
+            {/* LEFT SIDE CONTENT */}
+            <Grid item xs={12} md={6}>
               <Box
-                key={item}
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  p: 2,
-                  borderRadius: "18px",
-                  background: "rgba(255,255,255,0.7)",
-                  border: "1px solid rgba(15,23,42,0.06)",
-                  backdropFilter: "blur(10px)",
-                  transition: "all .3s ease",
-
-           
-              
+                  maxWidth: { xs: "100%", md: 620 },
                 }}
               >
-                <Box
-                  sx={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    background: "#005baa",
-                    flexShrink: 0,
-                  }}
-                />
+                {/* Badge */}
+                <Typography
+                  variant="overline"
+                  color="primary"
+                  fontWeight={800}
+                  letterSpacing={2}
+                  mb={1}
+                  display="block"
+                >
+                  CAMPUS & FACILITIES
+                </Typography>
 
+                {/* Heading */}
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 900,
+                    lineHeight: 1.08,
+                    letterSpacing: "-1.5px",
+                    color: "#0f172a",
+                    mb: 3,
+                    fontSize: {
+                      xs: "2rem",
+                      md: "2.8rem",
+                    },
+                  }}
+                >
+                  Spaces built for
+
+                  modern learning
+
+                </Typography>
+
+                {/* Description */}
                 <Typography
                   sx={{
-                    fontWeight: 600,
-                    color: "#0f172a",
+                    color: "#475569",
+                    lineHeight: 1.9,
+                    fontSize: "1.02rem",
+                    mb: 4,
+                    maxWidth: 560,
                   }}
                 >
-                  {item}
+                  Thoughtfully designed classrooms, innovation labs, and
+                  collaborative environments that encourage creativity,
+                  exploration, and hands-on learning experiences.
                 </Typography>
-              </Box>
-            ))}
-          </Stack>
 
-          {/* CTA */}
-          <Button
-            variant="contained"
-            sx={{
-              mt: 5,
-              px: 4,
-              py: 1.6,
-              borderRadius: "16px",
-              textTransform: "none",
-              fontWeight: 700,
-              fontSize: "1rem",
-  
-            }}
-          >
-            Explore Campus
-          </Button>
-        </Box>
-      </Grid>
+                {/* Feature Points */}
+                <Stack spacing={2}>
+                  {[
+                    "Industry-grade smart classrooms",
+                    "Creative collaboration spaces",
+                    "Student-first wellness environment",
+                  ].map((item) => (
+                    <Box
+                      key={item}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
+                        p: 1,
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: "50%",
+                          background: "#005baa",
+                          flexShrink: 0,
+                        }}
+                      />
 
-      {/* RIGHT SIDE GRID */}
-      <Grid item xs={12} md={6}>
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: 560,
-            ml: "auto",
-          }}
-        >
-          <Grid container spacing={3}>
-            {facilities.map((f, index) => (
-              <Grid item xs={12} sm={6} key={f.title}>
-                <Card
+                      <Typography
+                        sx={{
+                          fontWeight: 600,
+                          color: "#0f172a",
+                        }}
+                      >
+                        {item}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Stack>
+
+                {/* CTA */}
+                <Button
+                  variant="contained"
                   sx={{
-                    position: "relative",
-                    overflow: "hidden",
-                    borderRadius: "28px",
-                    background: "rgba(255,255,255,0.7)",
-                    backdropFilter: "blur(20px)",
-                    border: "1px solid rgba(255,255,255,0.5)",
-                    boxShadow: "0 10px 40px rgba(15,23,42,0.06)",
-                    transition: "all .5s ease",
-                    cursor: "pointer",
+                    mt: 5,
+                    px: 4,
+                    py: 1.6,
+                    borderRadius: "16px",
+                    textTransform: "none",
+                    fontWeight: 700,
+                    fontSize: "1rem",
 
-                    "&:hover": {
-                      transform: "translateY(-10px)",
-                      boxShadow:
-                        "0 30px 60px rgba(15,23,42,0.12)",
-                    },
-
-                    "&:hover img": {
-                      transform: "scale(1.08)",
-                    },
                   }}
                 >
-                  {/* Overlay */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      inset: 0,
-                      background:
-                        "linear-gradient(to top, rgba(15,23,42,0.75), transparent 65%)",
-                      zIndex: 1,
-                    }}
-                  />
+                  Explore Campus
+                </Button>
+              </Box>
+            </Grid>
 
-                  {/* Image */}
-                  <Box
-                    component="img"
-                    src={f.img}
-                    alt={f.title}
-                    sx={{
-                      width: "100%",
-                      height: index === 0 ? 340 : 280,
-                      objectFit: "cover",
-                      transition: "transform .7s ease",
-                    }}
-                  />
+            {/* RIGHT SIDE GRID */}
+            <Grid item xs={12} md={6}>
+              <Box
+                sx={{
+                  width: "100%",
+                  maxWidth: 560,
+                  ml: "auto",
+                }}
+              >
+                <Grid container spacing={3}>
+                  {facilities.map((f, index) => (
+                    <Grid item xs={12} sm={6} key={f.title}>
+                      <Card
+                        sx={{
+                          position: "relative",
+                          overflow: "hidden",
+                          borderRadius: "28px",
+                          background: "rgba(255,255,255,0.7)",
+                          backdropFilter: "blur(20px)",
+                          border: "1px solid rgba(255,255,255,0.5)",
+                          boxShadow: "0 10px 40px rgba(15,23,42,0.06)",
+                          transition: "all .5s ease",
+                          cursor: "pointer",
 
-                  {/* Content */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      p: 3,
-                      zIndex: 2,
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "#fff",
-                        fontWeight: 800,
-                        fontSize: "1.15rem",
-                        mb: 1,
-                      }}
-                    >
-                      {f.title}
-                    </Typography>
+                          "&:hover": {
+                            boxShadow:
+                              "0 30px 60px rgba(15,23,42,0.12)",
+                          },
 
-                    <Typography
-                      sx={{
-                        color: "rgba(255,255,255,0.82)",
-                        fontSize: "0.92rem",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {f.desc}
-                    </Typography>
-                  </Box>
-                </Card>
-              </Grid>
-            ))}
+                          "&:hover img": {
+                            transform: "scale(1.08)",
+                          },
+                        }}
+                      >
+                        {/* Overlay */}
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            inset: 0,
+                            background:
+                              "linear-gradient(to top, rgba(15,23,42,0.75), transparent 65%)",
+                            zIndex: 1,
+                          }}
+                        />
+
+                        {/* Image */}
+                        <Box
+                          component="img"
+                          src={f.img}
+                          alt={f.title}
+                          sx={{
+                            width: "100%",
+                            height: index === 0 ? 340 : 280,
+                            objectFit: "cover",
+                            transition: "transform .7s ease",
+                          }}
+                        />
+
+                        {/* Content */}
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            p: 3,
+                            zIndex: 2,
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              color: "#fff",
+                              fontWeight: 800,
+                              fontSize: "1.15rem",
+                              mb: 1,
+                            }}
+                          >
+                            {f.title}
+                          </Typography>
+
+                          <Typography
+                            sx={{
+                              color: "rgba(255,255,255,0.82)",
+                              fontSize: "0.92rem",
+                              lineHeight: 1.7,
+                            }}
+                          >
+                            {f.desc}
+                          </Typography>
+                        </Box>
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            </Grid>
           </Grid>
-        </Box>
-      </Grid>
-    </Grid>
-  </Container>
-</Box>
+        </Container>
+      </Box>
 
       <Divider sx={{ borderColor: "rgba(0,0,0,0.04)" }} />
 
@@ -1059,33 +1024,6 @@ export default function About() {
           color: "#fff",
         }}
       >
-        {/* BACKGROUND GLOW */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: -120,
-            right: -120,
-            width: 320,
-            height: 320,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.08)",
-            filter: "blur(20px)",
-          }}
-        />
-
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: -100,
-            left: -80,
-            width: 240,
-            height: 240,
-            borderRadius: "50%",
-            background: "rgba(255,255,255,0.06)",
-            filter: "blur(10px)",
-          }}
-        />
-
         <Container maxWidth="lg">
           <Box
             sx={{
@@ -1119,7 +1057,7 @@ export default function About() {
 
                 fontSize: {
                   xs: "2rem",
-                  md: "3.2rem",
+                  md: "3rem",
                 },
               }}
             >
@@ -1177,7 +1115,6 @@ export default function About() {
 
                     "&:hover": {
                       bgcolor: "#f4f8ff",
-                      transform: "translateY(-3px)",
                       boxShadow: "0 14px 35px rgba(0,0,0,0.2)",
                     },
                   }}
@@ -1212,7 +1149,6 @@ export default function About() {
                     "&:hover": {
                       borderColor: "#fff",
                       background: "rgba(255,255,255,0.12)",
-                      transform: "translateY(-3px)",
                     },
                   }}
                 >
