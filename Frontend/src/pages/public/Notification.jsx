@@ -4,7 +4,7 @@ import {
   Container, Box, Typography, CircularProgress
 } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
-import { getNotifications } from '../utils/api';
+import { getNotifications } from '../../utils/api';
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);

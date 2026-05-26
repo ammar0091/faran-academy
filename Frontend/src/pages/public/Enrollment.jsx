@@ -20,8 +20,8 @@ import {
   CheckCircleOutline as CheckCircleOutlineIcon,
   WarningAmberOutlined as WarningAmberOutlinedIcon,
 } from "@mui/icons-material";
-import { submitEnrollment } from "../utils/api";
-import { classOptions } from "../constants/enrollment/classOptions";
+import { submitEnrollment } from "../../utils/api";
+import { classOptions } from "../../constants/enrollment/classOptions";
 
 export default function Enroll() {
   const [form, setForm] = useState({

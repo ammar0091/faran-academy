@@ -8,7 +8,7 @@ import {
   CircularProgress
 } from "@mui/material";
 
-import { getEvents } from "../utils/api";
+import { getEvents } from "../../utils/api";
 
 
 export default function NewsEvents() {
@@ -34,7 +34,7 @@ export default function NewsEvents() {
     <Box bgcolor="#f8fafd" minHeight="100vh">
       <Container maxWidth="md" sx={{ py: { xs: 4, md: 7 } }}>
         <Typography variant="h3" fontWeight={900} color="primary.main" mb={2} align="center">
-          News & Events
+           Events
         </Typography>
         <Typography align="center" color="text.secondary" sx={{ mb: 5 }}>
           Stay updated about all important school announcements, upcoming activities, and recent achievements.

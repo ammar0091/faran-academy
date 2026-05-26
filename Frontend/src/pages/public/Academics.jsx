@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Typography, Grid, Skeleton } from "@mui/material";
-import CourseCard from "../components/Coursecard"; 
-import api from "../utils/api";
+import CourseCard from "../../components/Coursecard"; 
+import api from "../../utils/api";
 
 export default function Academics() {
   const [courses, setCourses] = useState([]);

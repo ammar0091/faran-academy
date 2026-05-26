@@ -14,7 +14,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
-import { loginAdmin } from "../utils/api";
+import { loginAdmin } from "../../utils/api";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");

@@ -9,7 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import { galleryCategories } from "../constants/gallery/galleryData";
+import { galleryCategories } from "../../constants/gallery/galleryData";
 
 export default function Gallery() {
   const [tab, setTab] = React.useState(0);

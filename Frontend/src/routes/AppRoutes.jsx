@@ -14,7 +14,7 @@ import { adminRoutes } from './adminRoutes';
 
 import { pageSeo } from '../constants/common/seo';
 
-const AdminLogin = lazy(() => import('../pages/AdminLogin'));
+const AdminLogin = lazy(() => import('../pages/public/AdminLogin'));
 
 const AppRoutes = () => {
   return (

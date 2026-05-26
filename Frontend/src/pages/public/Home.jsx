@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 // MUI Components
 import {
-  Box, Container, Typography, Button, Grid, Stack, Card, CardContent, Avatar, Chip, Divider
+  Box, Container, Typography,  Grid, Stack, Card, Avatar, Divider
 } from "@mui/material";
 // MUI Icons
-import SchoolIcon from "@mui/icons-material/School";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import InfoIcon from "@mui/icons-material/Info";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 // Router
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // Assets
-import herologo from "../assets/logo.png";
+// import herologo from "../../assets/logo.png";
 
 // API
-import { getFaculty, getEvents, getNotifications } from "../utils/api";
+import { getFaculty, getEvents, getNotifications } from "../../utils/api";
+
 import {
   aboutFeatures,
   achievements,
@@ -26,12 +23,16 @@ import {
   campusGalleryImages,
   facultyHighlights,
   schoolStats,
-} from "../constants/home/homeData";
+} from "../../constants/home/homeData";
 
 // Components
-import Team from "../components/Team";
-import Testimonial from "../components/Testimonial";
-
+import Team from "../../components/Team";
+import Testimonial from "../../components/Testimonial";
+import HeroSection from "../../components/sections/home/HeroSection";
+import AboutSection from "../../components/sections/home/AboutSection";
+import ContactCTA from "../../components/sections/home/ContactCTA"
+// import FacultySection from "../../components/sections/home/FacultySection";
+import NewsEventsSection from "../../components/sections/home/NewsEventsSection";
 
 
 // MAIN COMPONENT
@@ -77,80 +78,7 @@ export default function Home() {
       <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 }, px: { xs: 1, md: 0 } }}>
 
         {/*  HERO SECTION */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column-reverse", md: "row" },
-            alignItems: "center",
-            gap: { xs: 5, md: 8 },
-            py: { xs: 3, md: 6 },
-          }}
-        >
-          {/* Hero Left: Text */}
-          <Box flex={1} sx={{ textAlign: { xs: "center", md: "left" } }}>
-            <Typography variant="h2" fontWeight={800} color="primary.main" mb={2} sx={{ fontSize: { xs: 31, md: 52 } }}>
-              Welcome to Faran Academy
-            </Typography>
-            <Typography variant="h6" color="text.secondary" mb={2} sx={{ fontSize: { xs: 18, md: 23 } }}>
-              "Empowering lifelong learners with knowledge, values, and vision for tomorrow."
-            </Typography>
-
-            {/* CTA Buttons */}
-            <Stack direction={{ xs: "column", sm: "row" }} spacing={2} justifyContent={{ xs: "center", sm: "flex-start" }} mt={2}>
-              <Button
-                component={Link}
-                to="/admissions"
-                variant="contained"
-                size="large"
-                endIcon={<SchoolIcon />}
-                sx={{
-                  bgcolor: "#005baa",
-                  color: "#fff",
-                  px: 4,
-                  py: 1.2,
-                  fontSize: 19,
-                  fontWeight: 700,
-                  borderRadius: 2,
-                  boxShadow: "0 6px 28px 0 rgba(0,91,170,0.10)",
-                }}
-              >
-                Apply Now
-              </Button>
-              <Button
-                component={Link}
-                to="/gallery"
-                variant="outlined"
-                color="primary"
-                size="large"
-                sx={{ fontWeight: 700, px: 4, py: 1.2, borderRadius: 2, fontSize: 19 }}
-              >
-                Virtual Tour
-              </Button>
-            </Stack>
-
-            {/* Achievements Chips */}
-            <Stack direction="row" flexWrap="wrap" mt={3} spacing={2}>
-              {achievements.map((text) => (
-                <Chip key={text} icon={<EmojiEventsIcon />} label={text} sx={{ bgcolor: "#e8f8ff", fontWeight: 500 }} />
-              ))}
-            </Stack>
-          </Box>
-
-          {/* Hero Right: Image */}
-          <Box flex={1}>
-            <img
-              src={herologo}
-              alt="Faran Academy Banner"
-              style={{
-                width: "100%",
-                maxHeight: 360,
-                borderRadius: 14,
-                objectFit: "cover",
-                boxShadow: "0 12px 48px 0 rgba(49,61,89,0.09)",
-              }}
-            />
-          </Box>
-        </Box>
+        <HeroSection achievements={achievements} />
 
         {/*  STATISTICS BAR */}
         <Grid
@@ -233,119 +161,7 @@ export default function Home() {
 
 
         {/*  ABOUT SECTION */}
-        <Box
-          sx={{
-            py: { xs: 6, md: 8 },
-            px: { xs: 2, md: 4 },
-            position: "relative",
-            overflow: "hidden",
-            borderRadius: 4,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column-reverse", md: "row" },
-              alignItems: "center",
-              gap: { xs: 6, md: 10 },
-              position: "relative",
-              zIndex: 1,
-            }}
-          >
-            {/* TEXT LEFT */}
-            <Box flex={1}>
-              <Typography
-                variant="overline"
-                fontWeight={700}
-                letterSpacing={2}
-                color="primary.main"
-                mb={2}
-              >
-                About Our School
-              </Typography>
-
-              <Typography
-                variant="h3"
-                fontWeight={800}
-                color="text.primary"
-                mb={3}
-                sx={{ lineHeight: 1.2 }}
-              >
-                Nurturing Minds, Inspiring Futures
-              </Typography>
-
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                mb={2}
-                sx={{ fontSize: { xs: 15, md: 16 }, lineHeight: 1.8 }}
-              >
-                At Faran Academy, we combine rigorous academics, creative arts, leadership development, and global exposure to help students thrive in a rapidly evolving world.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ fontSize: { xs: 15, md: 16 }, lineHeight: 1.8 }}
-              >
-                Our students are equipped to innovate, lead, and contribute meaningfully to society, while enjoying a vibrant, supportive learning environment.
-              </Typography>
-
-              {/* Small Features */}
-              <Box sx={{ mt: 4, display: "flex", flexWrap: "wrap", gap: 2 }}>
-                {aboutFeatures.map(
-                  (feature) => (
-                    <Box
-                      key={feature}
-                      sx={{
-                        px: 3,
-                        py: 1,
-                        borderRadius: 2,
-                        background: "rgba(255,255,255,0.3)",
-                        backdropFilter: "blur(8px)",
-                        fontWeight: 600,
-                        display: "inline-block",
-                        fontSize: 14,
-                        color: "text.primary",
-                        transition: "transform 0.3s",
-                        "&:hover": {
-                          transform: "translateY(-3px) scale(1.05)",
-                        },
-                      }}
-                    >
-                      {feature}
-                    </Box>
-                  )
-                )}
-              </Box>
-            </Box>
-
-            {/* IMAGE RIGHT */}
-            <Box
-              flex={1}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Box
-                component="img"
-                src="/assets/features/values.svg"
-                alt="School Values"
-                sx={{
-                  width: { xs: "80%", md: "100%" },
-                  maxHeight: 300,
-                  borderRadius: 4,
-                  boxShadow: (theme) =>
-                    theme.palette.mode === "light"
-                      ? "0px 12px 28px rgba(0,0,0,0.1)"
-                      : "0px 12px 28px rgba(0,0,0,0.5)",
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
+        <AboutSection features={aboutFeatures} />
 
 
 
@@ -776,401 +592,12 @@ export default function Home() {
         </Box>
 
         {/*  NEWS, EVENTS & ANNOUNCEMENTS (3 events + 3 notifications) */}
-     <Box
-  sx={{
-    my: { xs: 5, md: 8 },
-  }}
->
-  {/* SECTION HEADER */}
-  <Box
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-      gap: 2,
-      mb: 4,
-    }}
-  >
-    <Box>
-      <Typography
-        variant="overline"
-        color="primary"
-        fontWeight={800}
-        letterSpacing={2}
-      >
-        Stay Updated
-      </Typography>
-
-      <Typography variant="h4" fontWeight={900}>
-        News & Announcements
-      </Typography>
-    </Box>
-
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      sx={{
-        maxWidth: 420,
-        lineHeight: 1.8,
-      }}
-    >
-      Latest events, updates and important notices from our academy.
-    </Typography>
-  </Box>
-
-  {/* MAIN GRID */}
-  <Grid container spacing={3} alignItems="stretch">
-    
-    {/* ===================================================== */}
-    {/* EVENTS */}
-    {/* ===================================================== */}
-
-    <Grid
-      item
-      xs={12}
-      md={6}
-      sx={{
-        display: "flex",
-      }}
-    >
-      <Card
-        sx={{
-          width: "100%",
-          maxWidth: 600,
-          display: "flex",
-          flexDirection: "column",
-          borderRadius: 4,
-          overflow: "hidden",
-          border: "1px solid rgba(0,0,0,0.05)",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-        }}
-      >
-        {/* TOP BAR */}
-        <Box
-          sx={{
-            px: 3,
-            py: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            borderBottom: "1px solid rgba(0,0,0,0.05)",
-            bgcolor: "#f8fbff",
-          }}
-        >
-          <Stack direction="row" spacing={1.5} alignItems="center">
-            <Box
-              sx={{
-                width: 42,
-                height: 42,
-                borderRadius: 2.5,
-                background:
-                  "linear-gradient(135deg,#005baa 0%,#0088cc 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-              }}
-            >
-              <EventAvailableIcon fontSize="small" />
-            </Box>
-
-            <Box>
-              <Typography fontWeight={800}>Latest Events</Typography>
-
-              <Typography variant="caption" color="text.secondary">
-                Upcoming activities
-              </Typography>
-            </Box>
-          </Stack>
-        </Box>
-
-        {/* EVENT LIST */}
-        <Stack divider={<Divider flexItem />}>
-          {[...events]
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .slice(0, 3)
-            .map((event, idx) => (
-              <Box
-                key={event._id || idx}
-                sx={{
-                  p: 2.5,
-                  transition: "all 0.25s ease",
-
-                  "&:hover": {
-                    bgcolor: "#f8fbff",
-                  },
-                }}
-              >
-                <Stack direction="row" spacing={2}>
-                  {/* DATE */}
-                  <Box
-                    sx={{
-                      minWidth: 60,
-                      height: 60,
-                      borderRadius: 3,
-                      background:
-                        "linear-gradient(135deg,#e8f4ff 0%,#f5fbff 100%)",
-                      border: "1px solid rgba(0,91,170,0.08)",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      fontWeight={900}
-                      lineHeight={1}
-                      color="primary.main"
-                    >
-                      {new Date(event.date).getDate()}
-                    </Typography>
-
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        textTransform: "uppercase",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {new Date(event.date).toLocaleString("default", {
-                        month: "short",
-                      })}
-                    </Typography>
-                  </Box>
-
-                  {/* CONTENT */}
-                  <Box flex={1}>
-                    <Typography
-                      fontWeight={800}
-                      sx={{
-                        mb: 0.5,
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {event.title || "Event"}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{
-                        lineHeight: 1.7,
-                        display: "-webkit-box",
-                        overflow: "hidden",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      {event.description}
-                    </Typography>
-
-                    <Button
-                      component={Link}
-                      to={`/#events/${event._id}`}
-                      size="small"
-                      sx={{
-                        mt: 1,
-                        px: 0,
-                        minWidth: "auto",
-                        textTransform: "none",
-                        fontWeight: 700,
-                      }}
-                    >
-                      Read More
-                    </Button>
-                  </Box>
-                </Stack>
-              </Box>
-            ))}
-        </Stack>
-      </Card>
-    </Grid>
-
-    {/* ===================================================== */}
-    {/* ANNOUNCEMENTS */}
-    {/* ===================================================== */}
-
-    <Grid
-      item
-      xs={12}
-      md={6}
-      sx={{
-        display: "flex",
-      }}
-    >
-      <Card
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          borderRadius: 4,
-          overflow: "hidden",
-          border: "1px solid rgba(0,0,0,0.05)",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-        }}
-      >
-        {/* TOP BAR */}
-        <Box
-          sx={{
-            px: 3,
-            py: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            borderBottom: "1px solid rgba(0,0,0,0.05)",
-            bgcolor: "#f8fbff",
-          }}
-        >
-          <Stack direction="row" spacing={1.5} alignItems="center">
-            <Box
-              sx={{
-                width: 42,
-                height: 42,
-                borderRadius: 2.5,
-                background:
-                  "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <InfoIcon color="primary" fontSize="small" />
-            </Box>
-
-            <Box>
-              <Typography fontWeight={800}>
-                Announcements
-              </Typography>
-
-              <Typography variant="caption" color="text.secondary">
-                Important updates
-              </Typography>
-            </Box>
-          </Stack>
-        </Box>
-
-        {/* ANNOUNCEMENT LIST */}
-        <Stack divider={<Divider flexItem />}>
-          {[...notifications]
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .slice(0, 3)
-            .map((note, idx) => (
-              <Box
-                key={note._id || idx}
-                sx={{
-                  p: 2.5,
-                  transition: "all 0.25s ease",
-
-                  "&:hover": {
-                    bgcolor: "#f8fbff",
-                  },
-                }}
-              >
-                <Stack direction="row" spacing={2}>
-                  {/* ICON */}
-                  <Box
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: "50%",
-                      background:
-                        "linear-gradient(135deg,#f3f9ff 0%,#edf7ff 100%)",
-                      border: "1px solid rgba(0,91,170,0.08)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <InfoIcon
-                      color="primary"
-                      sx={{ fontSize: 20 }}
-                    />
-                  </Box>
-
-                  {/* CONTENT */}
-                  <Box flex={1}>
-                    <Typography
-                      fontWeight={800}
-                      sx={{
-                        mb: 0.5,
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {note.title || "Announcement"}
-                    </Typography>
-
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      display="block"
-                      mb={0.7}
-                    >
-                      {new Date(note.createdAt).toLocaleDateString()}
-                    </Typography>
-
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{
-                        lineHeight: 1.7,
-                        display: "-webkit-box",
-                        overflow: "hidden",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      {note.message}
-                    </Typography>
-                  </Box>
-                </Stack>
-              </Box>
-            ))}
-        </Stack>
-      </Card>
-    </Grid>
-  </Grid>
-</Box>
+        <NewsEventsSection events={events}
+          notifications={notifications}
+        />
 
         {/* CONTACT CTA */}
-        <Box
-          sx={{
-            bgcolor: "#005baa",
-            color: "#fff",
-            py: 4,
-            px: 3,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 4,
-            mt: 7,
-            flexDirection: { xs: "column", sm: "row" },
-          }}
-        >
-          <Typography variant="h6" fontWeight={700} mr={{ xs: 0, sm: 5 }} mb={{ xs: 2, sm: 0 }}>
-            Ready to begin your journey?
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to="/contact"
-            sx={{
-              fontWeight: 700,
-              px: 4,
-              py: 1.2,
-              borderRadius: 2,
-              fontSize: 19,
-              bgcolor: "#ffd43b",
-              color: "#0b276c",
-              "&:hover": { bgcolor: "#fff2a1" },
-            }}
-          >
-            Contact Us
-          </Button>
-        </Box>
+        <ContactCTA />
       </Container>
     </Box>
   );

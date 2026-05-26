@@ -1,15 +1,15 @@
 import { lazy } from 'react';
 import { pageSeo } from '../constants/common/seo';
 
-const Home = lazy(() => import('../pages/Home'));
-const About = lazy(() => import('../pages/About'));
-const Academics = lazy(() => import('../pages/Academics'));
-const Admissions = lazy(() => import('../pages/Admissions'));
-const Gallery = lazy(() => import('../pages/Gallery'));
-const NewsEvents = lazy(() => import('../pages/NewsEvent'));
-const Notification = lazy(() => import('../pages/Notification'));
-const Enroll = lazy(() => import('../pages/Enrollment'));
-const Contact = lazy(() => import('../pages/Contact'));
+const Home = lazy(() => import('../pages/public/Home'));
+const About = lazy(() => import('../pages/public/About'));
+const Academics = lazy(() => import('../pages/public/Academics'));
+const Admissions = lazy(() => import('../pages/public/Admissions'));
+const Gallery = lazy(() => import('../pages/public/Gallery'));
+const NewsEvents = lazy(() => import('../pages/public/NewsEvent'));
+const Notification = lazy(() => import('../pages/public/Notification'));
+const Enroll = lazy(() => import('../pages/public/Enrollment'));
+const Contact = lazy(() => import('../pages/public/Contact'));
 
 export const publicRoutes = [
   {

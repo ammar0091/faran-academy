@@ -21,7 +21,7 @@ import StarIcon from "@mui/icons-material/Star";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import {
   admissionSteps,
-} from "../constants/admissions/admissionsData";
+} from "../../constants/admissions/admissionsData";
 
 const admissionStepIcons = {
   checklist: ChecklistIcon,
