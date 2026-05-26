@@ -14,8 +14,8 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
-import logo from "../assets/hero-logo.png";
-import { footerNavLinks } from "../constants/common/navigation";
+import logo from "../../assets/hero-logo.png";
+import { footerNavLinks } from "../../constants/common/navigation";
 
 // --- UI Tokens (clean & minimal) ---
 const ui = {

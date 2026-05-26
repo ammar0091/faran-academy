@@ -18,8 +18,8 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
-import { mainNavLinks } from "../constants/common/navigation";
+import logo from "../../assets/logo.png";
+import { mainNavLinks } from "../../constants/common/navigation";
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
