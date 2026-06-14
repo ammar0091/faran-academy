@@ -1,147 +1,105 @@
-
-// ==============================
-// AboutSection.jsx
-// ==============================
-
 import React from "react";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import BoltIcon from "@mui/icons-material/Bolt";
+import PublicIcon from "@mui/icons-material/Public";
 
+import { homeImages, homeUi, valueCards } from "../../../constants/home/modernHomeData";
 import {
-    Box,
-    Typography,
-} from "@mui/material";
+  ImageCard,
+  PrimaryButton,
+  homeEyebrowSx,
+  homeSectionSx,
+  homeTitleSx,
+} from "./HomePrimitives";
 
-import {
-    aboutFeatures,
-} from "../../../constants/home/homeData";
+const valueIcons = {
+  bolt: <BoltIcon />,
+  public: <PublicIcon />,
+};
 
-export default function AboutSection() {
-    return (
-        <Box
-            sx={{
-                py: { xs: 6, md: 8 },
-                px: { xs: 2, md: 4 },
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: 4,
-            }}
-        >
+function AboutSection() {
+  return (
+    <Box component="section" sx={{ ...homeSectionSx, bgcolor: "#fff" }}>
+      <Container maxWidth="xl">
+        <Grid container spacing={{ xs: 7, lg: 10 }} alignItems="center">
+          <Grid item xs={12} lg={6} maxWidth={620}>
             <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: {
-                        xs: "column-reverse",
-                        md: "row",
-                    },
-                    alignItems: "center",
-                    gap: { xs: 6, md: 10 },
-                    position: "relative",
-                    zIndex: 1,
-                }}
+              sx={{
+                position: "relative",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 3,
+              }}
             >
-                {/* LEFT */} <Box flex={1}> <Typography
-                    variant="overline"
-                    fontWeight={700}
-                    letterSpacing={2}
-                    color="primary.main"
-                    mb={2}
-                >
-                    About Our School </Typography>
-
-                    <Typography
-                        variant="h3"
-                        fontWeight={800}
-                        color="text.primary"
-                        mb={3}
-                        sx={{ lineHeight: 1.2 }}
-                    >
-                        Nurturing Minds, Inspiring Futures
-                    </Typography>
-
-                    <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        mb={2}
-                        sx={{
-                            fontSize: { xs: 15, md: 16 },
-                            lineHeight: 1.8,
-                        }}
-                    >
-                        At Faran Academy, we combine rigorous academics,
-                        creative arts, leadership development,
-                        and global exposure to help students thrive.
-                    </Typography>
-
-                    <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        sx={{
-                            fontSize: { xs: 15, md: 16 },
-                            lineHeight: 1.8,
-                        }}
-                    >
-                        Our students are equipped to innovate,
-                        lead and contribute meaningfully to society.
-                    </Typography>
-
-                    <Box
-                        sx={{
-                            mt: 4,
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: 2,
-                        }}
-                    >
-                        {aboutFeatures.map((feature) => (
-                            <Box
-                                key={feature}
-                                sx={{
-                                    px: 3,
-                                    py: 1,
-                                    borderRadius: 2,
-                                    background: "rgba(255,255,255,0.3)",
-                                    backdropFilter: "blur(8px)",
-                                    fontWeight: 600,
-                                    display: "inline-block",
-                                    fontSize: 14,
-                                    color: "text.primary",
-                                    transition: "transform 0.3s",
-
-                                    "&:hover": {
-                                        transform:
-                                            "translateY(-3px) scale(1.05)",
-                                    },
-                                }}
-                            >
-                                {feature}
-                            </Box>
-                        ))}
-                    </Box>
-                </Box>
-
-                {/* RIGHT */}
-                <Box
-                    flex={1}
-                    sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <Box
-                        component="img"
-                        src="/assets/features/values.svg"
-                        alt="School Values"
-                        sx={{
-                            width: { xs: "80%", md: "100%" },
-                            maxHeight: 300,
-                            borderRadius: 4,
-                            boxShadow:
-                                "0px 12px 28px rgba(0,0,0,0.1)",
-                        }}
-                    />
-                </Box>
+              <ImageCard
+                src={homeImages.students}
+                alt="Students at Faran Academy"
+                sx={{ height: { xs: 270, md: 400 }, mt: { xs: 5, md: 8 } }}
+              />
+              <ImageCard
+                src={homeImages.lab}
+                alt="Faran Academy learning lab"
+                sx={{ height: { xs: 270, md: 400 } }}
+              />
             </Box>
-        </Box>
+          </Grid>
 
-    );
+          <Grid item xs={12} lg={6} maxWidth={500}> 
+            <Typography sx={homeEyebrowSx}>Academic Excellence</Typography>
+            <Typography
+              component="h2"
+              sx={{
+                ...homeTitleSx,
+                color: homeUi.primaryContainer,
+                fontSize: { xs: 28, md: 50 },
+                mb: 4,
+              }}
+            >
+              Rooted in Tradition, Aiming for the Future.
+            </Typography>
+            <Typography
+              sx={{
+                color: homeUi.muted,
+                fontSize: { xs: 17, md: 20 },
+                lineHeight: 1.65,
+                mb: 4,
+              }}
+            >
+              Faran Academy has been a beacon of educational excellence for over two decades.
+              We believe in nurturing not just the mind, but the character of every student.
+            </Typography>
+
+            {valueCards.map((item) => (
+              <Stack
+                key={item.title}
+                direction="row"
+                gap={2}
+                sx={{
+                  p: 2.5,
+                  borderRadius: 5,
+                  "&:hover": { bgcolor: "rgba(0,67,121,0.05)" },
+                }}
+              >
+                <Box sx={{ color: homeUi.primary, pt: 0.3 }}>{valueIcons[item.icon]}</Box>
+                <Box>
+                  <Typography sx={{ color: homeUi.primary, fontWeight: 900, fontSize: 20 }}>
+                    {item.title}
+                  </Typography>
+                  <Typography sx={{ color: homeUi.muted }}>{item.body}</Typography>
+                </Box>
+              </Stack>
+            ))}
+
+            <Box sx={{ mt: 4 }}>
+              <PrimaryButton to="/about" variant="gold">
+                Discover Our Values
+              </PrimaryButton>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
 }
+
+export default React.memo(AboutSection);

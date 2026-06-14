@@ -1,143 +1,89 @@
-
-// ==============================
-// AlumniSection.jsx
-// ==============================
-
 import React from "react";
+import { Box, Chip, Container, Grid, Stack, Typography } from "@mui/material";
+import GroupsIcon from "@mui/icons-material/Groups";
 
-import {
-    Box,
-    Grid,
-    Card,
-    Typography,
-    Avatar,
-    Divider,
-    Container,
-} from "@mui/material";
+import { alumniCards, homeUi } from "../../../constants/home/modernHomeData";
+import { PrimaryButton, homeSectionSx, homeTitleSx } from "./HomePrimitives";
 
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+function AlumniSection({ alumni }) {
+  const cards = alumniCards.map((card, index) =>
+    index === 1 && alumni?.[0]?.story ? { ...card, body: alumni[0].story } : card
+  );
 
-import {
-    alumni as homeAlumni,
-    alumniHighlights,
-} from "../../../constants/home/homeData";
-
-export default function AlumniSection() {
-    return (
-        <Box
-            sx={{
-                py: { xs: 8, md: 12 },
-            }}
-        > <Container> <Grid container spacing={6}>
-            {/* LEFT */} <Grid item xs={12} md={7}> <Grid container spacing={2}>
-                {homeAlumni.map((alum, index) => (<Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    key={alum.name}
-                >
-                    <Card
-                        sx={{
-                            p: 3,
-                            borderRadius: 4,
-                            textAlign: "center",
-                            transition: "0.3s",
-
-
-                            "&:hover": {
-                                transform: "translateY(-5px)",
-                            },
-                        }}
-                    >
-                        <Avatar
-                            src={alum.img}
-                            sx={{
-                                width: 70,
-                                height: 70,
-                                mx: "auto",
-                                mb: 2,
-                            }}
-                        />
-
-                        <Typography fontWeight={700}>
-                            {alum.name}
-                        </Typography>
-
-                        <Typography
-                            variant="body2"
-                            color="text.secondary"
-                        >
-                            {alum.story}
-                        </Typography>
-                    </Card>
-                </Grid>
-                ))}
-            </Grid>
-            </Grid>
-
-            {/* RIGHT */}
-            <Grid item xs={12} md={5}>
+  return (
+    <Box component="section" sx={{ ...homeSectionSx, bgcolor: homeUi.primaryContainer }}>
+      <Container maxWidth="xl">
+        <Typography sx={{ ...homeTitleSx, color: "#fff", fontSize: { xs: 42, md: 64 }, mb: 7 }}>
+          Global Network.
+        </Typography>
+        <Grid container spacing={4}>
+          {cards.map((item) => (
+            <Grid item xs={12} lg={4} key={item.title}  maxWidth={360}>
+              <Box
+                sx={{
+                  bgcolor: item.featured ? homeUi.gold : "rgba(255,255,255,0.06)",
+                  border: item.featured ? "none" : "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: 8,
+                  p: { xs: 4, md: 5 },
+                  minHeight: 300,
+                  color: item.featured ? homeUi.primary : "#fff",
+                }}
+              >
                 <Typography
-                    variant="overline"
-                    color="primary"
-                    fontWeight={700}
-                    letterSpacing={2}
-                    mb={2}
-                    display="block"
+                  sx={{
+                    color: item.featured ? homeUi.primary : homeUi.gold,
+                    fontSize: 30,
+                    fontWeight: 900,
+                    mb: 2,
+                  }}
                 >
-                    Our Alumni
+                  {item.title}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: item.featured ? "rgba(0,67,121,0.78)" : "rgba(255,255,255,0.78)",
+                    fontSize: 18,
+                    lineHeight: 1.55,
+                    mb: 4,
+                  }}
+                >
+                  {item.body}
                 </Typography>
 
-                <Typography
-                    variant="h4"
-                    fontWeight={700}
-                    mb={3}
-                >
-                    Inspiring Journeys
-                </Typography>
+                {item.tags && (
+                  <Stack direction="row" gap={1} flexWrap="wrap">
+                    {item.tags.map((tag) => (
+                      <Chip
+                        key={tag}
+                        label={tag}
+                        sx={{ bgcolor: "rgba(255,255,255,0.12)", color: "#fff", fontWeight: 800 }}
+                      />
+                    ))}
+                  </Stack>
+                )}
 
-                <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    mb={4}
+                {item.featured && <PrimaryButton to="/about">Read Stories</PrimaryButton>}
+                {item.icon && (
+                  <Box
                     sx={{
-                        lineHeight: 1.8,
+                      width: 64,
+                      height: 64,
+                      borderRadius: "50%",
+                      bgcolor: "rgba(255,255,255,0.2)",
+                      display: "grid",
+                      placeItems: "center",
                     }}
-                >
-                    Our alumni have made remarkable
-                    contributions worldwide.
-                </Typography>
-
-                <Divider
-                    sx={{
-                        width: 60,
-                        mb: 4,
-                        borderColor: "primary.main",
-                    }}
-                />
-
-                {alumniHighlights.map((point) => (
-                    <Box
-                        key={point}
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            mb: 2,
-                        }}
-                    >
-                        <CheckCircleIcon
-                            color="primary"
-                            sx={{ mr: 2 }}
-                        />
-
-                        <Typography>{point}</Typography>
-                    </Box>
-                ))}
+                  >
+                    <GroupsIcon />
+                  </Box>
+                )}
+              </Box>
             </Grid>
+          ))}
         </Grid>
-            </Container>
-        </Box>
-
-
-    );
+      </Container>
+    </Box>
+  );
 }
+
+export default React.memo(AlumniSection);

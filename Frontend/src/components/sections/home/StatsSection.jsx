@@ -1,58 +1,71 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 
-export default function StatsSection({ schoolStats }) {
+import { homeUi } from "../../../constants/home/modernHomeData";
+
+function StatsSection({ stats = [] }) {
   return (
-    <Grid
-      container
-      spacing={{ xs: 4, md: 6 }}
-      justifyContent="center"
+    <Box
+      component="section"
       sx={{
-        bgcolor: "#005baa",
-        color: "#fff",
-        borderRadius: { xs: 3, md: 4 },
-        p: { xs: 3, md: 4 },
-        mb: { xs: 4, md: 5 },
-        position: "relative",
+        bgcolor: homeUi.primary,
+        py: { xs: 6, md: 8 },
       }}
     >
-      {schoolStats.map((item) => (
-        <Grid item xs={6} sm={3} key={item.label}>
-          <Box sx={{ textAlign: "center" }}>
-            <Box
+      <Container maxWidth="xl">
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="center"
+        >
+          {stats.map((item) => (
+            <Grid
+              item
+              xs={6}
+              md={3}
+              key={item.label}
               sx={{
-                width: 54,
-                height: 54,
-                mx: "auto",
-                mb: 1.2,
-                borderRadius: "50%",
-                bgcolor: "#fff",
-                color: "#005baa",
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              {item.icon}
-            </Box>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  width: "100%",
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: homeUi.gold,
+                    fontSize: { xs: 42, md: 68 },
+                    fontWeight: 900,
+                    lineHeight: 1,
+                  }}
+                >
+                  {item.num}
+                </Typography>
 
-            <Typography
-              sx={{
-                fontWeight: 900,
-                fontSize: {
-                  xs: 28,
-                  sm: 32,
-                  md: 38,
-                },
-              }}
-            >
-              {item.num}
-            </Typography>
-
-            <Typography>{item.label}</Typography>
-          </Box>
+                <Typography
+                  sx={{
+                    color: homeUi.sky,
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.16em",
+                    fontSize: 12,
+                    mt: 1,
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
+      </Container>
+    </Box>
   );
 }
+
+export default React.memo(StatsSection);

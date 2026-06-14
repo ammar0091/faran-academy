@@ -1,74 +1,68 @@
 import React from "react";
+import { Avatar, Box, Container, Typography } from "@mui/material";
 
-import {
-    Box,
-    Typography,
-    Stack,
-    Avatar,
-} from "@mui/material";
+import { homeUi } from "../../../constants/home/modernHomeData";
+import { homeSectionSx } from "./HomePrimitives";
 
-export default function PrincipalMessageSection({
-    faculty,
-}) {
-    if (faculty.length === 0) return null;
-
-    return (
-        <Box
-            sx={{
-                my: { xs: 4, md: 5 },
-                bgcolor: "#e8faff",
-                p: 3,
-                borderRadius: 6,
-            }}
-        > <Typography
-            variant="h4"
-            fontWeight={700}
-            mb={2.5}
-            color="primary.main"
-            align="center"
+function PrincipalMessage({ principal }) {
+  return (
+    <Box
+      component="section"
+      sx={{
+        ...homeSectionSx,
+        bgcolor: homeUi.primary,
+        position: "relative",
+        textAlign: "center",
+      }}
+    >
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+        <Avatar
+          src={principal.image}
+          alt={principal.name}
+          sx={{
+            width: { xs: 150, md: 190 },
+            height: { xs: 150, md: 190 },
+            mx: "auto",
+            mb: 4,
+            borderRadius: 8,
+            border: `4px solid ${homeUi.gold}`,
+            boxShadow: "0 24px 60px rgba(0,0,0,0.35)",
+            transform: "rotate(3deg)",
+          }}
+        />
+        <Typography sx={{ color: homeUi.gold, fontSize: { xs: 48, md: 68 }, lineHeight: 1 }}>
+          "
+        </Typography>
+        <Typography
+          component="blockquote"
+          sx={{
+            color: "#fff",
+            fontSize: { xs: 18, md: 35 },
+            fontWeight: 700,
+            fontStyle: "italic",
+            lineHeight: 1.2,
+            mb: 5,
+          }}
         >
-                Principal's Message </Typography>
-
-            <Stack
-                direction={{
-                    xs: "column",
-                    sm: "row",
-                }}
-                spacing={4}
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Avatar
-                    src={faculty[0].image}
-                    sx={{
-                        width: 90,
-                        height: 90,
-                        mx: "auto",
-                        boxShadow: 1,
-                    }}
-                />
-
-                <Typography
-                    variant="body1"
-                    sx={{
-                        fontSize: 18,
-                        maxWidth: 620,
-                    }}
-                >
-                    "
-                    {faculty[0].message ||
-                        "At Faran Academy, we focus on fostering passion, integrity, and resilience."}
-                    "
-                    <br />
-                    <b>
-                        - {faculty[0].name},
-                        {" "}
-                        {faculty[0].role ||
-                            faculty[0].designation}
-                    </b>
-                </Typography>
-            </Stack>
-        </Box>
-
-    );
+          "{principal.message}"
+        </Typography>
+        <Typography sx={{ color: homeUi.gold, fontSize: { xs: 22, md: 28 }, fontWeight: 900 }}>
+          {principal.name}
+        </Typography>
+        <Typography
+          sx={{
+            color: homeUi.sky,
+            textTransform: "uppercase",
+            letterSpacing: "0.24em",
+            fontWeight: 900,
+            fontSize: 12,
+          }}
+        >
+          {principal.role}
+        </Typography>
+      </Container>
+    </Box>
+  );
 }
+
+export default React.memo(PrincipalMessage);

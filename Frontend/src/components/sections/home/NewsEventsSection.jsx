@@ -1,375 +1,120 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-import {
-  Box,
-  Typography,
-  Grid,
-  Card,
-  Stack,
-  Divider,
-} from "@mui/material";
+import { homeUi } from "../../../constants/home/modernHomeData";
+import { homeSectionSx, homeTitleSx } from "./HomePrimitives";
 
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import InfoIcon from "@mui/icons-material/Info";
-
-// import { Link } from "react-router-dom";
-
-export default function NewsEventsSection({
-  events = [],
-  notifications = [],
-}) {
+function NewsEventsSection({ updates }) {
   return (
-    <Box
-      sx={{
-        my: { xs: 5, md: 8 },
-      }}
-    >
-      {/* SECTION HEADER */}
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 2,
-          mb: 4,
-        }}
-      > <Box>
-          <Typography
-            variant="overline"
-            color="primary"
-            fontWeight={800}
-            letterSpacing={2}
-          >
-            Stay Updated </Typography>
-
-
-          <Typography variant="h4" fontWeight={900}>
-            News & Announcements
+    <Box component="section" sx={{ ...homeSectionSx, bgcolor: homeUi.low }}>
+      <Container maxWidth="xl">
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          justifyContent="space-between"
+          alignItems={{ xs: "flex-start", md: "center" }}
+          gap={2}
+          sx={{ mb: { xs: 5, md: 9 } }}
+        >
+          <Typography sx={{ ...homeTitleSx, fontSize: { xs: 30, md: 50 } }}>
+            Latest Updates.
           </Typography>
-        </Box>
-
-
-      </Box>
-
-      {/* MAIN GRID */}
-      <Grid container spacing={3} alignItems="stretch">
-       
-        {/* EVENTS */}
-
-
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-          }}
-        >
-          <Card
+          <Button
+            component={Link}
+            to="/newsevents"
             sx={{
-              width: "100%",
-              maxWidth: 600,
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 4,
-              overflow: "hidden",
-              border: "1px solid rgba(0,0,0,0.05)",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
+              display: { xs: "none", md: "inline-flex" },
+              bgcolor: homeUi.primary,
+              color: "#fff",
+              px: 4,
+              py: 1.5,
+              borderRadius: 3,
+              fontWeight: 900,
+              "&:hover": { bgcolor: homeUi.primaryContainer },
             }}
           >
-            {/* TOP BAR */}
+            All News
+          </Button>
+        </Stack>
+
+        <Stack gap={2}>
+          {updates.map((item) => (
             <Box
+              key={item.title}
+              component={Link}
+              to="/newsevents"
               sx={{
-                px: 3,
-                py: 2,
+                textDecoration: "none",
+                bgcolor: "#fff",
+                borderRadius: 7,
+                p: { xs: 2, md: 4 },
                 display: "flex",
+                flexDirection: { xs: "column", md: "row" },
                 alignItems: "center",
-                justifyContent: "space-between",
-                borderBottom: "1px solid rgba(0,0,0,0.05)",
-                bgcolor: "#f8fbff",
+                gap: { xs: 3, md: 6 },
+                color: homeUi.text,
+                transition: "220ms ease",
+                "&:hover": {
+                  bgcolor: "rgba(254,179,22,0.1)",
+                },
               }}
             >
-              <Stack direction="row" spacing={1.5} alignItems="center">
-                <Box
+              <Box
+                component="img"
+                src={item.image}
+                alt={item.title}
+                loading="lazy"
+                sx={{
+                  width: { xs: "100%", md: 320 },
+                  height: { xs: 210, md: 210 },
+                  objectFit: "cover",
+                  borderRadius: 5,
+                  flexShrink: 0,
+                }}
+              />
+              <Box sx={{ flexGrow: 1 }}>
+                <Typography
                   sx={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: 2.5,
-                    background:
-                      "linear-gradient(135deg,#005baa 0%,#0088cc 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#fff",
+                    color: homeUi.gold,
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                    fontSize: 13,
+                    mb: 1.5,
                   }}
                 >
-                  <EventAvailableIcon fontSize="small" />
-                </Box>
-
-                <Box>
-                  <Typography fontWeight={800}>
-                    Latest Events
-                  </Typography>
-
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                  >
-                    Upcoming activities
-                  </Typography>
-                </Box>
-              </Stack>
-            </Box>
-
-            {/* EVENT LIST */}
-            <Stack divider={<Divider flexItem />}>
-              {[...events]
-                .sort(
-                  (a, b) =>
-                    new Date(b.date) - new Date(a.date)
-                )
-                .slice(0, 3)
-                .map((event, idx) => (
-                  <Box
-                    key={event._id || idx}
-                    sx={{
-                      p: 2.5,
-                      transition: "all 0.25s ease",
-
-                      "&:hover": {
-                        bgcolor: "#f8fbff",
-                      },
-                    }}
-                  >
-                    <Stack direction="row" spacing={2}>
-                      {/* DATE */}
-                      <Box
-                        sx={{
-                          minWidth: 60,
-                          height: 60,
-                          borderRadius: 3,
-                          background:
-                            "linear-gradient(135deg,#e8f4ff 0%,#f5fbff 100%)",
-                          border:
-                            "1px solid rgba(0,91,170,0.08)",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Typography
-                          variant="h6"
-                          fontWeight={900}
-                          lineHeight={1}
-                          color="primary.main"
-                        >
-                          {new Date(event.date).getDate()}
-                        </Typography>
-
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                          }}
-                        >
-                          {new Date(
-                            event.date
-                          ).toLocaleString("default", {
-                            month: "short",
-                          })}
-                        </Typography>
-                      </Box>
-
-                      {/* CONTENT */}
-                      <Box flex={1}>
-                        <Typography
-                          fontWeight={800}
-                          sx={{
-                            mb: 0.5,
-                            lineHeight: 1.3,
-                          }}
-                        >
-                          {event.title || "Event"}
-                        </Typography>
-
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          sx={{
-                            lineHeight: 1.7,
-                            display: "-webkit-box",
-                            overflow: "hidden",
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: "vertical",
-                          }}
-                        >
-                          {event.description}
-                        </Typography>
-
-                      </Box>
-                    </Stack>
-                  </Box>
-                ))}
-            </Stack>
-          </Card>
-        </Grid>
-
-
-        {/* ANNOUNCEMENTS */}
-
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            display: "flex",
-          }}
-        >
-          <Card
-            sx={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              borderRadius: 4,
-              overflow: "hidden",
-              border: "1px solid rgba(0,0,0,0.05)",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-            }}
-          >
-            {/* TOP BAR */}
-            <Box
-              sx={{
-                px: 3,
-                py: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                borderBottom: "1px solid rgba(0,0,0,0.05)",
-                bgcolor: "#f8fbff",
-              }}
-            >
-              <Stack direction="row" spacing={1.5} alignItems="center">
-                <Box
+                  {item.date}
+                </Typography>
+                <Typography
+                  component="h3"
                   sx={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: 2.5,
-                    background:
-                      "linear-gradient(135deg,#ffd6d6 0%,#d0f0ff 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    color: homeUi.primary,
+                    fontWeight: 700,
+                    fontSize: { xs: 18, md: 25 },
+                    lineHeight: 1.15,
+                    mb: 1.5,
                   }}
                 >
-                  <InfoIcon color="primary" fontSize="small" />
-                </Box>
-
-                <Box>
-                  <Typography fontWeight={800}>
-                    Announcements
-                  </Typography>
-
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                  >
-                    Important updates
-                  </Typography>
-                </Box>
-              </Stack>
+                  {item.title}
+                </Typography>
+                <Typography sx={{ color: homeUi.muted, fontSize: { xs: 16, md: 18 }, lineHeight: 1.55 }}>
+                  {item.description}
+                </Typography>
+              </Box>
+              <ArrowForwardIcon
+                sx={{
+                  color: "rgba(0,67,121,0.24)",
+                  fontSize: 54,
+                  display: { xs: "none", md: "block" },
+                }}
+              />
             </Box>
-
-            {/* ANNOUNCEMENT LIST */}
-            <Stack divider={<Divider flexItem />}>
-              {[...notifications]
-                .sort(
-                  (a, b) =>
-                    new Date(b.createdAt) -
-                    new Date(a.createdAt)
-                )
-                .slice(0, 3)
-                .map((note, idx) => (
-                  <Box
-                    key={note._id || idx}
-                    sx={{
-                      p: 2.5,
-                      transition: "all 0.25s ease",
-
-                      "&:hover": {
-                        bgcolor: "#f8fbff",
-                      },
-                    }}
-                  >
-                    <Stack direction="row" spacing={2}>
-                      {/* ICON */}
-                      <Box
-                        sx={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: "50%",
-                          background:
-                            "linear-gradient(135deg,#f3f9ff 0%,#edf7ff 100%)",
-                          border:
-                            "1px solid rgba(0,91,170,0.08)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0,
-                        }}
-                      >
-                        <InfoIcon
-                          color="primary"
-                          sx={{ fontSize: 20 }}
-                        />
-                      </Box>
-
-                      {/* CONTENT */}
-                      <Box flex={1}>
-                        <Typography
-                          fontWeight={800}
-                          sx={{
-                            mb: 0.5,
-                            lineHeight: 1.3,
-                          }}
-                        >
-                          {note.title || "Announcement"}
-                        </Typography>
-
-                        <Typography
-                          variant="caption"
-                          color="text.secondary"
-                          display="block"
-                          mb={0.7}
-                        >
-                          {new Date(
-                            note.createdAt
-                          ).toLocaleDateString()}
-                        </Typography>
-
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          sx={{
-                            lineHeight: 1.7,
-                            display: "-webkit-box",
-                            overflow: "hidden",
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: "vertical",
-                          }}
-                        >
-                          {note.message}
-                        </Typography>
-                      </Box>
-                    </Stack>
-                  </Box>
-                ))}
-            </Stack>
-          </Card>
-        </Grid>
-      </Grid>
+          ))}
+        </Stack>
+      </Container>
     </Box>
   );
 }
+
+export default React.memo(NewsEventsSection);

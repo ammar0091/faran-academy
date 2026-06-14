@@ -1,133 +1,99 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 
-import {
-    Box,
-    Grid,
-    Typography,
-    Divider,
-    Container,
-} from "@mui/material";
+import { homeUi } from "../../../constants/home/modernHomeData";
+import { ImageCard, SectionHeading, homeSectionSx } from "./HomePrimitives";
 
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-
-import Team from "../../../components/Team";
-
-import {
-    facultyHighlights,
-} from "../../../constants/home/homeData";
-
-export default function FacultySection() {
-    return (
-        <Box
+function FacultySection({ faculty }) {
+  return (
+    <Box component="section" sx={{ ...homeSectionSx, bgcolor: "#fff" }}>
+      <Container maxWidth="xl">
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          justifyContent="space-between"
+          alignItems={{ xs: "flex-start", md: "flex-end" }}
+          gap={3}
+          sx={{ mb: { xs: 5, md: 10 } }}
+        >
+          <Box sx={{ maxWidth: 760 }}>
+            <SectionHeading eyebrow="Our Team" title="Expert Mentors." />
+            <Typography
+              sx={{
+                color: homeUi.muted,
+                fontSize: { xs: 17, md: 20 },
+                lineHeight: 1.65,
+                mt: 3,
+              }}
+            >
+              Learn from dedicated mentors committed to every student's academic and personal growth.
+            </Typography>
+          </Box>
+          <Button
+            component={Link}
+            to="/about"
             sx={{
-                position: "relative",
-                py: { xs: 8, md: 12 },
-                background:
-                    "linear-gradient(180deg, #f7fafc 0%, #eaf1ff 60%, #fff 100%)",
-                borderRadius: { md: 6 },
+              color: homeUi.primary,
+              borderBottom: `4px solid ${homeUi.primary}`,
+              borderRadius: 0,
+              fontWeight: 900,
+              fontSize: 18,
             }}
-        > <Container>
-                <Grid
-                    container
-                    spacing={6}
-                    alignItems="flex-start"
-                    justifyContent="space-between"
-                    max
+          >
+            View All Team
+          </Button>
+        </Stack>
+
+        <Grid container spacing={2}>
+          {faculty.map((member, index) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={3}
+              key={`${member.name}-${index}`}
+              sx={{ mt: { lg: index % 2 ? 6 : 0 } }}
+              maxWidth={300}
+            >
+              <ImageCard
+                src={member.image}
+                alt={member.name}
+                sx={{ aspectRatio: "3 / 4", borderRadius: { xs: 6, md: 8 } }}
+              >
+                <Box
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(0,67,121,0.92), rgba(0,67,121,0.18), transparent)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    p: 4,
+                  }}
                 >
-                    {/* LEFT */} <Grid item
-                        xs={12}
-                        md={5}
-                        sx={{
-                            flexShrink: 0,
-                            maxWidth: { md: "42%" },
-                        }}> <Typography
-                            variant="overline"
-                            color="primary"
-                            fontWeight={700}
-                            letterSpacing={2}
-                            mb={2}
-                            display="block"
-                        >
-                            Our Team </Typography>
-
-                        <Typography
-                            variant="h4"
-                            fontWeight={700}
-                            mb={3}
-                        >
-                            Meet Our Faculty
-                        </Typography>
-
-                        <Typography
-                            variant="body1"
-                            color="text.secondary"
-                            mb={4}
-                            sx={{
-                                lineHeight: 1.8,
-                                fontSize: {
-                                    xs: 14,
-                                    sm: 15,
-                                    md: 16,
-                                },
-                            }}
-                        >
-                            We take pride in our team of accomplished
-                            educators and mentors.
-                        </Typography>
-
-                        <Divider
-                            sx={{
-                                width: 60,
-                                mb: 4,
-                                borderColor: "primary.main",
-                            }}
-                        />
-
-                        {facultyHighlights.map((point) => (
-                            <Box
-                                key={point}
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    mb: 2,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        width: 30,
-                                        height: 30,
-                                        borderRadius: "50%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        mr: 2,
-                                        bgcolor: "#edf4ff",
-                                    }}
-                                >
-                                    <CheckCircleIcon
-                                        color="primary"
-                                        sx={{ fontSize: 20 }}
-                                    />
-                                </Box>
-
-                                <Typography>{point}</Typography>
-                            </Box>
-                        ))}
-                    </Grid>
-
-                    {/* RIGHT */}
-                    <Grid item xs={12} md={7}>
-                        <Grid
-                            container
-                            spacing={3}
-                            justifyContent="center"
-                            alignItems="stretch"
-                        >
-                            <Team limit={4} />
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Container>
-        </Box>
-    );
+                  <Typography sx={{ color: "#fff", fontWeight: 900, fontSize: 25 }}>
+                    {member.name}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: homeUi.gold,
+                      fontWeight: 900,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      fontSize: 12,
+                    }}
+                  >
+                    {member.role}
+                  </Typography>
+                </Box>
+              </ImageCard>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+  );
 }
+
+export default React.memo(FacultySection);
