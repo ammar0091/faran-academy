@@ -29,20 +29,7 @@ export const enrollmentSteps = [
   { number: 4, title: "Confirmation", status: "Review", state: "inactive" },
 ];
 
-export const documentCards = [
-  {
-    key: "transcripts",
-    title: "Academic Transcripts",
-    hint: "PDF, JPG up to 10MB",
-    icon: "upload",
-  },
-  {
-    key: "identity",
-    title: "ID / Passport Scan",
-    hint: "PNG, JPG up to 5MB",
-    icon: "id",
-  },
-];
+
 
 export const applicationStatus = [
   { label: "Account Created", complete: true },

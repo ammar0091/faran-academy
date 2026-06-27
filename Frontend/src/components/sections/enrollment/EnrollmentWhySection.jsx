@@ -8,7 +8,7 @@ import { enrollmentUi, whyEnrollmentCards } from "../../../constants/enrollment/
 
 function EnrollmentWhySection() {
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 14 } }}>
+    <Box component="section" sx={{ py: { xs: 8, md: 14 } , px: { xs: 2.5, md: 8 }}}>
       <Container maxWidth="xl">
         <Box sx={{ mb: 6 }}>
           <Typography
@@ -50,6 +50,7 @@ function WideCard({ card }) {
         flexDirection: "column",
         justifyContent: "space-between",
       }}
+      maxWidth={750}
     >
       <Box>
         <MilitaryTechIcon sx={{ color: enrollmentUi.primary, fontSize: 44, mb: 2 }} />
@@ -81,6 +82,7 @@ function GoldCard({ card }) {
         position: "relative",
         overflow: "hidden",
       }}
+      maxWidth={350}
     >
       <LightbulbIcon
         sx={{

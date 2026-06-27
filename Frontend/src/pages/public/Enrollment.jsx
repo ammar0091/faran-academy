@@ -4,7 +4,6 @@ import { Box, Container, Grid } from "@mui/material";
 import SEO from "../../components/common/SEO";
 import EnrollmentFormSection from "../../components/sections/enrollment/EnrollmentFormSection";
 import EnrollmentHero from "../../components/sections/enrollment/EnrollmentHero";
-import EnrollmentMobileNav from "../../components/sections/enrollment/EnrollmentMobileNav";
 import EnrollmentProgress from "../../components/sections/enrollment/EnrollmentProgress";
 import EnrollmentSidebar from "../../components/sections/enrollment/EnrollmentSidebar";
 import EnrollmentWhySection from "../../components/sections/enrollment/EnrollmentWhySection";
@@ -52,7 +51,6 @@ export default function Enrollment() {
       <Box
         component="main"
         sx={{
-          m: -2,
           bgcolor: enrollmentUi.bg,
           color: enrollmentUi.text,
           fontFamily: "Manrope, Arial, sans-serif",
@@ -62,7 +60,7 @@ export default function Enrollment() {
         <EnrollmentHero />
         <EnrollmentProgress />
 
-        <Container maxWidth="xl" sx={{ py: { xs: 6, md: 8 } }}>
+        <Container maxWidth="xl" sx={{ py: { xs: 4 , md: 6 } , px: { xs: 2.5, md: 8 }}}>
           <Grid container spacing={3} alignItems="flex-start">
             <Grid item xs={12} lg={8}>
               <EnrollmentFormSection
@@ -81,7 +79,6 @@ export default function Enrollment() {
         </Container>
 
         <EnrollmentWhySection />
-        <EnrollmentMobileNav />
       </Box>
     </>
   );

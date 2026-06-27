@@ -21,7 +21,7 @@ function FacultySection({ faculty }) {
             <Typography
               sx={{
                 color: homeUi.muted,
-                fontSize: { xs: 17, md: 20 },
+                fontSize: { xs: 15, md: 18 },
                 lineHeight: 1.65,
                 mt: 3,
               }}
@@ -36,7 +36,7 @@ function FacultySection({ faculty }) {
               color: homeUi.primary,
               borderBottom: `4px solid ${homeUi.primary}`,
               borderRadius: 0,
-              fontWeight: 900,
+              fontWeight: 700,
               fontSize: 18,
             }}
           >
@@ -52,13 +52,13 @@ function FacultySection({ faculty }) {
               sm={6}
               lg={3}
               key={`${member.name}-${index}`}
-              sx={{ mt: { lg: index % 2 ? 6 : 0 } }}
+              // sx={{ mt: { lg: index % 2 ? 6 : 0 } }}
               maxWidth={300}
             >
               <ImageCard
                 src={member.image}
                 alt={member.name}
-                sx={{ aspectRatio: "3 / 4", borderRadius: { xs: 6, md: 8 } }}
+                sx={{ aspectRatio: "3 / 4", borderRadius: { xs: 3, md: 4 } }}
               >
                 <Box
                   sx={{

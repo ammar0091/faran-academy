@@ -1,9 +1,6 @@
 import React from "react";
-
 import {
   Box,
-  Button,
-  Card,
   Container,
   Grid,
   Stack,
@@ -12,287 +9,226 @@ import {
 
 import { facilities } from "../../../constants/about/aboutData";
 
+const features = [
+  "Industry-grade smart classrooms",
+  "Creative collaboration spaces",
+  "Student-first wellness environment",
+];
+
 export default function FacilitiesSection() {
-  const features = [
-    "Industry-grade smart classrooms",
-    "Creative collaboration spaces",
-    "Student-first wellness environment",
-  ];
+  const [featuredFacility, ...otherFacilities] = facilities;
 
   return (
     <Box
+      id="facilities"
       sx={{
-        position: "relative",
-
-        py: { xs: 6, md: 10 },
-        px: { xs: 2, md: 0 },
-
-        overflow: "hidden",
-
-        background:
-          "linear-gradient(180deg, #f8fbff 0%, #ffffff 50%, #f5f7ff 100%)",
+        py: { xs: 4, md: 8 },
+        backgroundColor: "#fbfdff",
       }}
     >
-      {/* BACKGROUND GLOW */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: -100,
-          right: -100,
-
-          width: 300,
-          height: 300,
-
-          borderRadius: "50%",
-
-          background: "rgba(99,102,241,0.12)",
-
-          filter: "blur(100px)",
-
-          zIndex: 0,
-        }}
-      />
-
-      <Container
-        maxWidth="lg"
-        sx={{
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
+      <Container maxWidth="xl">
         <Grid
           container
-          spacing={6}
+          spacing={{ xs: 6, md: 10 }}
           alignItems="center"
-          sx={{
-            flexWrap: {
-              xs: "wrap",
-              md: "nowrap",
-            },
-          }}
         >
-          {/* LEFT CONTENT */}
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                maxWidth: {
-                  xs: "100%",
-                  md: 620,
-                },
-              }}
-            >
+          {/* content */}
+          <Grid item xs={12} md={5}>
+            <Box sx={{ maxWidth: 520 }}>
               <Typography
-                variant="overline"
-                color="primary"
-                fontWeight={800}
-                letterSpacing={2}
-                mb={1}
-                display="block"
+                sx={{
+                  color: "#FDB515",
+                  fontWeight: 700,
+                  letterSpacing: 6,
+                  textTransform: "uppercase",
+                  fontSize: 14,
+                  mb: 2,
+                }}
               >
-                CAMPUS & FACILITIES
+                Campus & Facilities
               </Typography>
 
               <Typography
-                variant="h3"
                 sx={{
-                  fontWeight: 900,
-                  lineHeight: 1.08,
-                  letterSpacing: "-1.5px",
-
-                  color: "#0f172a",
-
+                  color: "#004379",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
                   mb: 3,
-
                   fontSize: {
-                    xs: "2rem",
-                    md: "2.8rem",
+                    xs: "35px",
+                    sm: "42px",
+                    md: "52px",
                   },
                 }}
               >
-                Spaces built for modern learning
+                Built For
+                <br />
+                Modern Learning
               </Typography>
 
               <Typography
                 sx={{
-                  color: "#475569",
-
+                  color: "#5F6673",
                   lineHeight: 1.9,
-
-                  fontSize: "1.02rem",
-
+                  fontSize: "1rem",
                   mb: 4,
-
-                  maxWidth: 560,
                 }}
               >
-                Thoughtfully designed classrooms,
-                innovation labs, and collaborative
-                environments that encourage
-                creativity, exploration, and hands-on
-                learning experiences.
+                Our campus combines technology, creativity, and
+                student-focused spaces to create an environment
+                where learning becomes engaging, collaborative,
+                and meaningful.
               </Typography>
 
-              <Stack spacing={2}>
-                {features.map((item) => (
+              {/* highlights */}
+              <Stack spacing={2.5}>
+                {features.map((feature) => (
                   <Box
-                    key={item}
+                    key={feature}
                     sx={{
                       display: "flex",
                       alignItems: "center",
                       gap: 2,
-                      p: 1,
                     }}
                   >
                     <Box
                       sx={{
                         width: 10,
                         height: 10,
-
                         borderRadius: "50%",
-
-                        background: "#005baa",
-
+                        backgroundColor: "#FDB515",
                         flexShrink: 0,
                       }}
                     />
 
                     <Typography
                       sx={{
+                        color: "#004379",
                         fontWeight: 600,
-                        color: "#0f172a",
                       }}
                     >
-                      {item}
+                      {feature}
                     </Typography>
                   </Box>
                 ))}
               </Stack>
-
-              <Button
-                variant="contained"
-                sx={{
-                  mt: 5,
-
-                  px: 4,
-                  py: 1.6,
-
-                  borderRadius: "16px",
-
-                  textTransform: "none",
-
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                }}
-              >
-                Explore Campus
-              </Button>
             </Box>
           </Grid>
 
-          {/* RIGHT GRID */}
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                width: "100%",
-                maxWidth: 560,
-                ml: "auto",
-              }}
-            >
-              <Grid container spacing={3}>
-                {facilities.map((facility, index) => (
-                  <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    key={facility.title}
+          {/* facility cards */}
+          <Grid item xs={12} md={7}>
+            <Grid container spacing={3}>
+              {/* featured card */}
+              <Grid item xs={12} md={7}>
+                <Box
+                  sx={{
+                    position: "relative",
+                    height: { xs: 280, md: 600 },
+                    maxWidth: 400,
+                    borderRadius: "32px",
+                    overflow: "hidden",
+                    boxShadow: "0 12px 32px rgba(0,0,0,0.12)",
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={featuredFacility?.img}
+                    alt={featuredFacility?.title}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      background:
+                        "linear-gradient(to top, rgba(0,67,121,.9), transparent 60%)",
+                    }}
+                  />
+
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      left: 24,
+                      right: 24,
+                      bottom: 24,
+                    }}
                   >
-                    <Card
+                    <Typography
                       sx={{
-                        position: "relative",
-
-                        overflow: "hidden",
-
-                        borderRadius: "28px",
-
-                        background:
-                          "rgba(255,255,255,0.7)",
-
-                        backdropFilter: "blur(20px)",
-
-                        border:
-                          "1px solid rgba(255,255,255,0.5)",
-
-                        boxShadow:
-                          "0 10px 40px rgba(15,23,42,0.06)",
-
-                        transition: "all .5s ease",
-
-                        cursor: "pointer",
-
-                        "&:hover": {
-                          boxShadow:
-                            "0 30px 60px rgba(15,23,42,0.12)",
-                        },
-
-                        "&:hover img": {
-                          transform: "scale(1.08)",
-                        },
+                        color: "#fff",
+                        fontWeight: 800,
+                        fontSize: "1.5rem",
+                        mb: 1,
                       }}
                     >
-                      {/* OVERLAY */}
-                      <Box
-                        sx={{
-                          position: "absolute",
+                      {featuredFacility?.title}
+                    </Typography>
 
-                          inset: 0,
+                    <Typography
+                      sx={{
+                        color: "rgba(255,255,255,.9)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {featuredFacility?.desc}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
 
-                          background:
-                            "linear-gradient(to top, rgba(15,23,42,0.75), transparent 65%)",
-
-                          zIndex: 1,
-                        }}
-                      />
-
-                      {/* IMAGE */}
+              {/* side cards */}
+              <Grid item xs={12} md={5}>
+                <Stack spacing={3}>
+                  {otherFacilities.slice(0, 2).map((facility) => (
+                    <Box
+                      key={facility.title}
+                      sx={{
+                        position: "relative",
+                        height: 288,
+                        maxWidth: 300,
+                        borderRadius: "28px",
+                        overflow: "hidden",
+                        boxShadow: "0 12px 32px rgba(0,0,0,0.12)",
+                      }}
+                    >
                       <Box
                         component="img"
                         src={facility.img}
                         alt={facility.title}
                         sx={{
                           width: "100%",
-
-                          height:
-                            index === 0 ? 340 : 280,
-
+                          height: "100%",
                           objectFit: "cover",
-
-                          transition:
-                            "transform .7s ease",
                         }}
                       />
 
-                      {/* CONTENT */}
                       <Box
                         sx={{
                           position: "absolute",
+                          inset: 0,
+                          background:
+                            "linear-gradient(to top, rgba(0,67,121,.9), transparent 60%)",
+                        }}
+                      />
 
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-
-                          p: 3,
-
-                          zIndex: 2,
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          left: 20,
+                          right: 20,
+                          bottom: 20,
                         }}
                       >
                         <Typography
                           sx={{
                             color: "#fff",
-
                             fontWeight: 800,
-
-                            fontSize: "1.15rem",
-
+                            fontSize: "1.2rem",
                             mb: 1,
                           }}
                         >
@@ -301,22 +237,19 @@ export default function FacilitiesSection() {
 
                         <Typography
                           sx={{
-                            color:
-                              "rgba(255,255,255,0.82)",
-
-                            fontSize: "0.92rem",
-
-                            lineHeight: 1.7,
+                            color: "rgba(255,255,255,.9)",
+                            fontSize: "0.9rem",
+                            lineHeight: 1.6,
                           }}
                         >
                           {facility.desc}
                         </Typography>
                       </Box>
-                    </Card>
-                  </Grid>
-                ))}
+                    </Box>
+                  ))}
+                </Stack>
               </Grid>
-            </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

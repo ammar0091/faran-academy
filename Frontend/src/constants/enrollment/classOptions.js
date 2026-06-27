@@ -7,5 +7,4 @@ export const classOptions = [
   "IV",
   "V",
   "VI",
-  "VII",
 ];

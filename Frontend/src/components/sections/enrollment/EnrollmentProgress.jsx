@@ -25,7 +25,7 @@ function getStepStyles(state) {
 
 function EnrollmentProgress() {
   return (
-    <Container maxWidth="xl" sx={{ mt: { xs: -7, md: -8 }, position: "relative", zIndex: 2 }}>
+    <Container maxWidth="xl" sx={{ mt: { xs: -7, md: -8, px: { xs: 2.5, md: 8 } ,}, position: "relative", zIndex: 2 }}>
       <Box
         sx={{
           bgcolor: "#fff",

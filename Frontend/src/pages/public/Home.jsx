@@ -8,7 +8,6 @@ import ContactCTA from "../../components/sections/home/ContactCTA";
 import FacultySection from "../../components/sections/home/FacultySection";
 import GallerySection from "../../components/sections/home/GallerySection";
 import HeroSection from "../../components/sections/home/HeroSection";
-import MobileQuickNav from "../../components/sections/home/MobileQuickNav";
 import NewsEventsSection from "../../components/sections/home/NewsEventsSection";
 import PrincipalMessage from "../../components/sections/home/PrincipalMessage";
 import StatsSection from "../../components/sections/home/StatsSection";
@@ -81,7 +80,6 @@ export default function Home() {
       <Box
         component="main"
         sx={{
-          m: -2,
           bgcolor: homeUi.bg,
           color: homeUi.text,
           overflow: "hidden",
@@ -100,7 +98,6 @@ export default function Home() {
         <TestimonialsSection />
         <NewsEventsSection updates={updates} />
         <ContactCTA />
-        <MobileQuickNav />
       </Box>
     </>
   );

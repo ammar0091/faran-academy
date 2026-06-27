@@ -15,11 +15,6 @@ export const philosophyCards = [
     icon: <PeopleIcon sx={{ fontSize: 28 }} />,
   },
   {
-    title: "Innovation & Research",
-    text: "We iterate on curriculum design using evidence-based pedagogy and modern technology to extend learning beyond classroom walls.",
-    icon: <EmojiObjectsIcon sx={{ fontSize: 28 }} />,
-  },
-  {
     title: "Wellbeing & Character",
     text: "Emotional intelligence, leadership and service are integrated into student life - not an afterthought.",
     icon: <EmojiEventsIcon sx={{ fontSize: 28 }} />,
@@ -30,17 +25,26 @@ export const timeline = [
   {
     year: "1990",
     title: "Founded",
-    descr: "Established by a team of educators devoted to learner-centered schooling.",
+    descr:
+      "Established by a team of educators devoted to learner-centered schooling.",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
   },
   {
     year: "2000",
     title: "Innovation Award",
-    descr: "Recognized for introducing early STEM practices and project-based learning.",
+    descr:
+      "Recognized for introducing early STEM practices and project-based learning.",
+    image:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
   },
   {
     year: "2022",
     title: "National Recognition",
-    descr: "Awarded for outstanding academic performance and student wellbeing initiatives.",
+    descr:
+      "Awarded for outstanding academic performance and student wellbeing initiatives.",
+    image:
+      "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 

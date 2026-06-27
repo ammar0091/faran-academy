@@ -1,8 +1,5 @@
-
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import {
   Box,
   Button,
@@ -15,185 +12,164 @@ export default function FinalCTA() {
   return (
     <Box
       sx={{
-        position: "relative",
-
-        overflow: "hidden",
-
-        py: { xs: 7, md: 11 },
+        py: { xs: 4, md: 8 },
         px: { xs: 2, md: 0 },
-
-        background:
-          "linear-gradient(135deg,#003f7d 0%,#005baa 40%,#0094d9 100%)",
-
-        color: "#fff",
+        background: "#f5f7fb",
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
+        {/* banner wrapper */}
         <Box
           sx={{
             position: "relative",
-
-            zIndex: 2,
-
-            textAlign: "center",
-
-            maxWidth: 900,
-
-            mx: "auto",
+            overflow: "hidden",
+            p: { xs: 1, md: 2 },
+            borderRadius: {
+              xs: "28px",
+              md: "50px",
+            },
+            backgroundImage:
+              "url('/images/campus-banner.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            boxShadow: "0 25px 60px rgba(0,0,0,0.08)",
           }}
         >
-          {/* LABEL */}
-          <Typography
-            variant="overline"
+          {/* content card */}
+          <Box
             sx={{
-              letterSpacing: 3,
-              fontWeight: 800,
-              opacity: 0.9,
-            }}
-          >
-            JOIN OUR COMMUNITY
-          </Typography>
-
-          {/* HEADING */}
-          <Typography
-            variant="h3"
-            fontWeight={900}
-            sx={{
-              mt: 1.5,
-              mb: 2,
-
-              lineHeight: 1.2,
-
-              fontSize: {
-                xs: "2rem",
-                md: "3rem",
+              position: "relative",
+              overflow: "hidden",
+              textAlign: "center",
+              borderRadius: {
+                xs: "24px",
+                md: "45px",
               },
-            }}
-          >
-            Be Part of the Faran Story
-          </Typography>
-
-          {/* DESCRIPTION */}
-          <Typography
-            variant="body1"
-            sx={{
-              maxWidth: 760,
-
-              mx: "auto",
-
-              mb: 5,
-
-              opacity: 0.92,
-
-              lineHeight: 1.9,
-
-              fontSize: {
-                xs: "0.98rem",
-                md: "1.08rem",
+              py: {
+                xs: 6,
+                md: 8,
               },
+              px: {
+                xs: 3,
+                md: 8,
+              },
+              background:
+                "linear-gradient(135deg,#004B87 0%,#0B548E 100%)",
             }}
           >
-            If you value learning that balances
-            curiosity, resilience and real-world
-            application, come visit us. Schedule a
-            campus tour or speak with our admissions
-            team to learn how we partner with families
-            for long-term success.
-          </Typography>
-
-          {/* BUTTONS */}
-          <Stack
-            direction={{
-              xs: "column",
-              sm: "row",
-            }}
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Link
-              to="/contact"
-              style={{
-                textDecoration: "none",
+            {/* overlay */}
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(170deg, transparent 40%, rgba(255,255,255,0.05) 41%)",
+                pointerEvents: "none",
               }}
-            >
-              <Button
-                variant="contained"
-                size="large"
+            />
+
+            {/* content */}
+            <Box sx={{ position: "relative", zIndex: 2 }}>
+              <Typography
                 sx={{
-                  px: 5,
-                  py: 1.6,
-
-                  borderRadius: 3,
-
-                  fontWeight: 800,
-
-                  fontSize: "0.95rem",
-
-                  bgcolor: "#fff",
-
-                  color: "#005baa",
-
-                  boxShadow:
-                    "0 10px 30px rgba(0,0,0,0.15)",
-
-                  transition: "all .3s ease",
-
-                  "&:hover": {
-                    bgcolor: "#f4f8ff",
-
-                    boxShadow:
-                      "0 14px 35px rgba(0,0,0,0.2)",
-                  },
-                }}
-              >
-                Contact Admissions
-              </Button>
-            </Link>
-
-            <Link
-              to="/visit"
-              style={{
-                textDecoration: "none",
-              }}
-            >
-              <Button
-                variant="outlined"
-                size="large"
-                sx={{
-                  px: 4.5,
-                  py: 1.5,
-
-                  borderRadius: 3,
-
-                  fontWeight: 700,
-
-                  fontSize: "0.95rem",
-
                   color: "#fff",
-
-                  borderColor:
-                    "rgba(255,255,255,0.3)",
-
-                  background:
-                    "rgba(255,255,255,0.06)",
-
-                  backdropFilter: "blur(10px)",
-
-                  transition: "all .3s ease",
-
-                  "&:hover": {
-                    borderColor: "#fff",
-
-                    background:
-                      "rgba(255,255,255,0.12)",
+                  fontWeight: 800,
+                  lineHeight: 1.1,
+                  mb: 3,
+                  fontSize: {
+                    xs: "2rem",
+                    sm: "2.5rem",
+                    md: "3.5rem",
                   },
                 }}
               >
-                Schedule a Visit
-              </Button>
-            </Link>
-          </Stack>
+                Ready to Write Your{" "}
+                <Box
+                  component="span"
+                  sx={{ color: "#FDB515" }}
+                >
+                  Legacy?
+                </Box>
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: "rgba(255,255,255,0.82)",
+                  maxWidth: 850,
+                  mx: "auto",
+                  mb: 6,
+                  lineHeight: 1.7,
+                  fontSize: {
+                    xs: "1rem",
+                    md: "1.35rem",
+                  },
+                }}
+              >
+                Join our prestigious community and
+                discover the difference of an
+                education designed for the future.
+              </Typography>
+
+              {/* actions */}
+              <Stack
+                spacing={3}
+                justifyContent="center"
+                alignItems="center"
+                direction={{
+                  xs: "column",
+                  sm: "row",
+                }}
+              >
+                <Link
+                  to="/admissions"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    sx={{
+                      minWidth: 260,
+                      py: 2,
+                      borderRadius: "20px",
+                      bgcolor: "#FDB515",
+                      color: "#004B87",
+                      fontWeight: 800,
+                      fontSize: "1.15rem",
+                      boxShadow:
+                        "0 10px 25px rgba(0,0,0,0.12)",
+                      "&:hover": {
+                        bgcolor: "#f0ab00",
+                      },
+                    }}
+                  >
+                    APPLY NOW
+                  </Button>
+                </Link>
+
+                <Link
+                  to="/contact"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    sx={{
+                      minWidth: 260,
+                      py: 2,
+                      borderRadius: "20px",
+                      bgcolor: "#fff",
+                      color: "#004B87",
+                      fontWeight: 800,
+                      fontSize: "1.15rem",
+                      boxShadow:
+                        "0 10px 25px rgba(0,0,0,0.08)",
+                      "&:hover": {
+                        bgcolor: "#f5f5f5",
+                      },
+                    }}
+                  >
+                    VISIT US
+                  </Button>
+                </Link>
+              </Stack>
+            </Box>
+          </Box>
         </Box>
       </Container>
     </Box>

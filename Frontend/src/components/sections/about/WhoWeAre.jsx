@@ -1,166 +1,159 @@
 import React from "react";
-
 import {
   Box,
-  Card,
   CardMedia,
   Container,
-  Divider,
   Grid,
   Stack,
   Typography,
 } from "@mui/material";
 
+const features = [
+  "Project-Based Curriculum",
+  "Personalized Learning Pathways",
+  "Mental Health & Wellbeing Programs",
+  "Global Exchange Opportunities",
+];
+
 export default function WhoWeAre() {
-  const features = [
-    "Project-Based Curriculum",
-    "Personalized Learning Pathways",
-    "Mental Health & Wellbeing Programs",
-    "Global Exchange Opportunities",
-  ];
-
   return (
-    <Box sx={{ py: { xs: 6, md: 10 }, px: { xs: 2, md: 0 } }}>
-      <Container>
-        <Grid
-          container
-          spacing={6}
-          alignItems="center"
-          sx={{
-            flexWrap: {
-              xs: "wrap",
-              md: "nowrap",
-            },
-          }}
-        >
-          {/* LEFT IMAGE */}
-          <Grid item xs={12} md={6}>
-            <Card
-              sx={{
-                borderRadius: 3,
-                overflow: "hidden",
-                height: "100%",
-              }}
-            >
-              <CardMedia
-                component="img"
-                image="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80"
-                alt="Campus Library"
-                sx={{
-                  width: "100%",
-                  height: { xs: 260, md: 380 },
-                  objectFit: "cover",
-                  display: "block",
-                  boxShadow:
-                    "0 6px 20px rgba(0,0,0,0.1)",
-                  transition:
-                    "transform 0.4s ease, box-shadow 0.4s ease",
-
-                  "&:hover": {
-                    transform: "scale(1.03)",
-                    boxShadow:
-                      "0 10px 28px rgba(0,0,0,0.2)",
-                  },
-                }}
-              />
-            </Card>
-          </Grid>
-
-          {/* RIGHT CONTENT */}
+    <Box
+      sx={{
+        py: { xs: 8, md: 14 },
+        px: { xs: 2, md: 0 },
+        background: "#f5f5f5",
+      }}
+    >
+      <Container maxWidth="xl">
+        <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                maxWidth: {
-                  xs: "100%",
-                  md: 560,
-                },
+                position: "relative",
+                width: "100%",
+                maxWidth: 650,
               }}
             >
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: -35,
+                  right: -35,
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "40px",
+                  background: "#e7eaee",
+                  zIndex: 1,
+                }}
+              />
+
+              <Box
+                sx={{
+                  position: "absolute",
+                  left: -25,
+                  bottom: 120,
+                  width: 95,
+                  height: 95,
+                  border: "18px solid #f4e4bc",
+                  borderRadius: "6px",
+                  zIndex: 1,
+                }}
+              />
+
+              <CardMedia
+                component="img"
+                image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80"
+                alt="Faran Academy"
+                sx={{
+                  position: "relative",
+                  zIndex: 2,
+                  width: "100%",
+                  height: { xs: 380, md: 700 },
+                  objectFit: "cover",
+                  borderRadius: "40px",
+                  boxShadow: "0 25px 60px rgba(0,0,0,0.08)",
+                }}
+              />
+            </Box>
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <Box sx={{ maxWidth: 600 }}>
               <Typography
-                variant="overline"
-                color="primary"
-                fontWeight={800}
-                letterSpacing={2}
-                mb={1}
-                display="block"
+                sx={{
+                  color: "#f4a300",
+                  fontWeight: 700,
+                  letterSpacing: 4,
+                  textTransform: "uppercase",
+                  fontSize: "0.8rem",
+                  mb: 2,
+                }}
               >
                 Who We Are
               </Typography>
 
               <Typography
-                variant="h4"
-                fontWeight={800}
-                mb={2}
+                sx={{
+                  color: "#0B4A8B",
+                  fontWeight: 800,
+                  lineHeight: 1.05,
+                  mb: 3,
+                  fontSize: { xs: "1.5rem", md: "2.5rem" },
+                }}
               >
-                A people-first academy with a track
-                record of impact
+                A people-first academy with a track record of impact
               </Typography>
 
               <Typography
-                variant="body1"
-                color="text.secondary"
                 sx={{
-                  lineHeight: 1.8,
-                  mb: 2,
+                  color: "#556070",
+                  lineHeight: 1.9,
+                  fontSize: { xs: "1rem", md: "1.08rem" },
+                  mb: 3,
                 }}
               >
-                For over three decades we have
-                cultivated a culture where curiosity is
-                celebrated and learning is intentionally
-                scaffolded. We combine research-backed
-                pedagogy with a high-touch mentoring
-                system so every child gets seen,
+                For over three decades we have cultivated a culture where
+                curiosity is celebrated and learning is intentionally
+                scaffolded. We combine research-backed pedagogy with a
+                high-touch mentoring system so every child gets seen,
                 challenged and supported.
               </Typography>
 
               <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ mb: 3 }}
+                sx={{
+                  color: "#556070",
+                  lineHeight: 1.9,
+                  fontSize: { xs: "1rem", md: "1.05rem" },
+                  mb: 5,
+                }}
               >
-                <strong>How we do it:</strong> Through
-                project cycles, mentorship, and
-                cross-disciplinary studios that simulate
-                real-life challenges. Students graduate
-                not only with knowledge, but with the
-                habits to learn independently and lead
-                ethically.
+                <strong style={{ color: "#0B4A8B" }}>How we do it:</strong>{" "}
+                Through project cycles, mentorship, and cross-disciplinary
+                studios that simulate real-life challenges. Students graduate
+                not only with knowledge, but with the habits to learn
+                independently and lead ethically.
               </Typography>
 
-              <Divider
-                sx={{
-                  width: 80,
-                  mb: 3,
-                  borderColor: "primary.main",
-                }}
-              />
-
-              <Stack spacing={2}>
-                {features.map((item) => (
+              <Stack spacing={3}>
+                {features.map((feature, index) => (
                   <Box
-                    key={item}
+                    key={feature}
                     sx={{
-                      display: "flex",
-                      gap: 2,
-                      alignItems: "flex-start",
+                      p: 1,
+                      borderRadius: "24px",
+                      borderLeft: `6px solid ${
+                        index % 2 === 0 ? "#0B4A8B" : "#f4a300"
+                      }`,
                     }}
                   >
-                    <Box
-                      sx={{
-                        width: 10,
-                        height: 10,
-                        mt: 0.8,
-                        background: "primary.main",
-                        borderRadius: 1,
-                      }}
-                    />
-
                     <Typography
-                      variant="body2"
-                      color="text.primary"
-                      sx={{ fontWeight: 600 }}
+                      sx={{
+                        color: "#0B4A8B",
+                        fontWeight: 600,
+                        fontSize: "1.05rem",
+                      }}
                     >
-                      {item}
+                      {feature}
                     </Typography>
                   </Box>
                 ))}

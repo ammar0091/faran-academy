@@ -1,72 +1,189 @@
 import React from "react";
-import {  Card, CardMedia, Typography,  } from "@mui/material";
 
-export default function CourseCard({ img, title,  description, instructor, accent }) {
+import {
+  Box,
+  Card,
+  Typography,
+} from "@mui/material";
+
+export default function CourseCard({
+  img,
+  title,
+  description,
+  instructor,
+}) {
   return (
     <Card
       sx={{
-        width: 340,
-        minHeight: 320,
-        borderRadius: 4,
-        textAlign: "center",
+        height: 500,
+
         display: "flex",
         flexDirection: "column",
-        justifyContent: "flex-start",
-        boxShadow: "0px 6px 20px rgba(40,120,250,0.07)",
-        background: "linear-gradient(135deg,#f7fbfc 0%,#fff 100%)",
-        border: "1px solid #eaf1fa",
-        p: 3,
-        transition: "transform 0.2s, box-shadow 0.2s",
+
+        borderRadius: "28px",
+
+        overflow: "hidden",
+
+        background:
+          "linear-gradient(135deg,#0B4577 0%,#005BAA 100%)",
+
+        color: "#fff",
+
+        boxShadow:
+          "0 20px 40px rgba(0,91,170,.18)",
+
+        transition: "all .35s ease",
+
         "&:hover": {
-          transform: "translateY(-3px) scale(1.03)",
-          boxShadow: "0px 12px 32px rgba(66,140,240,0.18)",
+          transform: "translateY(-10px)",
+
+          boxShadow:
+            "0 30px 60px rgba(0,91,170,.25)",
+
+          "& img": {
+            transform: "scale(1.08)",
+          },
         },
       }}
     >
-      {/* Course Image */}
-      <CardMedia
-        component="img"
-        src={img}
-        alt={title}
-        sx={{
-          width: 100,
-          height: 100,
-          borderRadius: "20%",
-          mx: "auto",
-          mb: 2,
-          objectFit: "cover",
-          border: `3px solid ${accent || "#005baa"}`,
-          boxShadow: "0 2px 24px rgba(34,124,197,0.17)"
-        }}
-      />
-
-      {/* Title */}
-      <Typography fontWeight={600} fontSize={17} sx={{ mb: 1 }}>
-        {title}
-      </Typography>
-
-      {/* Instructor */}
-      <Typography color="text.secondary" fontSize={16} sx={{ mb: 1 }}>
-        Instructor: {instructor}
-      </Typography>
-
-      {/* Description */}
-      <Typography
-        variant="body2"
-        color="text.secondary"
+      {/* IMAGE */}
+      <Box
         sx={{
           overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "-webkit-box",
-          WebkitLineClamp: 3,
-          WebkitBoxOrient: "vertical",
-          fontSize: 14,
-          mb: 2,
+          height: 240,
         }}
       >
-        {description}
-      </Typography>
+        <Box
+          component="img"
+          src={img}
+          alt={title}
+          sx={{
+            width: "100%",
+            height: "100%",
 
+            objectFit: "cover",
+
+            transition:
+              "transform .6s ease",
+          }}
+        />
+      </Box>
+
+      {/* CONTENT */}
+      <Box
+        sx={{
+          p: 3.5,
+          flexGrow: 1,
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#FDB515",
+
+            fontWeight: 700,
+
+            letterSpacing: "2px",
+
+            textTransform:
+              "uppercase",
+
+            fontSize: ".8rem",
+
+            mb: 1.5,
+          }}
+        >
+          Academic Program
+        </Typography>
+
+        <Typography
+          sx={{
+            fontWeight: 800,
+
+            fontSize: "1.5rem",
+
+            lineHeight: 1.3,
+
+            minHeight: 70,
+
+            mb: 2,
+          }}
+        >
+          {title}
+        </Typography>
+
+        <Typography
+          sx={{
+            color:
+              "rgba(255,255,255,.82)",
+
+            lineHeight: 1.9,
+
+            fontSize: ".95rem",
+
+            display:
+              "-webkit-box",
+
+            WebkitLineClamp: 4,
+
+            WebkitBoxOrient:
+              "vertical",
+
+            overflow: "hidden",
+
+            minHeight: 110,
+          }}
+        >
+          {description}
+        </Typography>
+      </Box>
+
+      {/* FOOTER */}
+      <Box
+        sx={{
+          px: 3.5,
+          py: 2.5,
+
+          borderTop:
+            "1px solid rgba(255,255,255,.12)",
+
+          display: "flex",
+
+          justifyContent:
+            "space-between",
+
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#FDB515",
+
+            fontWeight: 600,
+
+            overflow: "hidden",
+
+            textOverflow:
+              "ellipsis",
+
+            whiteSpace: "nowrap",
+
+            maxWidth: 180,
+          }}
+        >
+          {instructor ||
+            "Expert Faculty"}
+        </Typography>
+
+        <Typography
+          sx={{
+            color: "#fff",
+
+            fontWeight: 700,
+          }}
+        >
+          Explore →
+        </Typography>
+      </Box>
     </Card>
   );
 }

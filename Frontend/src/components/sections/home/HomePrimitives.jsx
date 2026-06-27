@@ -99,7 +99,7 @@ export const SectionHeading = React.memo(function SectionHeading({
   return (
     <Box sx={{ textAlign: centered ? "center" : "left", ...sx }}>
       {eyebrow && <Typography sx={homeEyebrowSx}>{eyebrow}</Typography>}
-      <Typography sx={{ ...homeTitleSx, fontSize: { xs: 40, md: 60 } }}>
+      <Typography sx={{ ...homeTitleSx, fontSize: { xs: 35, md: 50 } }}>
         {title}
       </Typography>
     </Box>
