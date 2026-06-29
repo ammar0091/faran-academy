@@ -1,5 +1,5 @@
 .env.local
 
-/frontend/.env
-/frontend/.gitignore
-/frontend/build
+/Frontend/.env
+/Frontend/.gitignore
+/Frontend/build
