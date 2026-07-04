@@ -17,8 +17,6 @@ export const alumni = [
 export const achievements = [
   "ISO Certified Institution",
   "Top 5 in District Science Results",
-  "National Award for Educational Excellence",
-  "Green Campus Accreditation",
 ];
 
 export const schoolStats = [

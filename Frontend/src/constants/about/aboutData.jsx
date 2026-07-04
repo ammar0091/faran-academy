@@ -24,27 +24,31 @@ export const philosophyCards = [
 export const timeline = [
   {
     year: "1990",
-    title: "Founded",
+    title: "A Humble Beginning",
     descr:
-      "Established by a team of educators devoted to learner-centered schooling.",
-    image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80",
+      "Faran Academy was established with a vision to provide quality education that combines modern academics with Islamic values, creating a strong foundation for young learners.",
+    image: "YOUR_IMAGE_1",
   },
   {
     year: "2000",
-    title: "Innovation Award",
+    title: "Growing with the Community",
     descr:
-      "Recognized for introducing early STEM practices and project-based learning.",
-    image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+      "As more families placed their trust in us, the school continued to grow while maintaining a nurturing environment focused on learning, discipline, and character development.",
+    image: "YOUR_IMAGE_2",
   },
   {
-    year: "2022",
-    title: "National Recognition",
+    year: "2015",
+    title: "Strengthening Education",
     descr:
-      "Awarded for outstanding academic performance and student wellbeing initiatives.",
-    image:
-      "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80",
+      "Teaching methods and learning resources were continuously enhanced to help students develop academic excellence, confidence, and essential life skills.",
+    image: "YOUR_IMAGE_3",
+  },
+  {
+    year: "Today",
+    title: "Building Future Generations",
+    descr:
+      "Today, Faran Academy continues its journey by providing Urdu and English medium education, helping every child grow with knowledge, values, and confidence for a brighter future.",
+    image: "YOUR_IMAGE_4",
   },
 ];
 

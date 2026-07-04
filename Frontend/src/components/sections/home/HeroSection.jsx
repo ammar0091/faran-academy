@@ -77,8 +77,7 @@ function HeroSection({ achievements }) {
                 mb: 5,
               }}
             >
-              "Empowering lifelong learners with knowledge, values, and vision for tomorrow."
-              Discover a curriculum designed for the challenges of a global future.
+              Empowering students through quality education, strong moral values, and a caring environment where every child can grow and succeed.
             </Typography>
 
             <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
@@ -129,8 +128,8 @@ function HeroSection({ achievements }) {
                     color: "#fff",
                   }}
                 >
-                  <Typography sx={{ fontSize: { xs: 34, md: 44 }, fontWeight: 900 }}>
-                    97%
+                  <Typography sx={{ fontSize: { xs: 30, md: 35 }, fontWeight: 800 }}>
+                    Since 1990
                   </Typography>
                   <Typography
                     sx={{
@@ -141,7 +140,7 @@ function HeroSection({ achievements }) {
                       opacity: 0.85,
                     }}
                   >
-                    University Acceptance
+                    EDUCATING WITH KNOWLEDGE & VALUES
                   </Typography>
                 </Box>
               </ImageCard>

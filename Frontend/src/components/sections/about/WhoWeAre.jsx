@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 
 const features = [
-  "Project-Based Curriculum",
-  "Personalized Learning Pathways",
-  "Mental Health & Wellbeing Programs",
-  "Global Exchange Opportunities",
+  "Balanced Islamic & Modern Education",
+  "Urdu & English Medium Learning",
+  "Strong Moral Values & Discipline",
+  "Individual Attention for Every Child",
 ];
 
 export default function WhoWeAre() {
@@ -26,6 +26,7 @@ export default function WhoWeAre() {
     >
       <Container maxWidth="xl">
         <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
+          {/* Left Image */}
           <Grid item xs={12} md={6}>
             <Box
               sx={{
@@ -62,7 +63,8 @@ export default function WhoWeAre() {
 
               <CardMedia
                 component="img"
-                image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80"
+                // Replace this with your school's image later
+                image="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80"
                 alt="Faran Academy"
                 sx={{
                   position: "relative",
@@ -77,6 +79,7 @@ export default function WhoWeAre() {
             </Box>
           </Grid>
 
+          {/* Right Content */}
           <Grid item xs={12} md={6}>
             <Box sx={{ maxWidth: 600 }}>
               <Typography
@@ -98,10 +101,10 @@ export default function WhoWeAre() {
                   fontWeight: 800,
                   lineHeight: 1.05,
                   mb: 3,
-                  fontSize: { xs: "1.5rem", md: "2.5rem" },
+                  fontSize: { xs: "1.8rem", md: "2.5rem" },
                 }}
               >
-                A people-first academy with a track record of impact
+                Building Strong Foundations Through Knowledge & Values
               </Typography>
 
               <Typography
@@ -112,11 +115,11 @@ export default function WhoWeAre() {
                   mb: 3,
                 }}
               >
-                For over three decades we have cultivated a culture where
-                curiosity is celebrated and learning is intentionally
-                scaffolded. We combine research-backed pedagogy with a
-                high-touch mentoring system so every child gets seen,
-                challenged and supported.
+                Faran Academy is dedicated to providing a nurturing learning
+                environment where children receive both modern academic
+                education and Islamic guidance. We believe that true education
+                develops not only knowledge but also character, helping every
+                child become confident, responsible, and compassionate.
               </Typography>
 
               <Typography
@@ -127,11 +130,13 @@ export default function WhoWeAre() {
                   mb: 5,
                 }}
               >
-                <strong style={{ color: "#0B4A8B" }}>How we do it:</strong>{" "}
-                Through project cycles, mentorship, and cross-disciplinary
-                studios that simulate real-life challenges. Students graduate
-                not only with knowledge, but with the habits to learn
-                independently and lead ethically.
+                <strong style={{ color: "#0B4A8B" }}>
+                  Our Educational Approach:
+                </strong>{" "}
+                Through Urdu and English medium instruction, dedicated teachers,
+                and a focus on discipline and moral values, we create a balanced
+                learning experience that supports every child's academic,
+                personal, and ethical growth.
               </Typography>
 
               <Stack spacing={3}>

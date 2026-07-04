@@ -1,5 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { alpha } from "@mui/material/styles";
+import SchoolIcon from "@mui/icons-material/School";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 import {
   Box,
   Button,
@@ -7,18 +12,40 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { alpha } from "@mui/material/styles";
-import SchoolIcon from "@mui/icons-material/School";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-export default function FinalCTA() {
+export default function GalleryCTA() {
   return (
     <Box
-      component="section"
       sx={{
         py: { xs: 8, md: 12 },
+
+        background:
+          "linear-gradient(135deg, #2b5072 0%, #005BAA 60%, #0077CC 100%)",
+
+        position: "relative",
+
+        overflow: "hidden",
       }}
     >
+      {/* Background Glow */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: -120,
+          right: -120,
+
+          width: 320,
+          height: 320,
+
+          borderRadius: "50%",
+
+          background:
+            "rgba(255,255,255,.08)",
+
+          filter: "blur(90px)",
+        }}
+      />
+
       <Container maxWidth="xl">
         <Box
           sx={{
@@ -70,7 +97,7 @@ export default function FinalCTA() {
                 mb: 2,
               }}
             >
-              Admissions Open
+              Join Our Journey
             </Typography>
 
             <Typography
@@ -85,9 +112,9 @@ export default function FinalCTA() {
                 },
               }}
             >
-              Ready to Begin Your
+              Every Picture Tells 
               <br />
-              Academic Journey?
+              A Story
             </Typography>
 
             <Typography

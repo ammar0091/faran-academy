@@ -1,6 +1,26 @@
 import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { philosophyCards } from "../../../constants/about/aboutData";
+import SchoolIcon from "@mui/icons-material/School";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
+const philosophyCards = [
+  {
+    icon: <SchoolIcon />,
+    title: "Academic Excellence",
+    text: "We provide a strong educational foundation through Urdu and English medium learning, helping every child develop knowledge, confidence, and a love for learning from an early age.",
+  },
+  {
+    icon: <MenuBookIcon />,
+    title: "Islamic Values",
+    text: "Along with modern education, we nurture good character, respect, honesty, discipline, and Islamic values so that students grow into responsible individuals with strong moral principles.",
+  },
+  {
+    icon: <FavoriteIcon />,
+    title: "Caring Environment",
+    text: "We believe every child is unique. Our supportive teachers create a safe and encouraging atmosphere where students feel valued, inspired, and confident to reach their full potential.",
+  },
+];
 
 export default function PhilosophySection() {
   return (
@@ -12,7 +32,7 @@ export default function PhilosophySection() {
         background: "#004b8d",
       }}
     >
-      {/* side shape */}
+      {/* Side Shape */}
       <Box
         sx={{
           position: "absolute",
@@ -33,7 +53,7 @@ export default function PhilosophySection() {
           zIndex: 2,
         }}
       >
-        {/* section heading */}
+        {/* Section Heading */}
         <Box
           sx={{
             textAlign: "center",
@@ -52,7 +72,7 @@ export default function PhilosophySection() {
               mb: 2,
             }}
           >
-            Our Values
+            Our Foundation
           </Typography>
 
           <Typography
@@ -60,8 +80,8 @@ export default function PhilosophySection() {
               color: "#fff",
               fontWeight: 800,
               lineHeight: 1.1,
-              mb: 3,
-              fontSize: { xs: "2.5rem", md: "4.5rem" },
+              mb: 2,
+              fontSize: { xs: "2rem", md: "3rem" },
             }}
           >
             The Faran Philosophy.
@@ -70,19 +90,20 @@ export default function PhilosophySection() {
           <Typography
             sx={{
               color: "rgba(255,255,255,.75)",
-              fontSize: { xs: "1rem", md: "1.35rem" },
-              lineHeight: 1.8,
+              fontSize: { xs: "0.8rem", md: "1.2rem" },
+              lineHeight: 1.2,
               maxWidth: 850,
               mx: "auto",
             }}
           >
-            Education that evolves with every learner. We create meaningful
-            experiences that strengthen curiosity, adaptability, leadership,
-            and lifelong learning.
+            At Faran Academy, education goes beyond the classroom. We combine
+            modern academic learning with Islamic values to help children build
+            strong character, develop essential knowledge, and become
+            confident, responsible members of society.
           </Typography>
         </Box>
 
-        {/* value cards */}
+        {/* Value Cards */}
         <Grid
           container
           spacing={4}
@@ -122,7 +143,7 @@ export default function PhilosophySection() {
                     },
                   }}
                 >
-                  {/* card icon */}
+                  {/* Icon */}
                   <Box
                     sx={{
                       width: 92,

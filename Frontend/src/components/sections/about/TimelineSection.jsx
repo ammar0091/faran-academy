@@ -7,7 +7,7 @@ export default function TimelineSection() {
     <Box
       id="our-journey"
       sx={{
-        py: { xs: 4, md: 8 },
+        py: { xs: 4, md: 6 },
         backgroundColor: "#F5F6F8",
       }}
     >
@@ -43,7 +43,7 @@ export default function TimelineSection() {
         <Box
           sx={{
             position: "relative",
-            maxWidth: 1400,
+            maxWidth: 1300,
             mx: "auto",
 
             "&::before": {

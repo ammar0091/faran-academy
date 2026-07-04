@@ -4,6 +4,7 @@ import { Box, Container, Grid } from "@mui/material";
 import SEO from "../../components/common/SEO";
 import EnrollmentFormSection from "../../components/sections/enrollment/EnrollmentFormSection";
 import EnrollmentHero from "../../components/sections/enrollment/EnrollmentHero";
+import Hero from "../../components/common/Hero";
 import EnrollmentProgress from "../../components/sections/enrollment/EnrollmentProgress";
 import EnrollmentSidebar from "../../components/sections/enrollment/EnrollmentSidebar";
 import EnrollmentWhySection from "../../components/sections/enrollment/EnrollmentWhySection";
@@ -57,10 +58,18 @@ export default function Enrollment() {
           pb: { xs: 8, md: 0 },
         }}
       >
-        <EnrollmentHero />
+
+
+        <Hero
+          title="Enroll"
+          badge="Join Our Community"
+          highlight="Shape Your Future"
+          subtitle="Your Journey to Academic Excellence Begins Here. Join us in shaping a brighter future for your child."
+          image="/images/academics.jpg"
+        />
         <EnrollmentProgress />
 
-        <Container maxWidth="xl" sx={{ py: { xs: 4 , md: 6 } , px: { xs: 2.5, md: 8 }}}>
+        <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 }, px: { xs: 2.5, md: 8 } }}>
           <Grid container spacing={3} alignItems="flex-start">
             <Grid item xs={12} lg={8}>
               <EnrollmentFormSection

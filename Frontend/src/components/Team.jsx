@@ -189,7 +189,7 @@ export default function Team({
                 <Box
                   component="img"
                   src={
-                    member.image ||
+                    member.profileImg ||
                     "/assets/faculty/default.jpg"
                   }
                   alt={member.name}

@@ -48,14 +48,14 @@ export const fallbackUpdates = [
 
 export const valueCards = [
   {
-    title: "Ethical Innovation",
-    body: "Developing strong character alongside future-ready knowledge.",
     icon: "bolt",
+    title: "Balanced Education",
+    body: "We integrate modern academics with Islamic teachings to help students achieve academic excellence while developing strong moral values.",
   },
   {
-    title: "Global Vision",
-    body: "Experienced faculty shaping confident world citizens.",
     icon: "public",
+    title: "Caring Learning Environment",
+    body: "Our dedicated teachers provide a safe, supportive, and engaging atmosphere where every child is encouraged to learn, grow, and succeed.",
   },
 ];
 

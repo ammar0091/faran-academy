@@ -1,125 +1,115 @@
 import React from "react";
-
 import {
   Box,
   Container,
   Grid,
+  Stack,
   Typography,
 } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 
-const stats = [
+import SchoolIcon from "@mui/icons-material/School";
+import GroupsIcon from "@mui/icons-material/Groups";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import ComputerIcon from "@mui/icons-material/Computer";
+
+const PRIMARY = "#005ba1";
+const SECONDARY = "#feb316";
+
+const STATS = [
   {
-    value: "15:1",
-    label: "Student Teacher Ratio",
+    icon: <SchoolIcon />,
+    value: "180+",
+    label: "Students",
   },
   {
-    value: "1200+",
-    label: "Students Enrolled",
+    icon: <GroupsIcon />,
+    value: "15+",
+    label: "Dedicated Teachers",
   },
   {
-    value: "50+",
-    label: "Expert Faculty",
+    icon: <MenuBookIcon />,
+    value: "Islamic Studies",
+    label: "Quran • Hadith • History",
   },
   {
-    value: "98%",
-    label: "Academic Success Rate",
+    icon: <ComputerIcon />,
+    value: "Modern Learning",
+    label: "Preparing for Tomorrow",
   },
 ];
 
 export default function StatsSection() {
   return (
     <Box
+      component="section"
       sx={{
-        // mt: { xs: -4, md: -6 },
-        // position: "relative",
-        zIndex: 5,
+        bgcolor: PRIMARY,
+        py: { xs: 5, md: 6 },
       }}
     >
-      <Container maxWidth="xl">
-        <Box
-          sx={{
-            background:
-              "linear-gradient(135deg,#0B4577 0%,#005BAA 100%)",
-
-            // borderRadius: "32px",
-
-            overflow: "hidden",
-
-            boxShadow:
-              "0 25px 60px rgba(0,0,0,.15)",
-          }}
-        >
-          <Grid container>
-            {stats.map((item, index) => (
-              <Grid
-                item
-                xs={6}
-                md={3}
-                key={item.label}
+      <Container
+        maxWidth="xl"
+        sx={{
+          px: { xs: 2.5, md: 8 },
+        }}
+      >
+        <Grid container spacing={{ xs: 4, md: 3 }}>
+          {STATS.map(({ icon, value, label }) => (
+            <Grid item xs={6} md={3} key={label}>
+              <Stack
+                alignItems="center"
+                textAlign="center"
+                spacing={1.5}
               >
                 <Box
                   sx={{
-                    p: { xs: 3, md: 5 },
+                    width: 64,
+                    height: 64,
+                    borderRadius: "50%",
+                    bgcolor: alpha("#fff", 0.12),
+                    display: "grid",
+                    placeItems: "center",
+                    color: SECONDARY,
 
-                    textAlign: "center",
-
-                    borderRight: {
-                      md:
-                        index !==
-                        stats.length - 1
-                          ? "1px solid rgba(255,255,255,.12)"
-                          : "none",
-                    },
-
-                    borderBottom: {
-                      xs:
-                        index < 2
-                          ? "1px solid rgba(255,255,255,.12)"
-                          : "none",
-
-                      md: "none",
+                    "& svg": {
+                      fontSize: 32,
                     },
                   }}
                 >
-                  <Typography
-                    sx={{
-                      color: "#FDB515",
-
-                      fontWeight: 800,
-
-                      lineHeight: 1,
-
-                      mb: 1,
-
-                      fontSize: {
-                        xs: "2rem",
-                        md: "3rem",
-                      },
-                    }}
-                  >
-                    {item.value}
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      color:
-                        "rgba(255,255,255,.85)",
-
-                      fontWeight: 500,
-
-                      fontSize: {
-                        xs: ".9rem",
-                        md: "1rem",
-                      },
-                    }}
-                  >
-                    {item.label}
-                  </Typography>
+                  {icon}
                 </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    fontSize: {
+                      xs: 28,
+                      md: 36,
+                    },
+                    fontWeight: 800,
+                    lineHeight: 1,
+                  }}
+                >
+                  {value}
+                </Typography>
+
+                <Typography
+                  sx={{
+                    color: alpha("#fff", 0.8),
+                    fontWeight: 500,
+                    fontSize: {
+                      xs: 14,
+                      md: 16,
+                    },
+                  }}
+                >
+                  {label}
+                </Typography>
+              </Stack>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </Box>
   );
